@@ -47,7 +47,7 @@ async function findByUserName(username) {
 }
 
 async function findById(id) {
-  return db.collection('users').findOne({ _id: id });
+  return User.findOne({ _id: id });
 }
 
 
