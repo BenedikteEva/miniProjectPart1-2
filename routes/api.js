@@ -12,11 +12,14 @@ router.get('/', function (req, res, next) {
 router.get('/allusers',async function (req, res, next) {
   let allusers = await userFacade.getAllUsers();
   next();
- let alluserJson= [allusers.join('\n')]
+ 
   res.render('allusers', {
     title: 'all users',
-    allusers: alluserJson
-  });
-})
+    allusers: allusers
+  })
+
+});
+
+ 
 
 module.exports = router;
