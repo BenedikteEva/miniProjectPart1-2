@@ -9,6 +9,7 @@ router.get('/', function (req, res, next) {
   })
 });
 
+
 router.get('/allusers',async function (req, res, next) {
   let allusers = await userFacade.getAllUsers();
   next();
@@ -19,6 +20,17 @@ router.get('/allusers',async function (req, res, next) {
   })
 
 });
+router.get('/user/:userName', async function(req,res,next){
+  let user = await userFacade.findByUsername(req.params.userName);
+  next();
+  res.render('user', {
+    title :'user',
+    user: user
+
+  })
+});
+
+
 
  
 
