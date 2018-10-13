@@ -47,7 +47,11 @@ async function findByUserName(username) {
 }
 
 async function findById(id) {
-  return User.findOne({ _id: id });
+  return  await User.findById({ _id: id });
+}
+
+async function deleteUser(id){
+await User.findByIdAndDelete({_id:id});
 }
 
 
@@ -58,5 +62,6 @@ module.exports = {
   addUser: addUser,
   findByUsername: findByUserName,
   findById: findById,
-  addJobToUser:addJobToUser
+  addJobToUser:addJobToUser,
+  deleteUser: deleteUser
 }

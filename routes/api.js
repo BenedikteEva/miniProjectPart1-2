@@ -21,25 +21,27 @@ router.get('/allusers',async function (req, res, next) {
   })
 
 });
-router.get('/user/:userName', async function(req,res,next){
+router.get('/userbyname/:userName', async function(req,res,next){
   let user = await userFacade.findByUsername(req.params.userName);
   let userjson=res.json(user);
   next();
-  res.render('user', {
+  res.render('userbyname', {
     title :'user',
     user: userjson
 
   })
 });
-router.get('/user/:_id', async function(req,res,next){
-  let user = await userFacade.findByUsername(req.params._id);
+router.get('/userbyid/:_id', async function(req,res,next){
+  
+  let user = await userFacade.findById(req.params._id);
   let userjson=res.json(user);
   next();
-  res.render('user', {
+  res.render('userbyid', {
     title :'user',
     user: userjson
 
   })
+   
 });
 
 
