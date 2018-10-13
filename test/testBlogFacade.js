@@ -10,6 +10,8 @@ mongoose.connection = {};
 var blogFacade = require("../facades/blogFacade");
 var Blog = require("../models/LocationBlog");
 var userFacade=require("../facades/userFacade")
+var users = require('../models/User.js');
+var User = mongoose.model('User', users.UserSchema);
 let connection = null;
 describe("Testing the LocBlog Facade", function () {
 
@@ -27,17 +29,19 @@ describe("Testing the LocBlog Facade", function () {
   /* Setup the database in a known state (2 users) before EACH test */
   beforeEach(async function () {
     await Blog.deleteMany({}).exec();
+   await Promise.all([
+      new User({ firstName: "Kurt", lastName: "Wonnegut", userName: "kw", password: "test", email: "a@b.dk" }).save()])
     var users = await userFacade.getAllUsers();
     user1=users[0];
-    console.log(user1)
+    console.log(users)
+    
 
    blogs = await Promise.all([
       new Blog({ info:'Not so cool blog', pos:{longitude:11, latitude:13},author:user1 }).save(),
-      new Blog({ info:'Cool blog', pos:{longitude:12, latitude:55},author:user1 , likedBy:user1.id}).save(),
+      new Blog({ info:'Cool blog', pos:{longitude:12, latitude:55},author:user1 ,   likedBy: user1._id }).save(),
     ])
   })
 
-//likeLocationBlog('5bbfb873a72f790c8050076f','5bbfb90338947c21cc66d717' )
   
 
   it("Should add Blog", async function () {

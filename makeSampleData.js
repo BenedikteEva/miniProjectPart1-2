@@ -52,8 +52,9 @@ function positionCreator(lon, lat, userId, dateInFuture) {
 
 //Utility Function to create LocationBlogs
 function locationBlogCreator(info, author, longitude, latitude) {
-  var LocationBlogDetail = { info, pos: { longitude, latitude }, author };
+  var LocationBlogDetail = { info, pos: { longitude, latitude }, author , likedBy:[{_id:author._id}]};
   var blog = new LocationBlog(LocationBlogDetail);
+
   return blog.save();
 }
 
@@ -77,14 +78,13 @@ console.log(users[0].ops[3]._id)
 //blogs are created
  
 
- 
-    var blogPromises = [
+
       locationBlogCreator("Cool Place", users[0].ops[0]._id, 26, 28),
-      locationBlogCreator("Another Cool Place",  users[0].ops[0]._id, 56, 56),
-      locationBlogCreator("Yet Another Cool Place",  users[0].ops[0]._id, 28, 56),
+      locationBlogCreator("Another Cool Place",  users[0].ops[1]._id, 56, 56),
+      locationBlogCreator("Yet Another Cool Place",  users[0].ops[2]._id, 28, 56),
       locationBlogCreator("The coolest Place",  users[0].ops[3]._id, 34, 56),
-    ];
-    var blogs = await Promise.all(blogPromises);
+    
+ 
   } catch (err) {
     console.log("UPPPS: ", err);
 }
