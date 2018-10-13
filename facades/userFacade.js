@@ -42,7 +42,7 @@ async function getAllUsers() {
 };
 
 async function findByUserName(username) {
-  const foundUser = await db.collection('users').findOne({ userName: username })
+  const foundUser = await User.findOne({ userName: username })
   return foundUser;
 }
 
@@ -51,13 +51,6 @@ async function findById(id) {
 }
 
 
-// addUser('Klump', 'Boobs', 'KlumpBoobs', 'klump', 'klump@boops.on', 'CEO', 'company3', 'www.company.on');
-//  addUser('Bibby', 'Beebs', 'BibbyBeebs', 'beebie', 'bibby@beeps.on');
-// addUser('Bibbo', 'Beobs', 'BibboBeobs', 'beobie', 'bibbo@beops.on');
-
-// console.log(findByUserName('KlumpBoobs'))
- //console.log(getAllUsers());
-//addJobToUser('5bbfb873a72f790c80500767','Partner', 'company3', 'www.company.on' )
 
 
 module.exports = {
