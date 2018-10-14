@@ -33,7 +33,7 @@ describe("Testing the LocBlog Facade", function () {
       new User({ firstName: "Kurt", lastName: "Wonnegut", userName: "kw", password: "test", email: "a@b.dk" }).save()])
     var users = await userFacade.getAllUsers();
     user1=users[0];
-    console.log(users)
+  
     
 
    blogs = await Promise.all([

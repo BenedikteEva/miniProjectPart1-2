@@ -78,12 +78,13 @@ console.log(users[0].ops[3]._id)
 //blogs are created
  
 
-
+ 
+    var blogPromises = [
       locationBlogCreator("Cool Place", users[0].ops[0]._id, 26, 28),
       locationBlogCreator("Another Cool Place",  users[0].ops[1]._id, 56, 56),
       locationBlogCreator("Yet Another Cool Place",  users[0].ops[2]._id, 28, 56),
       locationBlogCreator("The coolest Place",  users[0].ops[3]._id, 34, 56),
-    
+    ];
  
   } catch (err) {
     console.log("UPPPS: ", err);
