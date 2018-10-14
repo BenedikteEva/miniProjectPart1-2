@@ -50,25 +50,24 @@ describe("Testing the User Facade", function () {
     expect(user.firstName).to.be.equal("Kurt");
   });
 
-  it("Should add Peter Pan", async function () {
+  it("Should add Peter Pan then find Peter by his id and then delete him Again", async function () {
     var user = await userFacade.addUser("Peter", "Pan", "peter", "test", "c@b.dk");
     expect(user).to.not.be.null;
 
     expect(user.firstName).to.be.equal("Peter");
     var users = await userFacade.getAllUsers();
     expect(users.length).to.be.equal(3);
+    var user2 = await userFacade.findById(users[2]._id);
+    await userFacade.deleteUser(users[2]._id);
+    user2 = await userFacade.findById(users[2]._id);
+    expect(user2).to.be.null;
   });
 
   it("Schould give Kurt a new job by finding him by id and then update job", async function () {
-    var newJob = await userFacade.addJobToUser('5bc072509f0a746250199ded', 'Owner', 'company3', 'www.company3.on');
+    var newJob = await userFacade.addJobToUser('5bc39f678229ea40d48b787b', 'Owner', 'company3', 'www.company3.on');
   })
 
-  it("Schould find Kurt by his id and then delete him Again", async function () {
-    var user = await userFacade.findById(users[0]._id);
-    await userFacade.deleteUser(user._id);
-    user = await userFacade.findById(users[0]._id);
-    expect(user).to.be.null;
-  })
+
 
 })
 
