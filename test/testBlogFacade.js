@@ -29,8 +29,7 @@ describe("Testing the LocBlog Facade", function () {
   /* Setup the database in a known state (2 users) before EACH test */
   beforeEach(async function () {
     await Blog.deleteMany({}).exec();
-   await Promise.all([
-      new User({ firstName: "Kurt", lastName: "Wonnegut", userName: "kw", password: "test", email: "a@b.dk" }).save()])
+ 
     var users = await userFacade.getAllUsers();
     user1=users[0];
   
@@ -38,7 +37,7 @@ describe("Testing the LocBlog Facade", function () {
 
    blogs = await Promise.all([
       new Blog({ info:'Not so cool blog', pos:{longitude:11, latitude:13},author:user1 }).save(),
-      new Blog({ info:'Cool blog', pos:{longitude:12, latitude:55},author:user1 ,   likedBy: user1._id }).save(),
+      new Blog({ info:'Cool blog', pos:{longitude:12, latitude:55},author:users[1] ,   likedBy:user1 }).save(),
     ])
   })
 

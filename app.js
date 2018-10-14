@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var loggerDoc=require('./logger')
+//var loggerDoc=require('./logger')
 var  User=require('./models/User.js')
 var connect=require('./dbSetup.js')
  
