@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 const expect = require("chai").expect;
-const should = require("chai").should;
 const dbSetup = require("..//dbSetup");
-var db = mongoose.connection;
+
 
 // //https://github.com/Automattic/mongoose/issues/1251
 // mongoose.models = {};
@@ -22,8 +21,7 @@ describe("Testing the User Facade", function () {
   })
 
   after(function () {
- Promise.all([
-      new User({ firstName: "Kurt", lastName: "Wonnegut", userName: "kw", password: "test", email: "a@b.dk" }).save()])
+
     mongoose.connection.close();
   })
 

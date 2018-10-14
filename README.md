@@ -1,5 +1,5 @@
 # miniProjectPart1 BenedikteEva
-
+console.log(https://scotch.io/tutorials/test-a-node-restful-api-with-mocha-and-chai)
 
 
 function HaventFinishedRestEndPointsYet (){
