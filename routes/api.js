@@ -62,7 +62,7 @@ router.post('/usercreate', async function(req,res,next){
 });
 
 
-router.delete('/userbyid/:_id',async function(req,res,next){
+router.delete('/userbyid',async function(req,res,next){
   
   await userFacade.deleteUser(req.params._id);
 

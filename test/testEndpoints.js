@@ -8,7 +8,7 @@ let should = chai.should();
 var app = require('../app');
 var server;
 var TEST_PORT = 3456;
-
+var userFacade=require('../facades/userFacade')
 
 chai.use(chaiHttp);
 
@@ -61,6 +61,24 @@ describe("POST: /api/usercreate", function () {
         res.should.have.status(200);
         res.body.should.be.a('object');
        expect(res.body.userName).to.be.not.null;
+        
+      });
+      done(); });
+
+});
+
+
+describe("DELETE: /api/userbyid", function (_id){
+it('should delete a user and then expect it to not be there', (done)=>{
+  let userid=  userFacade.findByUsername('kw')._id;
+
+ chai.request(server)
+      .delete('/api/userbyid')
+      .send(userid)
+      .end((err, res) => {
+        res.should.have.status(200);
+   
+       expect(res.body.userName).to.be.null;
         
       });
       done(); });
