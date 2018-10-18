@@ -30,8 +30,8 @@ describe("Testing the User Facade", function () {
   beforeEach(async function () {
     await User.deleteMany({}).exec();
     users = await Promise.all([
-      new User({ firstName: "Kurt", lastName: "Wonnegut", userName: "kw", password: "test", email: "a@b.dk" }).save(),
-      new User({ firstName: "Hanne", lastName: "Wonnegut", userName: "hw", password: "test", email: "b@b.dk" }).save(),
+      new User({ firstName: "Kurt", lastName: "Wonnegut", userName: "kw", password: "test", email: "t@b.dk" }).save(),
+      new User({ firstName: "Hanne", lastName: "Wonnegut", userName: "hw", password: "test", email: "u@b.dk" }).save(),
     ])
   });
 
