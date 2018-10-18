@@ -37,7 +37,8 @@ describe("Testing the User Facade", function () {
 
   it("Should find all users (Kurt and Hanne)", async function () {
     var users = await userFacade.getAllUsers();
-    expect(users.length).to.be.equal(2);
+    expect(users[0].lastName).to.be.equal("Wonnegut");
+    expect(users.length).to.be.not.null;
   });
 
   it("Should Find Kurt Wonnegut by Username", async function () {
@@ -64,7 +65,10 @@ describe("Testing the User Facade", function () {
   });
 
   it("Schould give Kurt a new job by finding him by id and then update job", async function () {
-    var newJob = await userFacade.addJobToUser('5bc39f678229ea40d48b787b', 'Owner', 'company3', 'www.company3.on');
+    var user = await userFacade.findByUsername("kw");
+    var newJob = await userFacade.addJobToUser(user._id, 'Owner', 'company3', 'www.company3.on');
+   user = await userFacade.findByUsername("kw");
+    expect(user.job[0].type).to.be.equal("Owner");
   })
 
 

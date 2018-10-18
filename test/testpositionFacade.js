@@ -26,15 +26,13 @@ describe("Testing the Position Facade", function () {
     /* Setup the database in a known state (4 posistions) before EACH test */
     beforeEach(async function () {
         await Position.deleteMany({}).exec();
-        var users=await User.insertMany([
-            userlist[0], userlist[1], userlist[2], userlist[3]
-          ]);//make this into a foreach function
-     
-          user1=users[0];
-
-        await Position.deleteMany({}).exec();
+        await User.deleteMany({}).exec();
+        users = await Promise.all([
+          new User({ firstName: "Kurt", lastName: "Wonnegut", userName: "kw", password: "test", email: "a@b.dk" }).save(),
+          new User({ firstName: "Hanne", lastName: "Wonnegut", userName: "hw", password: "test", email: "b@b.dk" }).save(),
+        ])
         const positionsData = [positionCreator(10, 11, users[0]._id, false), positionCreator(11, 22, users[1]._id, true),
-        positionCreator(11, 12, users[2]._id, true), positionCreator(11, 13, users[3]._id, false)]
+        positionCreator(11, 12, users[0]._id, true), positionCreator(11, 13, users[1]._id, false)]
 
         poss = await Position.insertMany([
             positionsData[0],
@@ -47,9 +45,9 @@ describe("Testing the Position Facade", function () {
 
     });
 
-    it("shuld check add posistion", async function () {
+    it("should check add posistion", async function () {
         let users = await userFacade.getAllUsers();
-        await positionFacade.addPosition(12, 12, users[0]._id, false);
+        await positionFacade.addPosition(12, 12, users[0]._id, true);
         let posistionList = await Position.find({});
         expect( posistionList.length).to.be.equal(5);
         
@@ -79,4 +77,4 @@ const joblist = [
     { firstName: 'Crazy', lastName: 'Crazed', userName: 'Crazy', password: "crazed", email: "crazy@crazed.on", job: joblist[2] },
     { firstName: 'Mons', lastName: 'Monster', userName: 'MonsterMons', password: "mons", email: "monster@mons.on", job: joblist[3] },
   
-  ];
+  ]; 
