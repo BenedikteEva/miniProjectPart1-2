@@ -22,8 +22,7 @@ before(function(done){
 after(function(done){
   server.close();
   done();
-})
-
+}) 
 
 describe("GET: /api/allusers", (done)=>{
     it("should get all users", (done)=>{
