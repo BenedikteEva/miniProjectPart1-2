@@ -54,15 +54,36 @@ router.post('/usercreate', async function(req,res,next){
         res.send(err);
     }
     else { //If no errors, send it back to the client
-        
+      res.render('usercreate', {
+        message :'succesfully created',
+      
+    
+      })  
     }
 
   })
    
 });
 
+router.put('/userjob', async function(req,res, next){
+let userwithnewjob= await userFacade.addJobToUser(req.params._id, req.params.type, req.params.company, req.params.companyUrl);
+userwithnewjob.save((err,user, done) => {
+  if(err) {
+      res.send(err);
+  }
+  else { //If no errors, send it back to the client
+    res.render('userjob', {
+      message :'succesfully added a job to user',
+    
+  
+    }) 
+  }
 
-router.delete('/userbyid/:_id',async function(req,res,next){
+})
+})
+
+
+router.delete('/userbyid',async function(req,res,next){
   
   await userFacade.deleteUser(req.params._id);
 
