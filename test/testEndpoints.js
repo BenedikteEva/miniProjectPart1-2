@@ -46,7 +46,7 @@ describe("POST: /api/usercreate", function () {
     let user = {
       firstName: "Testy",
       lastName: "Testisen",
-      userName: "tete",
+      userName: null,
       password:"test", 
       email: "test@test.tt",
       type: null,
@@ -60,7 +60,7 @@ describe("POST: /api/usercreate", function () {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
-       expect(res.body.userName).to.be.not.null;
+       expect(req.body.userName).to.be.not.null;
         
       });
       done(); });
@@ -68,7 +68,7 @@ describe("POST: /api/usercreate", function () {
 });
 
 
-describe("DELETE: /api/userbyid", function (_id){
+describe("DELETE: /api/userbyid", function (){
 it('should delete a user and then expect it to not be there', (done)=>{
   let userid=  userFacade.findByUsername('kw')._id;
 
@@ -84,3 +84,18 @@ it('should delete a user and then expect it to not be there', (done)=>{
       done(); });
 
 });
+
+describe("PUT: /api/userjob", function (){
+  it('should give a user a new job and then test if user really got a new job', (done)=>{
+    let userid=  userFacade.findByUsername('hw')._id;
+
+    chai.request(server)
+    .put('/api/userjob')
+    .send(userid, 'piccolo', 'notmycompany', 'www.notmycompany.org')
+    .end((err, res) => {
+      res.should.have.status(200);
+     expect(res.body.type).to.be.equal('piccolo');
+      
+    });
+    done(); });
+})
