@@ -40,22 +40,29 @@ describe("GET: /api/allusers", (done)=>{
 })
 
 
-/* describe("POST: /api/usercreate", function () {
-  var options = {
-    url: "http://localhost:" + TEST_PORT + "/api/usercreate",
-    method: "POST",
-    json: true,
-    body: {firstName: "Ugly", lastName: "Bugley", userName:"ugbug",password:"ugtest", email: "ug@bug.ly" }
-  }
 
-  it("should get the newly added user", function (done) {
-    request(options, function (error, res, body) {
-      let ugbug = body.firstName;
-      console.log(ugbug)
-      expect(ugbug).to.be.equal("Ugly");
-      //You should also check whether the joke actually was added to the Data-store
-      done();
-    });
-  })
-}); */
+describe("POST: /api/usercreate", function () {
+  it('it should not POST a user without userName field', (done) => {
+    let user = {
+      firstName: "Testy",
+      lastName: "Testisen",
+      userName: "tete",
+      password:"test", 
+      email: "test@test.tt",
+      type: null,
+      company:null,
+      companyUrl:null
 
+    }
+    chai.request(server)
+      .post('/api/usercreate')
+      .send(user)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+       expect(res.body.userName).to.be.not.null;
+        
+      });
+      done(); });
+
+});

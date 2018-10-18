@@ -44,17 +44,17 @@ router.get('/userbyid/:_id', async function(req,res,next){
    
 });
 
-router.post('/usercreate/:user', async function(req,res,next){
+router.post('/usercreate', async function(req,res,next){
  
   let newUser =  await userFacade.addUser(req.body.firstName, req.body.lastName, req.body.userName, req.body.password, req.body.email, req.body.type, req.body.company, req.body.companyUrl);
 
  
-  newUser.save((err,user) => {
+  newUser.save((err,user, done) => {
     if(err) {
         res.send(err);
     }
     else { //If no errors, send it back to the client
-        res.json({message: "User successfully added!", user });
+        
     }
 
   })
