@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const userFacade = require('../facades/userFacade')
-
+require('mongoose').set('debug',true)
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   res.render('api', {
@@ -55,6 +55,7 @@ router.post('/usercreate', async function(req,res,next){
     }
     else { //If no errors, send it back to the client
       res.render('usercreate', {
+        title:'usercreate',
         message :'succesfully created',
       
     
@@ -62,7 +63,7 @@ router.post('/usercreate', async function(req,res,next){
     }
 
   })
-   
+  
 });
 
 router.put('/userjob', async function(req,res, next){

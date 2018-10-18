@@ -3,7 +3,7 @@ require("..//dbSetup.js")();
 var db = mongoose.connection;
 var users = require('../models/User.js');
 var User = mongoose.model('User', users.UserSchema);
-
+//require('mongoose').set('debug',true)
 
 
 
