@@ -1,16 +1,18 @@
 # miniProjectPart1 BenedikteEva
 
 examples:
-1. testing a REST-API using Node/JavaScript + relevant packages (mocha and chai) se test mappen har kun en test af restapen so far men den passer
-2. the Express concept; middleware. app.get('/', function (req,res,next)) det der sker mellem request og response i en http metode (get,put, post, delete osv.)
-kan være mange forskellige funktioner tjek lige mine api metoder og tilhørende tests. 
+1. testing a REST-API using Node/JavaScript + relevant packages (mocha and chai) se test mappen 
+
+2. the Express concept; middleware. app.get('/', function (req,res,next)) det der sker mellem request og response i en http metode (get,put, post, delete osv.)kan være mange forskellige funktioner tjek mine api metoder og tilhørende tests. 
+
 3. Explain, using relevant examples, how to implement sessions, and the legal implications of doing this.
 promise pending har ikke brugt sessions her mn kommer vel med part 2 og 3
+
 4. Explain (conceptually) how you would handle sessions if you run your app in clusters to solve some of problems related to deployment.
 promise pending
 5. Compare the express strategy toward (server side) templating with the one you used with Java on second semester. kort fortalt ejs==jsp (ikke ===)
-6. Demonstrate a simple Server Side Rendering example using a technology of your own choice. https://www.youtube.com/watch?v=GQzn7XRdzxY
-Server Side Rendering (SSR) is the process of taking a client-side JavaScript Framework website and rendering it to static HTML and CSS on the server. Why is this important? We all want fast loading websites and SSR is a tool to help you get your website rendered faster. SSR flips the process of rendering a JavaScript framework app and when done right can give your users a better page load. (need to catch up here). 
+6. Demonstrate a simple Server Side Rendering example using a technology of your own choice. 
+route -view
 jeg har brugt ejs sider. Ejs er en server side rendering template engine
 7. Explain, using relevant examples, your strategy for implementing a REST-API with Node/Express and show how you can "test" all the four CRUD operations programmatically using for example the Request package. Pattern: - database på mongodb - facade metoder til at lave crud metoder - httpmetoder på endpoints ('./routes/api) - response ('./views/forskellige endpoints) - mocha test metoder til at teste endpoints (indtil videre har jeg kun 1)
 8. Explain, using relevant examples, about testing JavaScript code, relevant packages (Mocha etc.) and how to test asynchronous code.
