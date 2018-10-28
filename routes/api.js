@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const userFacade = require('../facades/userFacade')
+const loginFacade= require('../facades/loginFacade')
 require('mongoose').set('debug',true)
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -99,7 +100,28 @@ router.delete('/user',async function(req,res,next){
   })
    
 })
+router.post('/login',async function(req,res,next){
+ 
+  let loginUser =  await loginFacade.login(req.body.userName,req.body.password, req.body.longitude, req.body.latitude, req.body.distance );
 
+ 
+  newUser.save((err,user, done) => {
+    if(err) {
+        res.send(err);
+    }
+    else { //If no errors, send it back to the client
+      res.render('login', {
+        title:'loggedin',
+        message :'you have succecfully loggedin here is a list of friends',
+        friends:res.json(loginUser)
+      
+    
+      })  
+    }
+
+  })
+  
+});
  
 
 module.exports = router;

@@ -8,8 +8,7 @@ const SECONDS = 1;
 var EXPIRES = 60  * SECONDS ;
 var PositionSchema = Schema({
  //Make sure that next line reflects your User-model
-// user: {type: [users.userSchema], ref: 'User', required: true},
- user: {type: String, ref: 'User', required: true},
+ user: {type: [Schema.Types.ObjectId], ref: 'User', required: true},
  created: { type: Date, expires: EXPIRES, default: Date.now },
  loc: {
  'type': { type: String, enum: "Point", default: "Point" },

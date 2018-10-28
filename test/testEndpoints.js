@@ -102,3 +102,25 @@ describe("PUT: /api/user", function (){
     });
      });
 })
+describe("POST: /api/login", function () {
+  it('should test if login returns a 200 response', (done) => {
+    let login = {
+    username:"kw",
+     password:"test", 
+     longitude:55.770112949163725 ,
+     latitude:12.513250708580017,
+     distance: 500
+
+    }
+    chai.request(server)
+      .post('/api/login')
+      .send(login)
+      .end((err, res) => {
+        res.should.have.status(200);
+      
+        
+      });
+     
+      done(); });
+
+});
