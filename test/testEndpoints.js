@@ -43,12 +43,12 @@ describe("GET: /api/allusers", (done)=>{
 
 
 
-describe("DELETE: /api/userbyid", function (){
+describe("DELETE: /api/user", function (){
 it('should delete a user and then expect it to not be there', (done)=>{
   let userid=   userFacade.findByUsername('kw')._id;
 
  chai.request(server)
-      .delete('/api/userbyid')
+      .delete('/api/user')
       .send(userid)
       .end((err, res) => {
         res.should.have.status(200);
@@ -62,7 +62,7 @@ it('should delete a user and then expect it to not be there', (done)=>{
 });
 
 
-describe("POST: /api/usercreate", function () {
+describe("POST: /api/user", function () {
   it('it should not POST a user without userName field', (done) => {
     let user = {
       firstName: "Testy",
@@ -76,7 +76,7 @@ describe("POST: /api/usercreate", function () {
 
     }
     chai.request(server)
-      .post('/api/usercreate')
+      .post('/api/user')
       .send(user)
       .end((err, res) => {
         res.should.have.status(200);
@@ -88,16 +88,16 @@ describe("POST: /api/usercreate", function () {
       done(); });
 
 });
-describe("PUT: /api/userjob", function (){
+describe("PUT: /api/user", function (){
   it('should give a user a new job and then test if user really got a new job',  (done)=>{
     let userid= userFacade.findByUsername('hw')._id;
 
     chai.request(server)
-    .put('/api/userjob')
-    .send(userid, 'piccolo', 'notmycompany', 'www.notmycompany.org')
+    .put('/api/user')
+    .send({_id:userid,job:{type: 'piccolo',company: 'notmycompany', companyUrl:'www.notmycompany.org'}})
     .end((err, res) => {
       res.should.have.status(200);
-     expect(res.body.type).to.be.equal('piccolo');
+     expect(res.body.job[1].type).to.be.equal('piccolo');
       
     });
     done(); });
