@@ -89,16 +89,16 @@ describe("POST: /api/user", function () {
 
 });
 describe("PUT: /api/user", function (){
-  it('should give a user a new job and then test if user really got a new job',  (done)=>{
-    let userid= userFacade.findByUsername('hw')._id;
+  it('should give a user a new job and then test if user really got a new job',  async()=>{
+    let userid= await userFacade.findByUsername('hw')._id;
 
     chai.request(server)
-    .put('/api/user')
-    .send({_id:userid,job:{type: 'piccolo',company: 'notmycompany', companyUrl:'www.notmycompany.org'}})
+    .put('/api/user/'+userid)
+    .send({job:{type: 'piccolo',company: 'notmycompany', companyUrl:'www.notmycompany.org'}})
     .end((err, res) => {
       res.should.have.status(200);
      expect(res.body.job[1].type).to.be.equal('piccolo');
       
     });
-    done(); });
+     });
 })
