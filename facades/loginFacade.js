@@ -17,7 +17,7 @@ Finally use map on the list of friends to reformat it as requested for the endpo
 IMPORTANT: Add this line below your PostionSchema, in order to create the required 2dsphere index: PositionSchema.index({ loc: "2dsphere" },{ "background": true }); */
 
 
-async function login(username,password,longitude,latitude,mindist,distance){
+async function login(username,password,longitude,latitude,distance){
 let user = await User.findOne({ userName: username },
     function(err, res) {
       if (err) throw err;
@@ -25,8 +25,8 @@ let user = await User.findOne({ userName: username },
 
     });
 if(user.password===password){
-   posfacade.addPosition(longitude,latitude,user._id, false);
-   return friendFinderUtility(longitude,latitude,mindist,distance);
+   posfacade.addPosition(longitude,latitude,user, true);
+   return friendFinderUtility(longitude,latitude,distance);
 }else{
    return 'wrong username or password'
     }
@@ -34,20 +34,26 @@ if(user.password===password){
 
 
 
-async function friendFinderUtility(longitude,latitude, minDist, maxDist){
+async function friendFinderUtility(longitude,latitude, distance){
 
-  return  Position.find(
+ return  Position.find(
         {
           loc:
             { $near :
                {
                  $geometry: { type: "Point",  coordinates: [ longitude, latitude ] },
-                 $minDistance: minDist,
-                 $maxDistance: maxDist
+                 $minDistance: 1,
+                 $maxDistance: distance
                }
             }
         }
-     )
+     ).populate('user').exec(function (err, Position) {
+      if (err) return err;
+  
+      console.log('//////////////////////////The user is %s', Position[0].user);
+      // 
+})
+
 }
 
 module.exports={login}

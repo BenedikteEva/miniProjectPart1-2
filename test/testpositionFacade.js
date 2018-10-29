@@ -47,7 +47,7 @@ describe("Testing the Position Facade", function () {
 
     it("should check add posistion", async function () {
         let users = await userFacade.getAllUsers();
-        await positionFacade.addPosition(12, 12, users[0]._id, true);
+        await positionFacade.addPosition(12, 12, users[0]._id, false);
         let posistionList = await Position.find({});
         expect( posistionList.length).to.be.equal(5);
         
