@@ -9,7 +9,7 @@ var User = mongoose.model('User', users.UserSchema);
 var loginFacade=require("../facades/loginFacade")
 
 
-describe("Testing the login Facade", function () {
+describe.only("Testing the login Facade", function () {
 
     /* Connect to the TEST-DATABASE */
     before(async function () {
@@ -51,20 +51,19 @@ describe("Testing the login Facade", function () {
 
     it("should check bad login ", async function () {
         let loginresponse = await loginFacade.login("kw","wrongtest",55.770112949163725,12.513250708580017,500 );
-       
-        expect( loginresponse).to.be.equal('wrong username or password');
+        console.log('bad login '+loginresponse)
+        expect(loginresponse.status).to.be.equal(403);
         
     });
 
 
-it("should check good login ", async function () {
-  let loginresponse = await loginFacade.login("kw","hash_me_and_add_some_salt test",55.770112949163725,12.513250708580017,500 );
- 
-console.log('loginresponse '+loginresponse)
-  // this is bullshit we dont want this
-  expect( loginresponse).to.be.undefined;
+it("should check good login ", async function (done) {
+  await loginFacade.login("kw","hash_me_and_add_some_salt test",55.770112949163725,12.513250708580017,500 ).then(function (res){
+console.log('res------------------------------------------------'+res)
+expect( res.length).to.be.equal(2)}).then(
   
-});
+ done())
+}); 
 });
 
  function positionCreator(lon, lat, userId, dateInFuture) {
