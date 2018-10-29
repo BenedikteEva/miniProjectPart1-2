@@ -13,7 +13,7 @@ var userFacade=require('../facades/userFacade')
 chai.use(chaiHttp);
 
 before(function(done){
-  var app = require('../app');
+ 
   server = http.createServer(app);
   server.listen(TEST_PORT,function(){
     done();
@@ -88,25 +88,30 @@ describe("POST: /api/user", function () {
       done(); });
 
 });
-describe("PUT: /api/user", function (){
-  it('should give a user a new job and then test if user really got a new job',  async()=>{
-    let userid= await userFacade.findByUsername('hw')._id;
-
+/* describe("PATCH: /api/user", function (){
+  
+  it('should give a user a new job and then test if user really got a new job', async (done )=>{
+    let user= await userFacade.findByUsername('hw');
+   
     chai.request(server)
-    .put('/api/user/'+userid)
-    .send({job:{type: 'piccolo',company: 'notmycompany', companyUrl:'www.notmycompany.org'}})
+    .patch('/api/user/'+user._id)
+    .send({ 
+      job:{type: 'piccolo',company: 'notmycompany', companyUrl:'www.notmycompany.org'}})
     .end((err, res) => {
       res.should.have.status(200);
-     expect(res.body.job[1].type).to.be.equal('piccolo');
-      
-    });
-     });
-})
+     expect(res.body.job[1].type).to.be.equal('piccolo').catch(err);
+     done()
+    })
+     }); 
+     })
+ */
+
+
 describe("POST: /api/login", function () {
-  it('should test if login returns a 200 response', (done) => {
+  it('should test if login returns a 200 response and test positions within 500 meters', (done) => {
     let login = {
     username:"kw",
-     password:"test", 
+     password:"hash_me_and_add_some_salt test", 
      longitude:55.770112949163725 ,
      latitude:12.513250708580017,
      distance: 500
@@ -118,7 +123,8 @@ describe("POST: /api/login", function () {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('array');
-      
+      // perhaps add a res.body expect(res.body.password).to.be.equal('secret').catch(err);
+   
         
       });
      

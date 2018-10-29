@@ -67,21 +67,23 @@ router.post('/user', async function(req,res,next){
   
 });
 
-router.put('/user/:id', async function(req,res, next){
-let userwithnewjob= await userFacade.addJobToUser(req.params._id, req.params.type, req.params.company, req.params.companyUrl);
+router.patch('/user/:id', function(req,res, next){
+let userwithnewjob=  userFacade.addJobToUser(req.params.id, req.body.type, req.body.company, req.body.companyUrl);
+
 userwithnewjob.save((err,user, done) => {
   if(err) {
       res.send(err);
   }
   else { //If no errors, send it back to the client
+   let userjson= res.json(userwithnewjob)
     res.render('user', {
       title: 'User with a job',
-      message :'succesfully added a job to user',
-    
+      message :userjson
+   
   
     }) 
   }
-
+  done();
 })
 })
 
@@ -112,7 +114,6 @@ router.post('/login',async function(req,res,next){
     else { //If no errors, send it back to the client
       res.render('login', {
         title:'loggedin',
-        message :'you have succecfully loggedin here is a list of friends',
         friends:res.json(loginUser)
       
     
