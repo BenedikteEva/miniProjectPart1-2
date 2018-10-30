@@ -24,12 +24,12 @@ async function login(username, password, longitude, latitude, distance) {
   if (user.password === password) {
     await posfacade.addPosition(longitude, latitude, user._id, true);
 
-let friends =await friendFinderUtility(longitude, latitude, distance);
-console.log('friends'+friends)
-    return  friends.map((friend)=>{
-      console.log('friend'+friend)
-      const jsonFriends= {"username":friend.user.userName,"latitude":friend.latitude, "longitude":friend.longitude }
-return {"friends":[jsonFriends]}  
+    let friends = await friendFinderUtility(longitude, latitude, distance);
+    console.log('friends' + friends)
+    friends.map((friend) => {
+      console.log('friend' + friend)
+      const jsonFriends = { "username": friend.user.userName, "latitude": friend.latitude, "longitude": friend.longitude }
+      return { "friends": [jsonFriends] }
     })
   } else {
     return { friends: "wrong username or password", status: 403 }
@@ -41,7 +41,7 @@ return {"friends":[jsonFriends]}
 
 async function friendFinderUtility(longitude, latitude, distance) {
 
-let position= await Position.find(
+  let position = await Position.find(
     {
       loc:
       {
@@ -54,8 +54,8 @@ let position= await Position.find(
       }
     }
   ).populate('user').exec()
-    // 
-return await position;
+  // 
+  return await position;
 
 }
 
