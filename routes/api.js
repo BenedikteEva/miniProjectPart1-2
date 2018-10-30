@@ -110,7 +110,7 @@ router.post('/login',async function(req,res,next){
     console.log('loginuser'+loginUser)
       res.render('login', {
         title:'login',
-        friends:res.json(loginUser)
+        friends:loginUser
       
     
       })
