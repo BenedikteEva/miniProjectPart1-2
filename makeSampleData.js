@@ -62,13 +62,13 @@ async function createPositionsAndLocBlogs() {
   try {
   const userPromises=[createUsers()]
   var users = await Promise.all(userPromises);
-console.log(users[0].ops[3]._id)
+console.log(users[0].insertedIds[0])
 // hvis jeg gerne vil have hel useren embedded og ikke kun id må jeg bruge userlist const her  og [userschema] i position.js
 const positionsData = [positionCreator(  55.77073154490739, 12.511239051818848,
-  users[1]._id, false), positionCreator(11, 22, users[2]._id, true),
+  users[0].insertedIds[0], false), positionCreator(11, 22,  users[0].insertedIds[1], true),
 positionCreator(55.770112949163725,12.513250708580017,
-  users[1]._id, true), positionCreator(55.77097596295904,12.512124180793762,
-    users[2]._id, false)]
+  users[0].insertedIds[2], true), positionCreator(55.77097596295904,12.512124180793762,
+  users[0].insertedIds[3], false)]
 
 poss = await Position.insertMany([
    positionsData[0],
