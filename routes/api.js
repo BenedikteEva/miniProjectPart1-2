@@ -107,10 +107,6 @@ router.post('/',async function(req,res,next){
   let loginUser =   await loginFacade.login(req.body.userName,req.body.password, req.body.longitude, req.body.latitude, req.body.distance );
 
 
-  if(err) {
-      res.send(err);
-  }
-  else {
     console.log('loginuser'+loginUser)
       res.render('login', {
         title:'login',
@@ -118,7 +114,7 @@ router.post('/',async function(req,res,next){
       
     
       })
-       }})
+       })
 
 
   
