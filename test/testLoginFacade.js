@@ -37,6 +37,7 @@ describe("Testing the login Facade", function () {
         positionCreator(55.770112949163725,12.513250708580017,
            users[1]._id, true), positionCreator(55.77097596295904,12.512124180793762,
              users[2]._id, false)]
+             
 
         poss = await Position.insertMany([
             positionsData[0],
