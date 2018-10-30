@@ -23,8 +23,8 @@ async function login(username, password, longitude, latitude, distance) {
 
   if (user.password === password) {
     await posfacade.addPosition(longitude, latitude, user._id, true);
-let friends= [];
-friends =await friendFinderUtility(longitude, latitude, distance);
+
+let friends =await friendFinderUtility(longitude, latitude, distance);
 console.log('friends'+friends)
     return await friends
   } else {
