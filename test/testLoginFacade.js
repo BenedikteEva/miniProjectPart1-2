@@ -9,7 +9,7 @@ var User = mongoose.model('User', users.UserSchema);
 var loginFacade=require("../facades/loginFacade")
 
 
-describe.only("Testing the login Facade", function () {
+describe("Testing the login Facade", function () {
 
     /* Connect to the TEST-DATABASE */
     before(async function () {
@@ -37,6 +37,7 @@ describe.only("Testing the login Facade", function () {
         positionCreator(55.770112949163725,12.513250708580017,
            users[1]._id, true), positionCreator(55.77097596295904,12.512124180793762,
              users[2]._id, false)]
+             
 
         poss = await Position.insertMany([
             positionsData[0],

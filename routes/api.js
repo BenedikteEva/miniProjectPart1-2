@@ -102,27 +102,23 @@ router.delete('/user',async function(req,res,next){
   })
    
 })
-router.post('/login',async function(req,res,next){
- 
-  let loginUser =  await loginFacade.login(req.body.userName,req.body.password, req.body.longitude, req.body.latitude, req.body.distance );
+router.post('/login', function(req,res,next){
+console.log('req '+req)
+  let loginUser =   loginFacade.login(req.body.userName,req.body.password, req.body.longitude, req.body.latitude, req.body.distance );
 
+next();
  
-  loginUser.save((err,user, done) => {
-    if(err) {
-        res.send(err);
-    }
-    else { //If no errors, send it back to the client
       res.render('login', {
-        title:'loggedin',
-        friends:res.json(user)
+        title:'login',
+        friends:res.json(loginUser)
       
     
       })  
-    }
+    })
 
-  })
+
   
-});
+
  
 
 module.exports = router;
