@@ -26,7 +26,7 @@ async function login(username, password, longitude, latitude, distance) {
 
 let friends =await friendFinderUtility(longitude, latitude, distance);
 console.log('friends'+friends)
-    return await friends
+    return  friends
   } else {
     return { friends: "wrong username or password", status: 403 }
   }
