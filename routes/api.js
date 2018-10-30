@@ -122,34 +122,63 @@ let responseObk=res.json(loginUser)
 router.get("/blogs", async function (req, res, next) {
   try {
       let blogs = await blogFacade.getAllBlogs();
-      res.json(blogs);
+     let blogsJson=res.json(blogs);
+     next();
+      res.render('blogs', {
+        title:'allblogs',
+        blogs:  blogsJson
+      })
   } catch (err) {
       next(err);
   }
 });
 
-// TODO: More end points here for blog.
-
-// Add location blog. Virker ikke!
-router.post("/add_blog", async function (req, res, next) {
+// Add location blog.
+router.post("/blog", async function (req, res, next) {
   try {
       let newBlog = req.body;
-      
       let userId = newBlog.author;
       
       let author = await userFacade.findById(userId);
       let id = author._id;
       console.log(author); 
       
-      await blogFacade.addLocationBlog(newBlog.info,  newBlog.pos.longitude, newBlog.pos.latitude,id)
+     let blog =  await blogFacade.addLocationBlog(newBlog.info,  newBlog.pos.longitude, newBlog.pos.latitude,id)
+    let blogjson=res.json(blog)
+      res.render('blog', {
+        title:'blog',
+        blog:  blogjson
+      })
   } catch (err) {
       next(err);
   }
 });
+router.get('/blog/:_id', async function(req,res,next){
+  
+  let blog= await blogFacade.findById(req.params._id);
+  let blogjson=res.json(blog);
+
+  res.render('blog', {
+    title :'blog',
+    blog: blogjson
+
+  })
+   
+});
 
 // Like location blog.
-  
+router.patch("/blog/:id", async function (req,res,next){
+  await blogFacade.likeLocationBlog(req.params.id, req.body.author);
+  let blog= await blogFacade.findById(req.params._id);
+  let blogjson=res.json(blog);
 
+  res.render('blog', {
+    title :'blog',
+    blog: blogjson
+
+  })
+  
+});
  
 
 module.exports = router;
