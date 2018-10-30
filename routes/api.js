@@ -116,7 +116,38 @@ let responseObk=res.json(loginUser)
       })
        })
 
+// REST endpoints for Blogs.
 
+// Get all blogs
+router.get("/blogs", async function (req, res, next) {
+  try {
+      let blogs = await blogFacade.getAllBlogs();
+      res.json(blogs);
+  } catch (err) {
+      next(err);
+  }
+});
+
+// TODO: More end points here for blog.
+
+// Add location blog. Virker ikke!
+router.post("/add_blog", async function (req, res, next) {
+  try {
+      let newBlog = req.body;
+      
+      let userId = newBlog.author;
+      
+      let author = await userFacade.findById(userId);
+      let id = author._id;
+      console.log(author); 
+      
+      await blogFacade.addLocationBlog(newBlog.info,  newBlog.pos.longitude, newBlog.pos.latitude,id)
+  } catch (err) {
+      next(err);
+  }
+});
+
+// Like location blog.
   
 
  
