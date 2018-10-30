@@ -103,16 +103,16 @@ router.delete('/user',async function(req,res,next){
    
 })
 router.post('/login',async function(req,res,next){
-console.log('req '+req)
-  let loginUser =   await loginFacade.login(req.body.userName,req.body.password, req.body.longitude, req.body.latitude, req.body.distance );
+console.log('req '+req.body)
+  let loginUser =   await loginFacade.login(req.body );
 console.log('loginuser'+loginUser)
-if(res.status===200){
+
       res.render('login', {
         title:'login',
         friends:res.json(loginUser)
       
     
-      }) } 
+      }) 
     })
 
 
