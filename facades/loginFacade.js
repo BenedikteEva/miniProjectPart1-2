@@ -26,9 +26,9 @@ async function login(userName, password, longitude, latitude, distance) {
 
     let friends = await friendFinderUtility(longitude, latitude, distance);
     console.log('friends' + friends)
-    friends.map((friend) => {
+    return friends.map((friend) => {
       const jsonFriends = { "username": friend.user.userName, "latitude": friend.latitude, "longitude": friend.longitude }
-      return { "friends": [jsonFriends] }
+      return jsonFriends
     })
   } else {
     return { friends: "wrong username or password", status: 403 }
