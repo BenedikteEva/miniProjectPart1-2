@@ -103,17 +103,21 @@ router.delete('/user',async function(req,res,next){
    
 })
 router.post('/login',async function(req,res,next){
-console.log('req '+req.body)
+
   let loginUser =   await loginFacade.login(req.body.userName,req.body.password, req.body.longitude, req.body.latitude, req.body.distance );
 console.log('loginuser'+loginUser)
-
+loginUser.save((err,user, done) => {
+  if(err) {
+      res.send(err);
+  }
+  else {
       res.render('login', {
         title:'login',
-        friends:res.json(loginUser)
+        friends:res.json(user)
       
     
-      }) 
-    })
+      })
+    } done()})})
 
 
   
