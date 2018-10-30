@@ -107,11 +107,11 @@ describe("POST: /api/user", function () {
  */
 
 
-describe("POST: /api/login", function () {
+describe.only("POST: /api/login", function () {
   it('should test if login returns a 200 response and test positions within 500 meters', (done) => {
     let login = {
-    username:"kw",
-     password:"hash_me_and_add_some_salt test", 
+    userName:"Sweetie",
+     password:"sweetie", 
      longitude:55.770112949163725 ,
      latitude:12.513250708580017,
      distance: 500
