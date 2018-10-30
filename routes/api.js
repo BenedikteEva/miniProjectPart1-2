@@ -113,7 +113,7 @@ console.log('loginuser'+loginUser)
   else {
       res.render('login', {
         title:'login',
-        friends:res.json(user)
+        friends:res.json(loginUser)
       
     
       })
