@@ -107,22 +107,18 @@ router.post('/login',async function(req,res,next){
   let loginUser =  await loginFacade.login(req.body.userName,req.body.password, req.body.longitude, req.body.latitude, req.body.distance );
 
  
-  loginUser.save((err,user, done) => {
-    if(err) {
-        res.send(err);
-    }
-    else { //If no errors, send it back to the client
+ 
       res.render('login', {
         title:'loggedin',
-        friends:res.json(user)
+        friends:res.json(loginUser)
       
     
       })  
-    }
+    })
 
-  })
+
   
-});
+
  
 
 module.exports = router;

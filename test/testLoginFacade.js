@@ -9,7 +9,7 @@ var User = mongoose.model('User', users.UserSchema);
 var loginFacade=require("../facades/loginFacade")
 
 
-describe.only("Testing the login Facade", function () {
+describe("Testing the login Facade", function () {
 
     /* Connect to the TEST-DATABASE */
     before(async function () {
