@@ -107,7 +107,7 @@ describe("POST: /api/user", function () {
  */
 
 
-describe.only("POST: /api/login", function () {
+describe("POST: /api/login", function () {
   it('should test if login returns a 200 response and test positions within 500 meters', (done) => {
     let login = {
     userName:"Sweetie",
