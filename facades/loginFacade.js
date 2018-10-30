@@ -17,8 +17,8 @@ Finally use map on the list of friends to reformat it as requested for the endpo
 IMPORTANT: Add this line below your PostionSchema, in order to create the required 2dsphere index: PositionSchema.index({ loc: "2dsphere" },{ "background": true }); */
 
 
-async function login(username, password, longitude, latitude, distance) {
-  let user = await User.findOne({ userName: username });
+async function login(userName, password, longitude, latitude, distance) {
+  let user = await User.findOne({ 'userName': userName });
 
 
   if (user.password === password) {
