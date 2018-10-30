@@ -110,7 +110,7 @@ let responseObk=res.json(loginUser)
     
       res.render('login', {
         title:'login',
-        friends:responseObk
+        friends:'friends:'+loginUser
       
     
       })
