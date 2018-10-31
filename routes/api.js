@@ -82,7 +82,7 @@ router.put('/user/:id', async function (req, res, next) {
         else { //If no errors, send it back to the client
       res.render('user', {
        
-        message: userjson
+        message: res.json(user)
       })}})
  
 })
