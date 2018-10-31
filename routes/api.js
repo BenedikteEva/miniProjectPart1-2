@@ -58,7 +58,7 @@ router.post('/user', async function (req, res, next) {
     else { //If no errors, send it back to the client
       res.render('user', {
         title: 'Created user',
-        message: 'succesfully created',
+        message: res.json(newUser)
 
 
       })
@@ -88,7 +88,7 @@ router.put('/user/:id', async function (req, res, next) {
 })
 
 
-router.delete('/user', async function (req, res, next) {
+router.delete('/user/:_id', async function (req, res, next) {
 
   await userFacade.deleteUser(req.params._id);
 
