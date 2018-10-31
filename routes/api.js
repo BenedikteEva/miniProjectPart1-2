@@ -96,11 +96,19 @@ router.put("/update_user/", async function (req, res, next) {
   }
 });
 
-// VIRKER IKKE??? 404?
-router.delete('/delete_user/:id', async function (req, res, next) {
+// Test from postman http://localhost:3000/api/delete_user/5bd9ec6b915c517478227aa8
+router.delete("/delete_user/:_id", async function (req, res, next) {
   try {
-    await userFacade.deleteUser(req.params.id);
+    // If user does not exist send a messege to the client.
+    if(res.status(404)) {
+      res.send('User does not exist.')
+    };
+
+    let id = req.params._id;
+    await userFacade.deleteUser(id);
+
     res.send('User deleted.');
+
   } catch(err) {
     next(err);
   }
