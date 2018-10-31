@@ -5,34 +5,47 @@ var users = require('../models/User.js');
 var User = mongoose.model('User', users.UserSchema);
 //require('mongoose').set('debug',true)
 
+function addUser(firstName, lastName, userName, password, email, type, company, companyUrl) {
 
+  var jobDetail = {
+    type: type,
+    company: company,
+    companyUrl: companyUrl
+  };
 
+  var userDetail = {
+    firstName: firstName,
+    lastName: lastName,
+    userName: userName,
+    email: email,
+    password: password,
+    job: jobDetail
+  };
 
+  return User.create(userDetail); // returner et promise.
 
+};
 
+// Don’t focus on jobs unless you have a spare time
+function addJobToUser(_id, type, company, companyUrl) { 
+  var jobDetail = {
+    type: type,
+    company: company,
+    companyUrl: companyUrl
+  };
 
-async function addUser(firstName, lastName, userName, password, email, type, company, companyUrl) {
+  return User.findByIdAndUpdate({
+    '_id': _id
+  }, {
+    $set: {
+      job: jobDetail
+    },
+    function (err, res) {
+      if (err) throw err;
+      console.log('doc updated' + res)
 
-  var jobDetail = { type: type, company: company, companyUrl: companyUrl };
-  var userDetail = { firstName: firstName, lastName: lastName, userName: userName, email: email, password: password, job: jobDetail };
-
-  return await User.create(userDetail);
-}
-
-
-
-async function addJobToUser(_id, type, company, companyUrl) {// Don’t focus on jobs unless you have a spare time
-  var jobDetail ={ type: type, company: company, companyUrl: companyUrl };
- return await User.findByIdAndUpdate(
-    { '_id': _id },
-    {
-      $set: { job:jobDetail},
-      function(err, res) {
-        if (err) throw err;
-        console.log('doc updated'+res )
-
-      }
-    }).exec()
+    }
+  }).exec()
 };
 
 
@@ -41,27 +54,37 @@ async function getAllUsers() {
   return await User.find({})
 };
 
-async function findByUserName(username) {
-   
-  return await User.findOne({ userName: username }).exec();
+function findByUserName(username) {
+
+  return User.findOne({
+    userName: username
+  }).exec();
+};
+
+function findById(id) {
+  return User.findById({
+    _id: id
+  });
+};
+
+function deleteUser(id) {
+  User.findByIdAndDelete({
+    _id: id
+  });
+};
+
+// VIRKER IKKE! Update user - Mangler test.
+function updateUser(user) {
+  console.log(user._id);
+  return User.findByIdAndUpdate( user._id, user, {new: true} ).exec();
 }
-
-async function findById(id) {
-  return  await User.findById({ _id: id });
-}
-
-async function deleteUser(id){
-await User.findByIdAndDelete({_id:id});
-}
-
-
-
 
 module.exports = {
   getAllUsers: getAllUsers,
   addUser: addUser,
   findByUsername: findByUserName,
   findById: findById,
-  addJobToUser:addJobToUser,
-  deleteUser: deleteUser
-}
+  addJobToUser: addJobToUser,
+  deleteUser: deleteUser,
+  updateUser: updateUser
+};
