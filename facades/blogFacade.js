@@ -23,6 +23,9 @@ async function findLocationBlog(id) {
   return await LocBlog.findById({ _id: id }).exec();
 }
 
+async function findLocationBlogInfo(info) {
+  return await LocBlog.findOne({ info: info }).exec();
+}
 
 async function likeLocationBlog(id, user_id) {
   var blog = await LocBlog.findOneAndUpdate({ _id: id }, { $push: { likedBy: user_id } });
@@ -37,5 +40,6 @@ module.exports = {
   addLocationBlog: addLocationBlog,
   likeLocationBlog: likeLocationBlog,
   getAllBlogs: getAllBlogs,
-  findLocationBlog: findLocationBlog
+  findLocationBlog: findLocationBlog,
+  findLocationBlogInfo:findLocationBlogInfo
 }
