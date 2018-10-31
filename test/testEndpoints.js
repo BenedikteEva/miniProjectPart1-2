@@ -131,7 +131,7 @@ describe("POST: /api/login", function () {
       done(); });
 
 });
-describe.only("PUT: /api/blog/:id", function (){  // does not work yet nothing is put
+describe.only("PUT: /api/blog/:id", function (){ 
   
   it('should add a likedBy to blog ', async ()=>{
 
