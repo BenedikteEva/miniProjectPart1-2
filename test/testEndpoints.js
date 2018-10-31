@@ -9,7 +9,7 @@ var app = require('../app');
 var server;
 var TEST_PORT = 3456;
 var userFacade=require('../facades/userFacade')
-
+var blogFacade=require('../facades/blogFacade')
 chai.use(chaiHttp);
 
 before(function(done){
@@ -88,23 +88,23 @@ describe("POST: /api/user", function () {
       done(); });
 
 });
-/* describe("PATCH: /api/user", function (){
+describe("PUT: /api/user", function (){  // does not work yet nothing is put
   
-  it('should give a user a new job and then test if user really got a new job', async (done )=>{
-    let user= await userFacade.findByUsername('hw');
-   
+  it('should give a user a new job and then test if user really got a new job', async ()=>{
+    let user=  await userFacade.findByUsername('hw')
+ 
     chai.request(server)
-    .patch('/api/user/'+user._id)
-    .send({ 
-      job:{type: 'piccolo',company: 'notmycompany', companyUrl:'www.notmycompany.org'}})
+    .put('/api/user/'+user._id)
+    .send({"type": "piccolo","company" : "notmycompany", "companyUrl":"www.notmycompany.org"})
     .end((err, res) => {
+   
       res.should.have.status(200);
-     expect(res.body.job[1].type).to.be.equal('piccolo').catch(err);
-     done()
+    expect(res.body.job.type).to.be.equal('piccolo')
+    
     })
-     }); 
+ }); 
      })
- */
+
 
 
 describe("POST: /api/login", function () {
@@ -131,3 +131,22 @@ describe("POST: /api/login", function () {
       done(); });
 
 });
+describe.only("PUT: /api/blog/:id", function (){  // does not work yet nothing is put
+  
+  it('should add a likedBy to blog ', async ()=>{
+
+
+    let blog=  await blogFacade.findLocationBlog("5bd8e694f200bdab248c0181")
+    let user=  await userFacade.findByUsername('hw')
+    chai.request(server)
+    .put('/api/blog/'+blog._id)
+    .send({"likedBy":user._id})
+    .end((err, res) => {
+   
+      res.should.have.status(200);
+      expect(res.body.likedBy.length).to.be.equal(1)
+
+    
+    })
+ }); 
+     })

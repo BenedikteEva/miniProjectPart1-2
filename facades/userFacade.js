@@ -22,17 +22,17 @@ async function addUser(firstName, lastName, userName, password, email, type, com
 
 
 async function addJobToUser(_id, type, company, companyUrl) {// Don’t focus on jobs unless you have a spare time
-  var jobDetail = { type: type, company: company, companyUrl: companyUrl };
-  await User.findOneAndUpdate(
+  var jobDetail ={ type: type, company: company, companyUrl: companyUrl };
+ return await User.findByIdAndUpdate(
     { '_id': _id },
     {
-      $set: { job: jobDetail },
+      $set: { job:jobDetail},
       function(err, res) {
         if (err) throw err;
-        console.log('doc updated' + res)
+        console.log('doc updated'+res )
 
       }
-    })
+    }).exec()
 };
 
 
@@ -42,8 +42,8 @@ async function getAllUsers() {
 };
 
 async function findByUserName(username) {
-  const foundUser = await User.findOne({ userName: username })
-  return foundUser;
+   
+  return await User.findOne({ userName: username }).exec();
 }
 
 async function findById(id) {

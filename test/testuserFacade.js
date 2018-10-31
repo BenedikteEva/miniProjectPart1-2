@@ -66,7 +66,9 @@ describe("Testing the User Facade", function () {
 
   it("Schould give Kurt a new job by finding him by id and then update job", async function () {
     var user = await userFacade.findByUsername("kw");
+
     var newJob = await userFacade.addJobToUser(user._id, 'Owner', 'company3', 'www.company3.on');
+    console.log('newjob'+newJob)
    user = await userFacade.findByUsername("kw");
     expect(user.job[0].type).to.be.equal("Owner");
   })
