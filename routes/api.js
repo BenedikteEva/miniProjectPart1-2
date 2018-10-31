@@ -82,7 +82,7 @@ router.put('/user/:id', async function (req, res, next) {
         else { //If no errors, send it back to the client
       res.render('user', {
        
-        message: res.json(user)
+        message: "user got a new job"
       })}})
  
 })
@@ -110,7 +110,7 @@ router.post('/login', async function (req, res, next) {
 
   res.render('login', {
     title: 'login',
-    friends: 'friends:' + loginUser
+    friends: 'friends:' + responseObk
 
 
   })
