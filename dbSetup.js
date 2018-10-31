@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-const dbURI = require("./settings").TEST_DB_URI;
+const dbURI = require("./settings").DEV_DB_URI;
 
 function connect(dbUriString){
  const conStr = dbUriString ? dbUriString : dbURI;
