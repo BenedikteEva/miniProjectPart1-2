@@ -136,7 +136,7 @@ describe.only("PUT: /api/blog/:id", function (){
   it('should add a likedBy to blog ', async ()=>{
 
 
-    let blog=  await blogFacade.findLocationBlog("5bd8e694f200bdab248c0181")
+    let blog=  await blogFacade.findLocationBlogInfo("Cool blog")
     let user=  await userFacade.findByUsername('hw')
     chai.request(server)
     .put('/api/blog/'+blog._id)
