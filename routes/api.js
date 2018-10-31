@@ -104,7 +104,7 @@ router.delete("/delete_user/:_id", async function (req, res, next) {
       res.send('User does not exist.')
     };
 
-    let id = req.params._id;
+    const id = req.params._id;
     await userFacade.deleteUser(id);
 
     res.send('User deleted.');
@@ -121,6 +121,7 @@ router.delete("/delete_user/:_id", async function (req, res, next) {
  */
 });
 
+// MANGLER
 router.post('/login', async function (req, res, next) {
 
   let loginUser = await loginFacade.login(req.body.userName, req.body.password, req.body.longitude, req.body.latitude, req.body.distance);
@@ -141,18 +142,19 @@ router.post('/login', async function (req, res, next) {
 router.get("/blogs", async function (req, res, next) {
   try {
     let blogs = await blogFacade.getAllBlogs();
-    let blogsJson = res.json(blogs);
-    next();
-    res.render('blogs', {
+    res.json(blogs);
+    
+    // Skal måske bruges senere.
+    /* res.render('blogs', {
       title: 'allblogs',
       blogs: blogsJson
-    })
+    }) */
   } catch (err) {
     next(err);
   }
 });
 
-// Add location blog.
+// Add location blog. MANGLER!
 router.post("/blog", async function (req, res, next) {
   try {
     let newBlog = req.body;
@@ -172,30 +174,36 @@ router.post("/blog", async function (req, res, next) {
     next(err);
   }
 });
+
+// Find location blog by id.
 router.get('/blog/:_id', async function (req, res, next) {
+  try {
+    let blog = await blogFacade.findLocationBlog(req.params._id);
+    res.json(blog);
+  } catch(err) {
+    next(err);
+  }
 
-  let blog = await blogFacade.findById(req.params._id);
-  let blogjson = res.json(blog);
-
-  res.render('blog', {
+  /* res.render('blog', {
     title: 'blog',
     blog: blogjson
 
-  })
+  }) */
 
 });
 
-// Like location blog.
-router.put("/blog/:id", async function (req, res, next) {
+// Like location blog. MANGLER!
+router.put("/like_blog/:id", async function (req, res, next) {
   await blogFacade.likeLocationBlog(req.params.id, req.body.likedBy);
+  
   let blog = await blogFacade.findLocationBlogInfo("Cool blog")
-  let blogjson = res.json(blog);
+  res.json(blog);
 
-  res.render('blog', {
+  /* res.render('blog', {
     title: 'blog',
     blog: blogjson
 
-  })
+  }) */
 
 });
 
