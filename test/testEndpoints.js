@@ -89,7 +89,7 @@ describe("POST: /api/user", function () {
       done(); });
 
 });
- describe.skip("PUT: /api/user", function (){  // does not work yet nothing is put
+ describe.skip("PUT: /api/user", function (){ 
   
   it('should give a user a new job and then test if user really got a new job', async ()=>{
     let user=  await userFacade.findByUsername('hw')
