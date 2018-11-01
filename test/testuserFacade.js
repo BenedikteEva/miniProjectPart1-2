@@ -52,7 +52,7 @@ describe("Testing the User Facade", function () {
   });
 
   it("Should add Peter Pan then find Peter by his id and then delete him Again", async function () {
-    var user = await userFacade.addUser("Peter", "Pan", "peter", "test", "c@b.dk");
+    var user = await userFacade.addUser("Peter", "Pan", "peter", "test", "p@b.dk");
     expect(user).to.not.be.null;
 
     expect(user.firstName).to.be.equal("Peter");
