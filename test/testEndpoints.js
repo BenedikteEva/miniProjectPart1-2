@@ -8,35 +8,37 @@ let should = chai.should();
 var app = require('../app');
 var server;
 var TEST_PORT = 3456;
-var userFacade=require('../facades/userFacade')
-var blogFacade=require('../facades/blogFacade')
+var userFacade = require('../facades/userFacade')
+var blogFacade = require('../facades/blogFacade')
 chai.use(chaiHttp);
 
-before(function(done){
- 
+before(function (done) {
+
   server = http.createServer(app);
-  server.listen(TEST_PORT,function(){
+  server.listen(TEST_PORT, function () {
     done();
   });
 })
-after(function(done){
+after(function (done) {
   server.close();
   done();
-}) 
-
-describe("GET: /api/allusers", (done)=>{
-    it("should get all users", (done)=>{
-      chai.request(server)
-        .get('/api/allusers')
-        .end((err,res)=>{
-          if(err) console.log(err+'  in get');
-            res.should.have.status(200);
-            res.body.should.be.a('array');
-            res.body.length.should.be.eql(2);
-       
-        })
-        done(); })
 })
+
+describe("GET: /api/allusers", (done) => {
+  it("should get all users", (done) => {
+    chai.request(server)
+      .get('/api/allusers')
+      .end((err, res) => {
+        if (err) console.log(err + '  in get');
+        res.should.have.status(200);
+        res.body.should.be.a('array');
+        res.body.length.should.be.eql(2);
+
+      })
+    done();
+  })
+})
+
 
 
 
@@ -54,12 +56,13 @@ it('should delete a user and then expect it to not be there', (done)=>{
       .send()
       .end((err, res) => {
         res.should.have.status(200);
-   
-       expect(res.body.userName).to.be.null;
-        
+
+        expect(res.body.userName).to.be.null;
+
       });
-  
-      done(); });
+
+    done();
+  });
 
 });
 
@@ -70,11 +73,11 @@ describe("POST: /api/user", function () {
       firstName: "Testy",
       lastName: "Testisen",
       userName: 'tete',
-      password:"test", 
+      password: "test",
       email: "test@test.tt",
       type: null,
-      company:null,
-      companyUrl:null
+      company: null,
+      companyUrl: null
 
     }
     chai.request(server)
@@ -83,12 +86,13 @@ describe("POST: /api/user", function () {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
-      
       });
-     
-      done(); });
+
+    done();
+  });
 
 });
+
  describe.skip("PUT: /api/user", function (){ 
   
   it('should give a user a new job and then test if user really got a new job', async ()=>{
@@ -108,14 +112,15 @@ describe("POST: /api/user", function () {
 
 
 
+
 describe("POST: /api/login", function () {
   it('should test if login returns a 200 response and test positions within 500 meters', (done) => {
     let login = {
-    userName:"Sweetie",
-     password:"sweetie", 
-     longitude:55.770112949163725 ,
-     latitude:12.513250708580017,
-     distance: 500
+      userName: "Sweetie",
+      password: "sweetie",
+      longitude: 55.770112949163725,
+      latitude: 12.513250708580017,
+      distance: 500
 
     }
     chai.request(server)
@@ -124,14 +129,16 @@ describe("POST: /api/login", function () {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('array');
-      // perhaps add a res.body expect(res.body.password).to.be.equal('secret').catch(err);
-   
-        
+      
+
+
       });
-     
-      done(); });
+
+    done();
+  });
 
 });
+
  describe.skip("PUT: /api/blog/:id", function (){ 
   
   it('should add a likedBy to blog ', async ()=>{
