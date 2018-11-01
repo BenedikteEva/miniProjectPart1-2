@@ -58,7 +58,7 @@ router.post('/user', async function (req, res, next) {
     else { //If no errors, send it back to the client
       res.render('user', {
         title: 'Created user',
-        message: 'succesfully created',
+        message: res.json(newUser)
 
 
       })
@@ -82,20 +82,20 @@ router.put('/user/:id', async function (req, res, next) {
         else { //If no errors, send it back to the client
       res.render('user', {
        
-        message: userjson
+        message: "user got a new job"
       })}})
  
 })
 
 
-router.delete('/user', async function (req, res, next) {
+router.delete('/user/:_id', async function (req, res, next) {
 
   await userFacade.deleteUser(req.params._id);
 
 
   res.render('user', {
     title: 'Deleted user',
-    user: 'user has succesfully been deleted',
+    message: 'user has succesfully been deleted'
 
 
 
@@ -110,7 +110,7 @@ router.post('/login', async function (req, res, next) {
 
   res.render('login', {
     title: 'login',
-    friends: 'friends:' + loginUser
+    friends: 'friends:' + responseObk
 
 
   })
