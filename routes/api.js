@@ -63,6 +63,7 @@ router.delete('/user/:_id', async function (req, res, next) {
 
 
     const id = req.params._id;
+   
     await userFacade.deleteUser(id);
 try {
     // If user does not exist send a messege to the client.

@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 
 const dbURI = require("./settings").DEV_DB_URI;
 
-var conStr;
 function connect(dbUriString) {
  conStr = dbUriString ? dbUriString : dbURI;
 
@@ -11,7 +10,7 @@ function connect(dbUriString) {
 };
 
 mongoose.connection.once('connected', function () { 
- console.log('Mongoose default connection open to ' + dbURI);
+ console.log('Mongoose default connection open to ' + conStr);
 });
 
 mongoose.connection.once('error',function (err) { 

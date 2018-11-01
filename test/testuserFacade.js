@@ -2,15 +2,13 @@ const mongoose = require("mongoose");
 const expect = require("chai").expect;
 const dbSetup = require("../dbSetup");
 
-// //https://github.com/Automattic/mongoose/issues/1251
+// https://github.com/Automattic/mongoose/issues/1251
 mongoose.models = {};
 mongoose.modelSchemas = {};
 mongoose.connection = {};
 
 var userFacade = require("../facades/userFacade");
 var User = require('../models/User.js');
-
-let connection = null;
 
 describe("Testing the User Facade", function () {
 
@@ -24,7 +22,6 @@ describe("Testing the User Facade", function () {
     mongoose.connection.close();
   });
 
-  var users = [];
   /* Setup the database in a known state (2 users) before EACH test */
   beforeEach(async function () {
     await User.deleteMany({}).exec();

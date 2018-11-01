@@ -1,34 +1,5 @@
-var expect = require("chai").expect;
-var request = require("request");
-var expect = require("chai").expect;
-const mongoose = require("mongoose");
-const dbSetup = require("..//dbSetup");
-let chai = require('chai');
-var http = require('http');
-var chaiHttp = require('chai-http');
-let should = chai.should();
-var app = require('../app');
-var server;
-var TEST_PORT = 3456;
-var userFacade = require('../facades/userFacade')
-var blogFacade = require('../facades/blogFacade')
-chai.use(chaiHttp);
-
-// https://github.com/Automattic/mongoose/issues/1251
-mongoose.models = {};
-mongoose.modelSchemas = {};
-mongoose.connection = {};
-
-var User = require('../models/User.js');
-
-/* 
-Vi skal nok have det her med!
-
-.set('Content-Type', 'application/json')
-.set('Accept', 'application/json')
-*/
-
-describe("Testing endpoints.", function () {
+/* Den gamle!!! */
+/* describe("Testing endpoints.", function () {
 
   /* Connect to the TEST-DATABASE and start test server. */
   before(async function () {
@@ -41,7 +12,7 @@ describe("Testing endpoints.", function () {
 
   after(function () {
     server.close();
-  });
+  }); 
 
   /* Setup the database in a known state (2 users) before EACH test */
   beforeEach(async function () {
@@ -91,7 +62,7 @@ describe("Testing endpoints.", function () {
       let userId = allUsers[1]._id;
 
       chai.request(server)
-        
+
         .delete('/api/user/' + userId)
         /* .set('Content-Type', 'application/json')
         .set('Accept', 'application/json') */
@@ -104,14 +75,14 @@ describe("Testing endpoints.", function () {
           res.body.length.should.be.eql(5); // Hvorfor passer denne her?
 
           // VI FÅR EN 404 når vi deleter!!!
-          let users = await userFacade.getAllUsers();
+           let users = await userFacade.getAllUsers();
           console.log(users);
           expect(users.length).to.be.equal(2);
 
         });
 
     });
-  });
+  }); 
 
 
   describe("POST: /api/user", function () {
@@ -135,16 +106,16 @@ describe("Testing endpoints.", function () {
           res.should.have.status(200);
           res.body.should.be.a('object');
 
-        let allUsers = await userFacade.getAllUsers();
-        expect(allUsers.length).to.be.equal(4); // !!! HVORFOR PASSER DENNE HER???
+          let allUsers = await userFacade.getAllUsers();
+          expect(allUsers.length).to.be.equal(4); // !!! HVORFOR PASSER DENNE HER???
 
         });
-        
+
     });
 
   });
 
-  /* describe.skip("PUT: /api/user", function () {
+  describe.skip("PUT: /api/user", function () {
 
     it('should give a user a new job and then test if user really got a new job', async (done) => {
       let user = await userFacade.findByUsername('hw')
@@ -167,12 +138,12 @@ describe("Testing endpoints.", function () {
         })
       done();
     });
-  }) */
+  }) 
 
 
 
 
-  /* describe("POST: /api/login", function () {
+  describe("POST: /api/login", function () {
     it('should test if login returns a 200 response and test positions within 500 meters', (done) => {
       let login = {
         userName: "Sweetie",
@@ -196,9 +167,9 @@ describe("Testing endpoints.", function () {
       done();
     });
 
-  }); */
+  }); 
 
-  /* describe.skip("PUT: /api/blog/:id", function () {
+  describe.skip("PUT: /api/blog/:id", function () {
 
 
     it('should add a likedBy to blog ', async () => {
@@ -220,6 +191,6 @@ describe("Testing endpoints.", function () {
         });
 
     });
-  });  */
+  });  
 
 });
