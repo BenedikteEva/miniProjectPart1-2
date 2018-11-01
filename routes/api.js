@@ -46,82 +46,37 @@ router.get('/userbyid/:_id', async function (req, res, next) {
 });
 
 // New user. 
-router.post('/user/', async function (req, res, next) {
+router.post('/user', async function (req, res, next) {
   try {
     const newUser = req.body;
     await userFacade.addUser(newUser.firstName, newUser.lastName, newUser.userName, newUser.password, newUser.email, newUser.type, newUser.company, newUser.companyUrl);
     res.send('user added.')
 
-    // Skal måske bruges senere i view, når der oprettes en bruger.
-    /* res.render('user', {
-      title: 'Created user',
-      message: 'succesfully created',
-    }) */
-
   } catch (err) {
     next(err);
   }
 });
 
-// add job to user. Har ikke testet den. Bo
-router.put('/user/:id', async function (req, res, next) {
-  // console.log('req.body.type' + req.body.type + req.body.company + req.body.companyUrl + req.params.id)
-  let userwithnewjob = await userFacade.addJobToUser(req.params.id, req.body.type, req.body.company, req.body.companyUrl);
-  // console.log('userwithnewjob' + userwithnewjob)
+// delete user
+router.delete('/user/:_id', async function (req, res, next) {
 
-  let userjson = res.json(userwithnewjob)
-  userwithnewjob.save((err, user, done) => {
-    if (err) {
-      res.send(err);
-    } else { //If no errors, send it back to the client
-      res.render('user', {
-
-        message: userjson
-      });
-    }
-  });
-});
-
-// Update user. VIRKER IKKE!
-router.put("/update_user/", async function (req, res, next) {
-  try {
-    user = req.body;
-    console.log(user);
-
-    let updatedUser = await userFacade.updateUser(user);
-
-    res.json(updatedUser);
-  } catch (err) {
-    next(err);
-  }
-});
-
-// Test from postman http://localhost:3000/api/delete_user/5bd9ec6b915c517478227aa8
-router.delete("/delete_user/:_id", async function (req, res, next) {
-  try {
-    // If user does not exist send a messege to the client.
-    if(res.status(404)) {
-      res.send('User does not exist.')
-    };
 
     const id = req.params._id;
     await userFacade.deleteUser(id);
-
+try {
+    // If user does not exist send a messege to the client.
+    if(res.status(404)) {
+      res.send('User does not exist.')
+    }else{
     res.send('User deleted.');
-
+    }
   } catch(err) {
     next(err);
   }
   
-  // Måske bruges senere.
-  /* res.render('user', {
-    title: 'Deleted user',
-    user: 'user has succesfully been deleted',
-  })
- */
 });
 
-// MANGLER
+
 router.post('/login', async function (req, res, next) {
 
   let loginUser = await loginFacade.login(req.body.userName, req.body.password, req.body.longitude, req.body.latitude, req.body.distance);
@@ -130,31 +85,25 @@ router.post('/login', async function (req, res, next) {
 
   res.render('login', {
     title: 'login',
-    friends: 'friends:' + loginUser
+    friends: 'friends:' + responseObk
 
 
   })
 })
 
-// REST endpoints for Blogs.
 
 // Get all blogs
 router.get("/blogs", async function (req, res, next) {
   try {
     let blogs = await blogFacade.getAllBlogs();
     res.json(blogs);
-    
-    // Skal måske bruges senere.
-    /* res.render('blogs', {
-      title: 'allblogs',
-      blogs: blogsJson
-    }) */
+
   } catch (err) {
     next(err);
   }
 });
 
-// Add location blog. MANGLER!
+
 router.post("/blog", async function (req, res, next) {
   try {
     let newBlog = req.body;
@@ -175,7 +124,7 @@ router.post("/blog", async function (req, res, next) {
   }
 });
 
-// Find location blog by id.
+
 router.get('/blog/:_id', async function (req, res, next) {
   try {
     let blog = await blogFacade.findLocationBlog(req.params._id);
@@ -184,26 +133,16 @@ router.get('/blog/:_id', async function (req, res, next) {
     next(err);
   }
 
-  /* res.render('blog', {
-    title: 'blog',
-    blog: blogjson
-
-  }) */
 
 });
 
-// Like location blog. MANGLER!
+
 router.put("/like_blog/:id", async function (req, res, next) {
   await blogFacade.likeLocationBlog(req.params.id, req.body.likedBy);
   
   let blog = await blogFacade.findLocationBlogInfo("Cool blog")
   res.json(blog);
 
-  /* res.render('blog', {
-    title: 'blog',
-    blog: blogjson
-
-  }) */
 
 });
 

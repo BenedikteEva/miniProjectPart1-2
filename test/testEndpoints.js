@@ -44,13 +44,16 @@ describe("GET: /api/allusers", (done) => {
 
 
 
-describe("DELETE: /api/user", function () {
-  it('should delete a user and then expect it to not be there', (done) => {
-    let userid = userFacade.findByUsername('kw')._id;
 
-    chai.request(server)
-      .delete('/api/user')
-      .send(userid)
+describe("DELETE: /api/user",  function (){
+
+it('should delete a user and then expect it to not be there', (done)=>{
+  userFacade.addUser("Peter", "Pan", "delete", "test", "de@b.dk");
+  let userid=   userFacade.findByUsername('delete')._id;
+
+ chai.request(server)
+      .delete('/api/user/'+userid)
+      .send()
       .end((err, res) => {
         res.should.have.status(200);
 
@@ -83,34 +86,30 @@ describe("POST: /api/user", function () {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
-
-        console.log(userFacade.getAllUsers)
       });
 
     done();
   });
 
 });
-describe("PUT: /api/user", function () { // does not work yet nothing is put
 
-  it('should give a user a new job and then test if user really got a new job', async () => {
-    let user = await userFacade.findByUsername('hw')
-
+ describe.skip("PUT: /api/user", function (){ 
+  
+  it('should give a user a new job and then test if user really got a new job', async ()=>{
+    let user=  await userFacade.findByUsername('hw')
+ console.log(user)
     chai.request(server)
-      .put('/api/user/' + user._id)
-      .send({
-        "type": "piccolo",
-        "company": "notmycompany",
-        "companyUrl": "www.notmycompany.org"
-      })
-      .end((err, res) => {
+    .put('/api/user/'+user._id)
+    .send({"type": "piccolo","company" : "notmycompany", "companyUrl":"www.notmycompany.org"})
+    .end((err, res) => {
+   
+      res.should.have.status(200);
+    expect(res.body.job[0].type).to.be.equal('piccolo')
+    
+    })
+ }); 
+     }) 
 
-        res.should.have.status(200);
-        expect(res.body.job.type).to.be.equal('piccolo')
-
-      })
-  });
-})
 
 
 
@@ -130,7 +129,7 @@ describe("POST: /api/login", function () {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('array');
-        // perhaps add a res.body expect(res.body.password).to.be.equal('secret').catch(err);
+      
 
 
       });
@@ -140,24 +139,22 @@ describe("POST: /api/login", function () {
 
 });
 
-/* describe.only("PUT: /api/blog/:id", function () {
+ describe.skip("PUT: /api/blog/:id", function (){ 
+  
+  it('should add a likedBy to blog ', async ()=>{
 
-  it('should add a likedBy to blog ', async () => {
 
-
-    let blog = await blogFacade.findLocationBlog("5bd8e694f200bdab248c0181")
-    let user = await userFacade.findByUsername('hw')
+    let blog=  await blogFacade.findLocationBlogInfo("Cool blog")
+    let user=  await userFacade.findByUsername('hw')
     chai.request(server)
-      .put('/api/blog/' + blog._id)
-      .send({
-        "likedBy": user._id
-      })
-      .end((err, res) => {
+    .put('/api/blog/'+blog._id)
+    .send({"likedBy":user._id})
+    .end((err, res) => {
+   
+      res.should.have.status(200);
+      expect(res.body.likedBy.length).to.be.equal(1)
 
-        res.should.have.status(200);
-        expect(res.body.likedBy.length).to.be.equal(1)
-
-
-      })
-  });
-}); */
+    
+    })
+ }); 
+     }) 
