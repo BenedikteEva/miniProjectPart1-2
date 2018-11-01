@@ -3,10 +3,10 @@ const expect = require("chai").expect;
 const dbSetup = require("../dbSetup");
 var positions = require('../models/Position.js');
 var Position = mongoose.model('Position', positions.PositionSchema);
-var positionFacade=require("../facades/positionFacade.js")
+var positionFacade=require("../facades/positionFacade.js");
 var users = require('../models/User.js');
 var User = mongoose.model('User', users.UserSchema);
-var userFacade=require("../facades/userFacade")
+var userFacade=require("../facades/userFacade");
 
 
 describe("Testing the Position Facade", function () {

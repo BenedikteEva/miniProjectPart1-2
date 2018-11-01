@@ -10,7 +10,9 @@ var Blog = require("../models/LocationBlog");
 var userFacade=require("../facades/userFacade")
 var users = require('../models/User.js');
 var User = mongoose.model('User', users.UserSchema);
+
 let connection = null;
+
 describe("Testing the LocBlog Facade", function () {
 
   /* Connect to the TEST-DATABASE */
