@@ -95,7 +95,7 @@ router.delete('/user/:_id', async function (req, res, next) {
 
   res.render('user', {
     title: 'Deleted user',
-    message: 'user has succesfully been deleted',
+    message: 'user has succesfully been deleted'
 
 
 
