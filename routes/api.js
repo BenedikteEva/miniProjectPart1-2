@@ -37,6 +37,7 @@ router.get('/userbyname/:userName', async function (req, res, next) {
 router.get('/userbyid/:_id', async function (req, res, next) {
   try {
     let user = await userFacade.findById(req.params._id);
+
    res.json(user);
 
   } catch (err) {
@@ -54,6 +55,7 @@ router.post('/user', async function (req, res, next) {
   } catch (err) {
     next(err);
   }
+
 });
 
 // delete user
@@ -90,6 +92,10 @@ router.put('/user/:id', async function (req, res, next) {
           res.json(userwithnewjob)}})
  
 })
+
+});
+
+
 router.post('/login', async function (req, res, next) {
 
   let loginUser = await loginFacade.login(req.body.userName, req.body.password, req.body.longitude, req.body.latitude, req.body.distance);

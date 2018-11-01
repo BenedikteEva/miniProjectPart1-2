@@ -22,6 +22,7 @@ before(function (done) {
 after(function (done) {
   server.close();
   done();
+
 })
 
 describe("GET: /api/allusers", (done) => {
@@ -38,6 +39,7 @@ describe("GET: /api/allusers", (done) => {
     done();
   })
 })
+
 
 
 
@@ -143,7 +145,8 @@ describe("POST: /api/login", function () {
 
 });
 
- describe.skip("PUT: /api/blog/:id", function (done){ 
+ describe.skip("PUT: /api/blog/:id", function (){ 
+
   
   it('should add a likedBy to blog ', async ()=>{
 
