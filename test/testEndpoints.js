@@ -22,6 +22,7 @@ before(function (done) {
 after(function (done) {
   server.close();
   done();
+
 })
 
 describe("GET: /api/allusers", (done) => {
@@ -38,6 +39,7 @@ describe("GET: /api/allusers", (done) => {
     done();
   })
 })
+
 
 
 
@@ -95,18 +97,22 @@ describe("POST: /api/user", function () {
 
  describe.skip("PUT: /api/user", function (){ 
   
-  it('should give a user a new job and then test if user really got a new job', async ()=>{
+  it('should give a user a new job and then test if user really got a new job', async (done)=>{
     let user=  await userFacade.findByUsername('hw')
- console.log(user)
+ 
+
     chai.request(server)
     .put('/api/user/'+user._id)
     .send({"type": "piccolo","company" : "notmycompany", "companyUrl":"www.notmycompany.org"})
     .end((err, res) => {
    
       res.should.have.status(200);
+    
     expect(res.body.job[0].type).to.be.equal('piccolo')
     
-    })
+
+    }) 
+    done();
  }); 
      }) 
 
@@ -140,6 +146,7 @@ describe("POST: /api/login", function () {
 });
 
  describe.skip("PUT: /api/blog/:id", function (){ 
+
   
   it('should add a likedBy to blog ', async ()=>{
 
@@ -147,7 +154,7 @@ describe("POST: /api/login", function () {
     let blog=  await blogFacade.findLocationBlogInfo("Cool blog")
     let user=  await userFacade.findByUsername('hw')
     chai.request(server)
-    .put('/api/blog/'+blog._id)
+    .put('/api/like_blog/'+blog._id)
     .send({"likedBy":user._id})
     .end((err, res) => {
    
@@ -156,5 +163,6 @@ describe("POST: /api/login", function () {
 
     
     })
+    
  }); 
      }) 
