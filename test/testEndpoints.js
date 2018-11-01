@@ -14,6 +14,8 @@ var userFacade = require('../facades/userFacade')
 var blogFacade = require('../facades/blogFacade')
 chai.use(chaiHttp);
 
+// https://github.com/chaijs/chai-http#caveat
+
 // https://github.com/Automattic/mongoose/issues/1251
 mongoose.models = {};
 mongoose.modelSchemas = {};
@@ -67,18 +69,19 @@ describe("Testing endpoints.", function () {
 
   describe("GET: /api/allusers", () => {
 
-    it("should get all users", async function () {
+    it("should get all users", function (done) {
       chai.request(server)
         .get('/api/allusers')
         .end((err, res) => {
           if (err) console.log(err + '  in get');
-
+          
+          // Tester på responset, der indeholder det som returneres fra facademetoden.
           res.should.have.status(200);
           res.body.should.be.a('array');
           res.body.length.should.be.eql(2);
+          
+          done();
         });
-      let users = await userFacade.getAllUsers();
-      expect(users.length).to.be.equal(2);
     });
   });
 
@@ -136,7 +139,7 @@ describe("Testing endpoints.", function () {
           res.body.should.be.a('object');
 
         let allUsers = await userFacade.getAllUsers();
-        expect(allUsers.length).to.be.equal(4); // !!! HVORFOR PASSER DENNE HER???
+        expect(allUsers.length).to.be.equal(5); // !!! HVORFOR PASSER DENNE HER???
 
         });
         
