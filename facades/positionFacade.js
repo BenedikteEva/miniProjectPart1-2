@@ -19,10 +19,11 @@ await Position( pos ).save();
 
 }
 
-async function updatePosition(userid,posid,lon, lat){
-  let position= await findOneAndUpdate({user:userid})
-
+async function updatePosition(userid,lon, lat){
+  let position= await Position.updateOne( { user : userid }, {loc : {type: 'Point',coordinates:[lon,lat]}}, { upsert : true } ).exec();
+  console.log(position)
+return position;
 }
 
 
-module.exports={addPosition:addPosition}
+module.exports={addPosition:addPosition, updatePosition:updatePosition}

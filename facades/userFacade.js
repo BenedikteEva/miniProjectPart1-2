@@ -67,9 +67,9 @@ function findById(id) {
   });
 };
 
-function deleteUser(_id) {
-  //User.findByIdAndDelete({_id: id});
-  return User.findByIdAndDelete(_id);
+async function deleteUser(_id) {
+
+  return await User.findByIdAndDelete({_id:_id});
 };
 
 // VIRKER IKKE! Update user - Mangler test.
