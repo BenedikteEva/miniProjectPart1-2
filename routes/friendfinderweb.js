@@ -41,7 +41,7 @@ if (loginUser.friends.length!==0){
         title: 'loggedin',
         friends:"you are the only one logged in in this distance"
     }
-
+      )}
 
   })
 
