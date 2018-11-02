@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+      
+    <h1><%= title %></h1>
+ 
+    <p> <%= besked %></p>
+    <p id="pos"></p>
+    <form method="post" action="friendfinderweb/loginweb">
+    
+      <input type="button" value="Get Location" onclick="getLocationConstant()"/>
+      <br><br>
+      Latitude: <input type="text" id="Latitude" name="Latitude" value="">
+      <br><br>
+      Longitude: <input type="text" id="Longitude" name="Longitude" value="">
+      <br><br>
+      <p>
+          <label>Distance from your position to find friends:</label>
+          <br><br>
+          <input type="number" name="distance">
+        </p>
+
+      <p>
+        <label>Username:</label>
+        <input type="text" name="username">
+      </p>
+      <p>
+        <label>Password:</label>
+        <input type="text" name="password">
+      </p>
+   
+      
+        <input type="submit" value="login"   >
+      </p>
+
+    
+    </form>
+    
+    <ul>
+      <li><a href="/friendfinderweb/listofallblogs">All Blogs</a></li>     
+      </ul>
+      <script type="text/javascript"> 
+        function getLocationConstant()
+       {
+           if(navigator.geolocation)
+           {
+               navigator.geolocation.getCurrentPosition(onGeoSuccess,onGeoError);  
+           } else {
+               alert("Your browser or device doesn't support Geolocation");
+           }
+       }
+       
+       // If we have a successful location update
+       function onGeoSuccess(event)
+       {
+           document.getElementById("Latitude").value =  event.coords.latitude; 
+           document.getElementById("Longitude").value = event.coords.longitude;
+       
+       }
+       
+       // If something has gone wrong with the geolocation request
+       function onGeoError(event)
+       {
+           alert("Error code " + event.code + ". " + event.message);
+       }
+        </script>
+  </body>
+</html>
