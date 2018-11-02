@@ -85,7 +85,6 @@ describe("Testing endpoints.", function () {
           res.body.data[0].should.include.keys(
             "created", "_id", "firstName", "lastName", "userName", "password", "email", "job"
           );
-
           done();
         });
     });
