@@ -29,11 +29,9 @@ router.post('/loginweb', async function (req, res, next) {
     console.log('catch' + err)
   })
 
-console.log('body'+body)
+
   res.render('loginweb', {
     title: 'loggedin',
-    latitude: body.latitude,
-    longitude: body.longitude,
     friends:loginUser.friends
     })
 
