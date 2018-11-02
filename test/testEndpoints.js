@@ -13,6 +13,7 @@ var blogFacade = require('../facades/blogFacade')
 chai.use(chaiHttp);
 
 // https://github.com/chaijs/chai-http#caveat
+// https://mherman.org/blog/testing-node-and-express/
 
 // https://github.com/Automattic/mongoose/issues/1251
 mongoose.models = {};
@@ -65,53 +66,150 @@ describe("Testing endpoints.", function () {
     ]);
   });
 
-  describe.only("GET: /api/allusers", () => {
+  // Test of endpoint users - get all users.
+  describe.only("GET: /api/users", () => {
 
     it("should get all users", (done) => {
       chai.request(server)
-        .get('/api/allusers')
+        .get('/api/users')
         .end((err, res) => {
 
           // Tester på responset, der indeholder det som returneres fra routehandlerne.
+          should.not.exist(err);
           res.should.have.status(200)
-          res.body.should.be.a('array');
-          expect(res.body[0].userName).to.be.equal("kw");
-          expect(res.body).to.have.lengthOf(2);
+          res.type.should.equal('application/json');
+          expect(res.body.status).to.be.equal('Success');
+
+          expect(res.body.data[0].userName).to.be.equal("kw");
+          expect(res.body.data).to.have.lengthOf(2);
+          res.body.data[0].should.include.keys(
+            "created", "_id", "firstName", "lastName", "userName", "password", "email", "job"
+          );
 
           done();
         });
     });
   });
 
-/*   describe.only("DELETE: /api/user", () => {
+  // Test of endpoint user - get user by name.
+  describe.only("GET: /api/user", () => {
 
-    it("should get all users", async (done) => {
-      // Get a user id. 
-      let allUsers = await userFacade.getAllUsers();
-      console.log(allUsers);
-      let userId = allUsers[1]._id;
-      console.log('USERID!!! ' + userId);
-      //done();
+    it("should get Kurt Wonnegut by username kw.", (done) => {
+
+      let findUser = 'kw'
 
       chai.request(server)
-        .delete('/api/user/' + userId)
+        .get('/api/user/' + findUser)
         .end((err, res) => {
 
-          res.should.have.status(200) &&
-            expect(res.body[0].userName).to.be.equal("kw") &&
-            expect(res.body).to.have.lengthOf(3);
+          should.not.exist(err);
+          res.should.have.status(200)
+          res.type.should.equal('application/json');
+          expect(res.body.status).to.be.equal('Success');
 
-          res.body.length.should.be.eql(5);
-          expect(users.length).to.be.equal(2);
+          // Returns an object.
+          expect(res.body.data.firstName).to.be.equal("Kurt");
+          res.body.data.should.include.keys(
+            "created", "_id", "firstName", "lastName", "userName", "password", "email", "job"
+          );
           done();
-        })
+        });
+    });
+  });
 
-    })
-    let users = await userFacade.getAllUsers();
-     console.log(users); 
-  }) */
+  // Test of endpoint user - get user by name.
+  describe.only("GET: /api/user", () => {
 
+    it("should get an 'User does not exist' when getting username a.", (done) => {
+
+      let findUser = 'a';
+
+      chai.request(server)
+        .get('/api/user/' + findUser)
+        .end((err, res) => {
+
+          should.not.exist(err);
+          // In an API, this can also mean that the endpoint is valid but the resource itself does not exist. 
+          res.should.have.status(404)
+          res.type.should.equal('application/json');
+          expect(res.body.status).to.be.equal('User does not exist');
+
+          // Returns an object.
+          res.body.should.include.keys(
+            "status", "data"
+          );
+          done();
+        });
+    });
+  });
+
+  // Test add new user.
   describe.only("POST: /api/user", () => {
+
+    it("should add a new user.", (done) => {
+
+      chai.request(server)
+        .post('/api/user/')
+        .send({
+          firstName: 'Jim',
+          lastName: 'Hansen',
+          userName: 'jh',
+          password: 'test',
+          email: 'jh@jim.dk',
+          job: 'Udspringer',
+        })
+        .end((err, res) => {
+
+          should.not.exist(err);
+          // 201 = created. 
+          res.should.have.status(201)
+          res.type.should.equal('application/json');
+          expect(res.body.status).to.be.equal('Success');
+
+          // Returns an object.
+          expect(res.body.data.firstName).to.be.equal("Jim");
+          res.body.data.should.include.keys(
+            "created", "_id", "firstName", "lastName", "userName", "password", "email", "job"
+          );
+          done();
+        });
+    });
+  });
+
+
+
+
+
+  /*   describe.only("DELETE: /api/user", () => {
+
+      it("should get all users", async (done) => {
+        // Get a user id. 
+        let allUsers = await userFacade.getAllUsers();
+        console.log(allUsers);
+        let userId = allUsers[1]._id;
+        console.log('USERID!!! ' + userId);
+        //done();
+
+        chai.request(server)
+          .delete('/api/user/' + userId)
+          .end((err, res) => {
+
+            res.should.have.status(200) &&
+              expect(res.body[0].userName).to.be.equal("kw") &&
+              expect(res.body).to.have.lengthOf(3);
+
+            res.body.length.should.be.eql(5);
+            expect(users.length).to.be.equal(2);
+            done();
+          })
+
+      })
+      let users = await userFacade.getAllUsers();
+       console.log(users); 
+    }) */
+
+  // Den sidste vi brugte.
+  /* describe.only("POST: /api/user", () => {
 
     it('it should not POST a user without userName field', async (done) => {
       let user = {
@@ -135,10 +233,10 @@ describe("Testing endpoints.", function () {
           done();
         })
 
-    })
-    /* let users = await userFacade.getAllUsers();
-     console.log(users); */ 
-  })
+    }) */
+  /* let users = await userFacade.getAllUsers();
+   console.log(users); */
+  //})
 
 
   /* describe("POST: /api/user", () => {
