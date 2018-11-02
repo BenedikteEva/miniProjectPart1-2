@@ -29,11 +29,18 @@ router.post('/loginweb', async function (req, res, next) {
     console.log('catch' + err)
   })
 
+console.log(loginUser)
 
+if (loginUser.friends.length!==0){
   res.render('loginweb', {
     title: 'loggedin',
     friends:loginUser.friends
-    })
+    })}
+    else{
+      res.render('loginweb', {
+        title: 'loggedin',
+        friends:"you are the only one logged in in this distance"
+    }
 
 
   })
