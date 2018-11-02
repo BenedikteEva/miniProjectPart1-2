@@ -11,7 +11,9 @@
  
  
         <ul>
-            <%= blog %>
+                <% for (var friend of friends){%>
+                    <li><%= friend.username %>  lat: <%= friend.latitude %>, lon: <%= friend.longitude %>  </li><br>
+                  <% }%>
         </ul>
 
  

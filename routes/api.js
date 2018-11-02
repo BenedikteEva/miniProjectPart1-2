@@ -116,6 +116,14 @@ router.get("/blogs", async function (req, res, next) {
   try {
     let blogs = await blogFacade.getAllBlogs();
     res.json(blogs);
+    next()
+    res.render('listofallblogs',{
+      title: 'blogs',
+      blogs: blogs.map(blog=>{
+        blog.info,
+        blog.likedByCount
+      })
+    })
 
   } catch (err) {
     next(err);
