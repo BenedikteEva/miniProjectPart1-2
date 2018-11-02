@@ -175,7 +175,37 @@ describe("Testing endpoints.", function () {
     });
   });
 
+  // Test of find user by id endpoint. FEJLER! passer altid.
+  describe.only("GET: /api/user", () => {
 
+    it("should get Kurt Wonnegut by id.", async function () {
+      try {
+        let user = await userFacade.findByUsername('kw');
+        var id = user._id
+        console.log('ID!!!!!' + id);
+  
+        chai.request(server)
+          .get('/api/user_id/' + id)
+          .end((err, res) => {
+  
+            should.not.exist(err);
+            res.should.have.status(200)
+            res.type.should.equal('application/json');
+            expect(res.body.status).to.be.equal('Success');
+            //console.log(res.body.data.firstName);
+            // Returns an object.
+            expect(res.body.data.firstName).to.equal("Kurt"); // Bliver ikke valideret
+            console.log(res.body.data.firstName);
+            res.body.data.should.include.keys(
+              "created", "_id", "firstName", "lastName", "userName", "password", "email", "job"
+            );
+            done();
+          });
+      } catch (err) {
+        done(err);
+      };
+    });
+  });
 
 
 
