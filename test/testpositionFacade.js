@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const expect = require("chai").expect;
-const dbSetup = require("../dbSetup");
+const dbTestSetup = require("../deTestSetup");
 
 var Position = require('../models/Position.js');
 var positionFacade=require("../facades/positionFacade.js");
@@ -17,7 +17,7 @@ describe("Testing the Position Facade", function () {
     /* Connect to the TEST-DATABASE */
     before(async function () {
         this.timeout(require("../settings").MOCHA_TEST_TIMEOUT);
-        await dbSetup(require("../settings").TEST_DB_URI);
+        await dbTestSetup(require("../settings").TEST_DB_URI);
     });
 
     after(function () {

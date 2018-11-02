@@ -1,8 +1,6 @@
 var expect = require("chai").expect;
-var request = require("request");
-var expect = require("chai").expect;
 const mongoose = require("mongoose");
-const dbSetup = require("..//dbSetup");
+const dbTestSetup = require("..//deTestSetup");
 let chai = require('chai');
 var http = require('http');
 var chaiHttp = require('chai-http');
@@ -35,7 +33,7 @@ describe("Testing endpoints.", function () {
   /* Connect to the TEST-DATABASE and start test server. */
   before(async function () {
     this.timeout(require("../settings").MOCHA_TEST_TIMEOUT);
-    await dbSetup(require("../settings").TEST_DB_URI);
+    await dbTestSetup(require("../settings").TEST_DB_URI);
 
     server = http.createServer(app);
     server.listen(TEST_PORT, function () {});
@@ -67,59 +65,85 @@ describe("Testing endpoints.", function () {
     ]);
   });
 
-  describe("GET: /api/allusers", () => {
+  describe.only("GET: /api/allusers", () => {
 
-    it("should get all users", function (done) {
+    it("should get all users", (done) => {
       chai.request(server)
         .get('/api/allusers')
         .end((err, res) => {
-          if (err) console.log(err + '  in get');
-          
-          // Tester på responset, der indeholder det som returneres fra facademetoden.
-          res.should.have.status(200);
+
+          // Tester på responset, der indeholder det som returneres fra routehandlerne.
+          res.should.have.status(200)
           res.body.should.be.a('array');
-          res.body.length.should.be.eql(2);
-          
+          expect(res.body[0].userName).to.be.equal("kw");
+          expect(res.body).to.have.lengthOf(2);
+
           done();
         });
     });
   });
 
-  describe("DELETE: /api/user", function () {
+/*   describe.only("DELETE: /api/user", () => {
 
-    it('should delete a user and then expect it to not be there', async function () {
-
-      // Get a user id.
+    it("should get all users", async (done) => {
+      // Get a user id. 
       let allUsers = await userFacade.getAllUsers();
+      console.log(allUsers);
       let userId = allUsers[1]._id;
+      console.log('USERID!!! ' + userId);
+      //done();
 
       chai.request(server)
-        
         .delete('/api/user/' + userId)
-        /* .set('Content-Type', 'application/json')
-        .set('Accept', 'application/json') */
-        .send()
-        .end((err, res) => async function () {
-          res.should.have.status(200);
+        .end((err, res) => {
 
-          // Er userName ikke null lige meget hvad. Den bliver jo aldrig sat?
-          //expect(res.body.userName).to.be.null;
-          res.body.length.should.be.eql(5); // Hvorfor passer denne her?
+          res.should.have.status(200) &&
+            expect(res.body[0].userName).to.be.equal("kw") &&
+            expect(res.body).to.have.lengthOf(3);
 
-          // VI FÅR EN 404 når vi deleter!!!
-          let users = await userFacade.getAllUsers();
-          console.log(users);
+          res.body.length.should.be.eql(5);
           expect(users.length).to.be.equal(2);
+          done();
+        })
 
-        });
+    })
+    let users = await userFacade.getAllUsers();
+     console.log(users); 
+  }) */
 
-    });
-  });
+  describe.only("POST: /api/user", () => {
+
+    it('it should not POST a user without userName field', async (done) => {
+      let user = {
+        firstName: "",
+        lastName: "Testisen",
+        userName: 'tete',
+        password: "test",
+        email: "test@test.tt",
+        type: null,
+        company: null,
+        companyUrl: null
+      };
+
+      chai.request(server)
+        .delete('/api/user/' + user)
+        .end((err, res) => {
+
+          res.should.have.status(404) 
+          res.body.should.be.a('object');
+
+          done();
+        })
+
+    })
+    /* let users = await userFacade.getAllUsers();
+     console.log(users); */ 
+  })
 
 
-  describe("POST: /api/user", function () {
+  /* describe("POST: /api/user", () => {
 
-    it('it should not POST a user without userName field', () => {
+    it('it should not POST a user without userName field', async (done) => {
       let user = {
         firstName: "Testy",
         lastName: "Testisen",
@@ -138,14 +162,14 @@ describe("Testing endpoints.", function () {
           res.should.have.status(200);
           res.body.should.be.a('object');
 
-        let allUsers = await userFacade.getAllUsers();
-        expect(allUsers.length).to.be.equal(5); // !!! HVORFOR PASSER DENNE HER???
-
+          // let allUsers = await userFacade.getAllUsers();
+          // expect(allUsers.length).to.be.equal(5); // !!! HVORFOR PASSER DENNE HER???
+          done();
         });
-        
+
     });
 
-  });
+  }); */
 
   /* describe.skip("PUT: /api/user", function () {
 

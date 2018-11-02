@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const expect = require("chai").expect;
-const dbSetup = require("../dbSetup");
+const dbTestSetup = require("../deTestSetup");
 
 // https://github.com/Automattic/mongoose/issues/1251
 mongoose.models = {};
@@ -15,7 +15,7 @@ describe("Testing the User Facade", function () {
   /* Connect to the TEST-DATABASE */
   before(async function () {
     this.timeout(require("../settings").MOCHA_TEST_TIMEOUT);
-    await dbSetup(require("../settings").TEST_DB_URI);
+    await dbTestSetup(require("../settings").TEST_DB_URI);
   });
 
   after(function () {

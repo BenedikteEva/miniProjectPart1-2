@@ -68,9 +68,9 @@ router.delete('/user/:_id', async function (req, res, next) {
 try {
     // If user does not exist send a messege to the client.
     if(res.status(404)) {
-      res.send('User does not exist.')
+      res.send({ message: 'User does not exist.' })
     }else{
-    res.send('User deleted.');
+    res.send({ message: 'User deleted.' });
     }
   } catch(err) {
     next(err);
