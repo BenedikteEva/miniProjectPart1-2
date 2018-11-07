@@ -48,22 +48,25 @@ describe("Testing endpoints.", function () {
   beforeEach(async function () {
     await User.deleteMany({}).exec();
 
-    users = await Promise.all([
+    // !!! SE PÅ DET HER!!!
+    //This has to be used instead of suggested Promise.all() function because it would not always be executed in order.
+    // THIS METHOD DOES NOT TRIGGER .save() hooks in Schema
+    users = User.insertMany([
       new User({
         firstName: "Kurt",
         lastName: "Wonnegut",
         userName: "kw",
         password: "test",
         email: "t@b.dk"
-      }).save(),
+      }),
       new User({
         firstName: "Hanne",
         lastName: "Wonnegut",
         userName: "hw",
         password: "test",
         email: "u@b.dk"
-      }).save(),
-    ]);
+      }),
+    ], { ordered: true });
   });
 
   // Test of endpoint users - get all users.
@@ -194,7 +197,7 @@ describe("Testing endpoints.", function () {
             expect(res.body.status).to.be.equal('Success');
             //console.log(res.body.data.firstName);
             // Returns an object.
-            expect(res.body.data.firstName).to.equal("Kurt"); // Bliver ikke valideret
+            expect(res.body.data.firstName).to.equal("Kur"); // Bliver ikke valideret
             console.log(res.body.data.firstName);
             res.body.data.should.include.keys(
               "created", "_id", "firstName", "lastName", "userName", "password", "email", "job"
