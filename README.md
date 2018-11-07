@@ -17,7 +17,7 @@ You can find the frontend for mobile apps here https://github.com/BoMarconiHenri
 1. cd into root folder.
 2. Start the project writing: nodemon mini
 3. Start Ngrok: ngrok http 3000
-4. Copy the url from forwarding.
+4. In the Ngrok window copy the url from forwarding.
 5. Paste the url into the browser and add the API you want to access.
 6. Exampel http://a84fc1e4.ngrok.io/api/allusers
 7. Above can be used in Native insted of Heroku.
