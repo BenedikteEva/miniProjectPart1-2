@@ -14,7 +14,9 @@ describe("Testing the login Facade", function () {
     /* Connect to the TEST-DATABASE */
     before(async function () {
         this.timeout(require("../settings").MOCHA_TEST_TIMEOUT);
+       
         await dbSetup(require("../settings").TEST_DB_URI);
+    
     })
 
     after(function () {

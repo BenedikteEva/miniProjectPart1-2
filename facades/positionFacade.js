@@ -16,7 +16,16 @@ async function addPosition(lon, lat, userId, dateInFuture) {
     await Position( pos ).save();
 
   return pos;
-
 }
 
-module.exports={addPosition:addPosition}
+async function updatePosition(userid,lon, lat){
+  let position= await Position.updateOne( { user : userid }, {loc : {type: 'Point',coordinates:[lon,lat]}}, { upsert : true } ).exec();
+  console.log(position)
+return position;
+}
+
+module.exports={
+  addPosition:addPosition, 
+  updatePosition:updatePosition
+}
+

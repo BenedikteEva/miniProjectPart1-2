@@ -129,6 +129,20 @@ router.delete('/user/:_id', async function (req, res, next) {
     });
   };
 
+//    const id = req.params._id;
+ // await userFacade.deleteUser(id);
+
+//try {
+    // If user does not exist send a messege to the client.
+  //  if(res.status(404)) {
+    //  res.render('user',{message:'User does not exist.', title:"Deleted"})
+    //}else{
+   // res.render('user',{message:'User deleted.',title:"Deleted"});
+    //}
+  //} catch(err) {
+    //next(err);
+  //}
+  
 });
 
 // Skal refaktores.
@@ -180,6 +194,14 @@ router.get("/blogs", async function (req, res, next) {
   try {
     let blogs = await blogFacade.getAllBlogs();
     res.json(blogs);
+    next()
+    res.render('listofallblogs',{
+      title: 'blogs',
+      blogs: blogs.map(blog=>{
+        blog.info,
+        blog.likedByCount
+      })
+    })
 
   } catch (err) {
     res.json({

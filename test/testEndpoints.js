@@ -1,6 +1,10 @@
+
 var expect = require("chai").expect;
 const mongoose = require("mongoose");
 const dbTestSetup = require("..//deTestSetup");
+
+var request = require("request");
+
 let chai = require('chai');
 var http = require('http');
 var chaiHttp = require('chai-http');
@@ -129,12 +133,12 @@ describe("Testing endpoints.", function () {
       chai.request(server)
         .get('/api/user/' + findUser)
         .end((err, res) => {
-
           should.not.exist(err);
           // In an API, this can also mean that the endpoint is valid but the resource itself does not exist. 
           res.should.have.status(404)
           res.type.should.equal('application/json');
           expect(res.body.status).to.be.equal('User does not exist');
+
 
           // Returns an object.
           res.body.should.include.keys(
@@ -209,7 +213,6 @@ describe("Testing endpoints.", function () {
       };
     });
   });
-
 
 
   /*   describe.only("DELETE: /api/user", () => {
