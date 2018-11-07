@@ -114,11 +114,11 @@ router.delete('/user/:_id', async function (req, res, next) {
   try {
     // If user does not exist send a messege to the client.
     if (res.status(404)) {
-      res.send({
+      res.json({
         status: 'User does not exist.'
       });
     } else {
-      res.send({
+      res.json({
         status: 'Success'
       });
     };
@@ -155,13 +155,20 @@ router.post('/login', async function (req, res, next) {
     let loginUser = await loginFacade.login(req.body.userName, req.body.password, req.body.longitude, req.body.latitude, req.body.distance);
     let responseObk = res.json(loginUser)
 
-    res.render('login', {
-      title: 'login',
-      friends: 'friends:' + responseObk
-    });
+    // If user or password does not exist send a messege to the client.
+    if (res.status(403)) {
+      res.json({
+        status: 'User name or password is invalid.'
+      });
+    } else {
+      res.render('login', {
+        title: 'login',
+        friends: 'friends:' + responseObk
+      });
+    };
   } catch (err) {
     res.json({
-      status: 'User name or password is wrong.',
+      status: 'Error',
       data: err
     });
   };

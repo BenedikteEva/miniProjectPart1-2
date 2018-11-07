@@ -184,7 +184,7 @@ describe("Testing endpoints.", function () {
     it("should get Kurt Wonnegut by id.", async function () {
       try {
         let user = await userFacade.findByUsername('kw');
-        var id = user._id
+        id = user._id
         console.log('ID!!!!!' + id);
   
         chai.request(server)

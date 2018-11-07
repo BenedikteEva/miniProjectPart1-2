@@ -3,10 +3,10 @@ const expect = require("chai").expect;
 const dbSetup = require("../dbSetup");
 var positions = require('../models/Position.js');
 var Position = mongoose.model('Position', positions.PositionSchema);
-var positionFacade=require("../facades/positionFacade.js")
+var positionFacade = require("../facades/positionFacade.js")
 var users = require('../models/User.js');
 var User = mongoose.model('User', users.UserSchema);
-var loginFacade=require("../facades/loginFacade")
+var loginFacade = require("../facades/loginFacade")
 
 
 describe("Testing the login Facade", function () {
@@ -28,16 +28,34 @@ describe("Testing the login Facade", function () {
         await Position.deleteMany({}).exec();
         await User.deleteMany({}).exec();
         users = await Promise.all([
-          new User({ firstName: "Kurt", lastName: "Wonnegut", userName: "kw", password: "test", email: "a@b.dk" }).save(),
-          new User({ firstName: "Hanne", lastName: "Wonnegut", userName: "hw", password: "test", email: "b@b.dk" }).save(),
-          new User({ firstName: "Peter", lastName: "Pan", userName: "pp", password: "test", email: "p@p.dk" }).save(),
+            new User({
+                firstName: "Kurt",
+                lastName: "Wonnegut",
+                userName: "kw",
+                password: "test",
+                email: "a@b.dk"
+            }).save(),
+            new User({
+                firstName: "Hanne",
+                lastName: "Wonnegut",
+                userName: "hw",
+                password: "test",
+                email: "b@b.dk"
+            }).save(),
+            new User({
+                firstName: "Peter",
+                lastName: "Pan",
+                userName: "pp",
+                password: "test",
+                email: "p@p.dk"
+            }).save(),
         ])
-        const positionsData = [positionCreator(  55.77073154490739, 12.511239051818848,
-           users[1]._id, false), positionCreator(11, 22, users[2]._id, true),
-        positionCreator(55.770112949163725,12.513250708580017,
-           users[1]._id, true), positionCreator(55.77097596295904,12.512124180793762,
-             users[2]._id, false)]
-             
+        const positionsData = [positionCreator(55.77073154490739, 12.511239051818848,
+                users[1]._id, false), positionCreator(11, 22, users[2]._id, true),
+            positionCreator(55.770112949163725, 12.513250708580017,
+                users[1]._id, true), positionCreator(55.77097596295904, 12.512124180793762,
+                users[2]._id, false)
+        ]
 
         poss = await Position.insertMany([
             positionsData[0],
@@ -46,49 +64,95 @@ describe("Testing the login Facade", function () {
             positionsData[3]
         ]);
 
-
-
     });
 
     it("should check bad login ", async function () {
-        let loginresponse = await loginFacade.login("kw","wrongtest",55.770112949163725,12.513250708580017,500 );
-        console.log('bad login '+loginresponse)
+        let loginresponse = await loginFacade.login("kw", "wrongtest", 55.770112949163725, 12.513250708580017, 500);
+        console.log('bad login ' + loginresponse)
         expect(loginresponse.status).to.be.equal(403);
-        
+
     });
 
 
-it("should check good login ", async function (done) {
-  await loginFacade.login("kw","hash_me_and_add_some_salt test",55.770112949163725,12.513250708580017,500 ).then(function (res){
-console.log('res------------------------------------------------'+res)
-expect( res.length).to.be.equal(2)}).then(
-  
- done())
-}); 
+    it("should check good login ", async function (done) {
+        await loginFacade.login("kw", "hash_me_and_add_some_salt test", 55.770112949163725, 12.513250708580017, 500).then(function (res) {
+            console.log('res------------------------------------------------' + res)
+            expect(res.length).to.be.equal(2)
+        }).then(
+
+            done())
+    });
 });
 
- function positionCreator(lon, lat, userId, dateInFuture) {
-    var posDetail = { user: userId, loc: { type: 'Point', coordinates: [lon, lat] } }
+function positionCreator(lon, lat, userId, dateInFuture) {
+    var posDetail = {
+        user: userId,
+        loc: {
+            type: 'Point',
+            coordinates: [lon, lat]
+        }
+    }
     if (dateInFuture) {
         posDetail.created = "2022-09-25T20:40:21.899Z"
     }
     var pos = new Position(posDetail);
     return pos;
 }
-const joblist = [
-    { type: "Owner", company: "Mycompany", companyUrl: "www.mycompany.com" },
-    { type: "Secretary", company: "Mycompany", companyUrl: "www.mycompany.com" },
-    { type: "Janitor", company: "MyOtherCompany", companyUrl: "www.myothercompany.com" },
-    { type: "Owner", company: "MyOthercompany", companyUrl: "www.myothercompany.com" }
-  
-  
-  ]
-  
-  const userlist = [
-    { firstName: 'Sweetie', lastName: 'Sweetums', userName: 'Sweetie', password: "sweetie", email: "sweetie@sweets.on", job: joblist[0] },
-    { firstName: 'Hardie', lastName: 'Hards', userName: 'Hardie', password: "hardie", email: "hardie@hards.on", job: joblist[1] },
-    { firstName: 'Crazy', lastName: 'Crazed', userName: 'Crazy', password: "crazed", email: "crazy@crazed.on", job: joblist[2] },
-    { firstName: 'Mons', lastName: 'Monster', userName: 'MonsterMons', password: "mons", email: "monster@mons.on", job: joblist[3] },
-  
-  ]; 
+const joblist = [{
+        type: "Owner",
+        company: "Mycompany",
+        companyUrl: "www.mycompany.com"
+    },
+    {
+        type: "Secretary",
+        company: "Mycompany",
+        companyUrl: "www.mycompany.com"
+    },
+    {
+        type: "Janitor",
+        company: "MyOtherCompany",
+        companyUrl: "www.myothercompany.com"
+    },
+    {
+        type: "Owner",
+        company: "MyOthercompany",
+        companyUrl: "www.myothercompany.com"
+    }
 
+
+]
+
+const userlist = [{
+        firstName: 'Sweetie',
+        lastName: 'Sweetums',
+        userName: 'Sweetie',
+        password: "sweetie",
+        email: "sweetie@sweets.on",
+        job: joblist[0]
+    },
+    {
+        firstName: 'Hardie',
+        lastName: 'Hards',
+        userName: 'Hardie',
+        password: "hardie",
+        email: "hardie@hards.on",
+        job: joblist[1]
+    },
+    {
+        firstName: 'Crazy',
+        lastName: 'Crazed',
+        userName: 'Crazy',
+        password: "crazed",
+        email: "crazy@crazed.on",
+        job: joblist[2]
+    },
+    {
+        firstName: 'Mons',
+        lastName: 'Monster',
+        userName: 'MonsterMons',
+        password: "mons",
+        email: "monster@mons.on",
+        job: joblist[3]
+    },
+
+];
