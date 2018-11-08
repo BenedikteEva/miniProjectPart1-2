@@ -1,10 +1,10 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var users=require('./User.js');
-var makeUser=mongoose.model("User",users.userSchema);
+var makeUser=mongoose.model("User", users.userSchema);
 
 
-const SECONDS = 1;
+const SECONDS = 5;
 var EXPIRES = 60  * SECONDS ;
 var PositionSchema = Schema({
  //Make sure that next line reflects your User-model

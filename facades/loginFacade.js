@@ -22,10 +22,10 @@ async function login(userName, password, longitude, latitude, distance) {
 
 
   if (user.password === password) {
-    await posfacade.addPosition(longitude, latitude, user._id, true);
+    await posfacade.updatePosition( user._id, longitude, latitude);
 
     let friends = await friendFinderUtility(longitude, latitude, distance);
-    console.log('friends' + friends)
+
     return { friends:friends.map((friend) => {
       const jsonFriends = { "username": friend.user.userName, "latitude": friend.loc.coordinates[1], "longitude": friend.loc.coordinates[0] }
       return jsonFriends
@@ -47,7 +47,7 @@ async function friendFinderUtility(longitude, latitude, distance) {
         $near:
         {
           $geometry: { type: "Point", coordinates: [longitude, latitude] },
-          $minDistance: 1,
+          $minDistance: 0,
           $maxDistance: distance
         }
       }

@@ -1,38 +1,41 @@
 const mongoose = require("mongoose");
 const expect = require("chai").expect;
-const dbSetup = require("../dbSetup");
-var positions = require('../models/Position.js');
-var Position = mongoose.model('Position', positions.PositionSchema);
-var positionFacade=require("../facades/positionFacade.js")
-var users = require('../models/User.js');
-var User = mongoose.model('User', users.UserSchema);
-var userFacade=require("../facades/userFacade")
+const dbTestSetup = require("../deTestSetup");
 
+var Position = require('../models/Position.js');
+var positionFacade=require("../facades/positionFacade.js");
+var User = require('../models/User.js');
+var userFacade=require("../facades/userFacade");
+
+// https://github.com/Automattic/mongoose/issues/1251
+mongoose.models = {};
+mongoose.modelSchemas = {};
+mongoose.connection = {};
 
 describe("Testing the Position Facade", function () {
 
     /* Connect to the TEST-DATABASE */
     before(async function () {
         this.timeout(require("../settings").MOCHA_TEST_TIMEOUT);
-        await dbSetup(require("../settings").TEST_DB_URI);
-    })
+        await dbTestSetup(require("../settings").TEST_DB_URI);
+    });
 
     after(function () {
-
         mongoose.connection.close();
-    })
+    });
 
-    var poss = [];
     /* Setup the database in a known state (4 posistions) before EACH test */
     beforeEach(async function () {
         await Position.deleteMany({}).exec();
         await User.deleteMany({}).exec();
+
         users = await Promise.all([
           new User({ firstName: "Kurt", lastName: "Wonnegut", userName: "kw", password: "test", email: "a@b.dk" }).save(),
           new User({ firstName: "Hanne", lastName: "Wonnegut", userName: "hw", password: "test", email: "b@b.dk" }).save(),
-        ])
+        ]);
+
         const positionsData = [positionCreator(10, 11, users[0]._id, false), positionCreator(11, 22, users[1]._id, true),
-        positionCreator(11, 12, users[0]._id, true), positionCreator(11, 13, users[1]._id, false)]
+        positionCreator(11, 12, users[0]._id, true), positionCreator(11, 13, users[1]._id, false)];
 
         poss = await Position.insertMany([
             positionsData[0],
@@ -41,19 +44,20 @@ describe("Testing the Position Facade", function () {
             positionsData[3]
         ]);
 
-
-
     });
 
     it("should check add posistion", async function () {
         let users = await userFacade.getAllUsers();
         await positionFacade.addPosition(12, 12, users[0]._id, false);
+
+        // Get all positions.
         let posistionList = await Position.find({});
-        expect( posistionList.length).to.be.equal(5);
+        expect(posistionList.length).to.be.equal(5);
         
     });
 });
 
+// Bruges til at lave test data til positions, da facade metoden mangler at kunne tage en User.
 function positionCreator(lon, lat, userId, dateInFuture) {
     var posDetail = { user: userId, loc: { type: 'Point', coordinates: [lon, lat] } }
     if (dateInFuture) {
@@ -61,7 +65,9 @@ function positionCreator(lon, lat, userId, dateInFuture) {
     }
     var pos = new Position(posDetail);
     return pos;
-}
+};
+
+// Hvis det ikke skal bruges så skal det slettes...
 const joblist = [
     { type: "Owner", company: "Mycompany", companyUrl: "www.mycompany.com" },
     { type: "Secretary", company: "Mycompany", companyUrl: "www.mycompany.com" },
