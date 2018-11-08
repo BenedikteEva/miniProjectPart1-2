@@ -3,8 +3,8 @@ var router = express.Router();
 var fetch = require('node-fetch');
 
 
-const URL = 'http://localhost:3000/api/';
-//const URL = 'https://miniprojectfsjsbebop.herokuapp.com/api/'
+//const URL = 'http://localhost:3000/api/';
+const URL = 'https://miniprojectfsjsbebop.herokuapp.com/api/'
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -29,14 +29,19 @@ router.post('/loginweb', async function (req, res, next) {
     console.log('catch' + err)
   })
 
-console.log('body'+body)
+console.log(loginUser)
+
+if (loginUser.friends.length!==0){
   res.render('loginweb', {
     title: 'loggedin',
-    latitude: body.latitude,
-    longitude: body.longitude,
     friends:loginUser.friends
-    })
-
+    })}
+    else{
+      res.render('loginweb', {
+        title: 'loggedin',
+        friends:"you are the only one logged in in this distance"
+    }
+      )}
 
   })
 

@@ -19,7 +19,7 @@ async function addPosition(lon, lat, userId, dateInFuture) {
 }
 
 async function updatePosition(userid,lon, lat){
-  let position= await Position.updateOne( { user : userid }, {loc : {type: 'Point',coordinates:[lon,lat]}}, { upsert : true } ).exec();
+  let position= await Position.updateOne( { user : userid }, {loc : {type: 'Point',coordinates:[lon,lat]}, create:Date.now()}, { upsert : true } ).exec();
   console.log(position)
 return position;
 }
