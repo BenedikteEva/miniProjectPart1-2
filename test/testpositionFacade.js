@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const expect = require("chai").expect;
-const dbTestSetup = require("../deTestSetup");
+const dbTestSetup = require("../dbTestSetup");
 
 var Position = require('../models/Position.js');
 var positionFacade=require("../facades/positionFacade.js");
