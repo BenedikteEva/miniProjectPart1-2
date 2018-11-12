@@ -15,7 +15,6 @@ var UserSchema = new Schema({
     lastName : String,
     password : {type: String, required: true},
     email: {type: String, required: true},
-    expoToken:String,
     //Observe embedding
     job : [JobSchema],
     created: {type: Date, default: Date.now},
