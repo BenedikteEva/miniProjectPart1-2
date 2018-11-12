@@ -168,7 +168,7 @@ router.post('/login', async function (req, res, next) {
   try {
     let loginUser = await loginFacade.login(req.body.userName, req.body.password, req.body.longitude, req.body.latitude, req.body.distance);
     let responseObk = res.json(loginUser)
-console.log(responseObk)
+
     // If user or password does not exist send a messege to the client.
     if (res.status(404)) {
       res.json({
@@ -182,7 +182,9 @@ console.log(responseObk)
       });
     };
   } catch (err) {
+    console.log(err)
     res.json({
+      
       status: 'Error',
       data: err
     });
