@@ -172,7 +172,8 @@ router.post('/login', async function (req, res, next) {
     // If user or password does not exist send a messege to the client.
     if (res.status(404)) {
       res.json({
-        status: 'User name or password is invalid.'
+        status:404,
+        message:  res.message
       });
     } else {
       res.render('login', {
@@ -187,12 +188,6 @@ router.post('/login', async function (req, res, next) {
     });
   };
 });
-
-router.post('/users/pushendpoint', async function(req,res,next){
-
-
-
-})
 
 
 // Get all blogs
