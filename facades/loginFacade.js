@@ -6,10 +6,10 @@ var User = mongoose.model('User', users.UserSchema);
 var positions = require('../models/Position.js');
 var Position = mongoose.model('Position', positions.PositionSchema);
 var posfacade = require('./positionFacade');
-var Expo =require('expo-server-sdk');
+/* var Expo =require('expo-server-sdk');
 
 // Create a new Expo SDK client
-let expo = new Expo();
+let expo = new Expo(); */
 
 
 async function login(userName, password, longitude, latitude, distance, push_token) {
@@ -27,7 +27,7 @@ async function login(userName, password, longitude, latitude, distance, push_tok
       return jsonFriends
     })}
   } else {
-    return { friends: "wrong username or password", status: 403 },{status:403}
+    return { friends: "wrong username or password", status: 404 },{status:404}
   }
 
 }
