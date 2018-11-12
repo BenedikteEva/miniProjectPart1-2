@@ -173,7 +173,7 @@ console.log(responseObk)
     if (res.status(404)) {
       res.json({
         status:404,
-        message:  responseObk
+        message: "user does not exist or password is wrong"
       });
     } else {
       res.render('login', {
