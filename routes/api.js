@@ -173,7 +173,7 @@ router.post('/login', async function (req, res, next) {
     if (res.status(404)) {
       res.json({
         status:404,
-        message:  res.message
+        message:  responseObk.message
       });
     } else {
       res.render('login', {
