@@ -6,7 +6,7 @@ var logger = require('morgan');
 //var loggerDoc=require('./logger')
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
-
+var myserver= require('./facades/pushRelated')
 var  User=require('./models/User.js')// ???
  
 var indexRouter = require('./routes/index');
@@ -29,7 +29,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
 app.use('/friendfinderweb', friendfinderwebRouter);
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

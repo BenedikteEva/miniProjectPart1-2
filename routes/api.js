@@ -170,7 +170,7 @@ router.post('/login', async function (req, res, next) {
     let responseObk = res.json(loginUser)
 
     // If user or password does not exist send a messege to the client.
-    if (res.status(403)) {
+    if (res.status(404)) {
       res.json({
         status: 'User name or password is invalid.'
       });
@@ -187,6 +187,12 @@ router.post('/login', async function (req, res, next) {
     });
   };
 });
+
+router.post('/users/pushendpoint', async function(req,res,next){
+
+
+
+})
 
 
 // Get all blogs
