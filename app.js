@@ -6,7 +6,6 @@ var logger = require('morgan');
 //var loggerDoc=require('./logger')
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
-var myserver= require('./facades/pushRelated')
 var  User=require('./models/User.js')// ???
  
 var indexRouter = require('./routes/index');

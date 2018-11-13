@@ -24,7 +24,7 @@ async function login(userName, password, longitude, latitude, distance, push_tok
       return jsonFriends
     })}
   } else {
-    return { message: "wrong username or password", status: 404 }
+    return { message: "wrong username or password",status: 404 }
   }
 
 }
