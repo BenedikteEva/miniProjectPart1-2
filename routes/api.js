@@ -189,7 +189,7 @@ router.post('/login', async function (req, res, next) {
   } catch (err) {
     console.log(err)
     res.json({
-      
+      message: 'something went wrong, perhaps it is just the wrong password.',
       status: 'Error',
       data: err
     });
