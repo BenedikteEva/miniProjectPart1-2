@@ -173,8 +173,13 @@ router.post('/login', async function (req, res, next) {
     if (res.status(404)) {
       res.json({
         status:404,
-        message: "user does not exist or password is wrong"
-      });
+        message: "wrong username"
+      });}
+      if (res.status(403)) {
+        res.json({
+          status:403,
+          message: "wrong password"
+        });
     } else {
       res.render('login', {
         title: 'login',
