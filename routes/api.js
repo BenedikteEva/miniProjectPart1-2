@@ -173,12 +173,12 @@ router.post('/login', async function (req, res, next) {
     if (res.status(404)) {
       res.json({
         status:404,
-        message: "wrong username"
+        message: responseObk.message
       });}
       if (res.status(403)) {
         res.json({
           status:403,
-          message: "wrong password"
+          message: responseObk.message
         });
     } else {
       res.render('login', {
@@ -189,7 +189,7 @@ router.post('/login', async function (req, res, next) {
   } catch (err) {
     console.log(err)
     res.json({
-      message: 'something went wrong, perhaps it is just the wrong password.',
+      message: 'Wrong username.',
       status: 'Error',
       data: err
     });

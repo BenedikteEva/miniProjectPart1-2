@@ -68,14 +68,19 @@ describe("Testing the login Facade", function () {
 
     });
 
-    it("should check bad login ", async function () {
+    it("should check bad login wrong password", async function () {
         let loginresponse = await loginFacade.login("kw", "wrongtest", 55.770112949163725, 12.513250708580017, 500);
         console.log('bad login ' + loginresponse)
         expect(loginresponse.status).to.be.equal(403);
 
     });
 
+    it("should check bad login wrong username", async function () {
+        let loginresponse = await loginFacade.login("kwo", "test", 55.770112949163725, 12.513250708580017, 500);
+        console.log('bad login ' + loginresponse)
+        expect(loginresponse.status).to.be.equal(404)
 
+    });
     it("should check good login ", async function (done) {
         await loginFacade.login("kw", "hash_me_and_add_some_salt test", 55.770112949163725, 12.513250708580017, 500).then(function (res) {
             console.log('res------------------------------------------------' + res)
