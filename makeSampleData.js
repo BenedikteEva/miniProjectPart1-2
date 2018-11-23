@@ -36,7 +36,7 @@ async function createUsers() {
   return await db.collection('users').insertMany([
     userlist[0], userlist[1], userlist[2], userlist[3]
   ]);//use foreach if more testdata needed
-}
+};
 
 
 // utility function til at skabe positioner Jeg var nødt at ændre user til at kunne tage en string istedet for med mindre 
