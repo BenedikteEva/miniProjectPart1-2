@@ -68,7 +68,7 @@ const positionsData = [positionCreator(  55.77073154490739, 12.511239051818848,
   users[0].insertedIds[0], true), positionCreator(11, 22,  users[0].insertedIds[1], true),
 positionCreator(55.770112949163725,12.513250708580017,
   users[0].insertedIds[2], true), positionCreator(55.77097596295904,12.512124180793762,
-  users[0].insertedIds[3], true)]
+  users[0].insertedIds[3]), true]
 
 poss = await Position.insertMany([
    positionsData[0],

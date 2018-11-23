@@ -68,8 +68,10 @@ function findById(id) {
 };
 
 function deleteUser(_id) {
-  //User.findByIdAndDelete({_id: id});
-  return User.findByIdAndDelete(_id);
+  User.findByIdAndDelete({_id: _id});
+  //User.findByIdAndDelete(_id);
+
+  return User.findByIdAndDelete({_id:_id});
 };
 
 // VIRKER IKKE! Update user - Mangler test.
