@@ -21,7 +21,7 @@ const userlist = [
   { firstName: 'Hardie', lastName: 'Hards', userName: 'Hardie', password: "hardie", email: "hardie@hards.on", job: joblist[1] },
   { firstName: 'Crazy', lastName: 'Crazed', userName: 'Crazy', password: "crazed", email: "crazy@crazed.on", job: joblist[2] },
   { firstName: 'Mons', lastName: 'Monster', userName: 'MonsterMons', password: "mons", email: "monster@mons.on", job: joblist[3] },
-
+  { firstName: 'Kurt', lastName: 'Vonnegut', userName: 'kw', password: "test123", email: "kw@slagterhal5.dk", job: joblist[3] },
 ];
 
 
