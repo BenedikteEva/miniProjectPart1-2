@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
-const graphqlHTTP = require('express-graphql');
-const schema = require('../models/graphql/schema');
+/* import graphqlHTTP from 'express-graphql';
+import { schema } from '../models/graphqlSchema/schema';
 
 router.use('/graphiql', graphqlHTTP({
-    //endpointURL: '/api/graphql',
+    endpointURL: '/api/graphql',
     schema: schema,
     graphiql: true,
-}));
+}));  */
 
 module.exports = router;
