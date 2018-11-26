@@ -4,7 +4,7 @@ var db = mongoose.connection;
 var User = require("./models/User.js");
 var LocationBlog = require("./models/LocationBlog.js");
 var Position = require("./models/Position.js");
-
+var facade = require("./facades/userFacade")
 
 // laver jobs som en liste hvis vi gerne vil have en jobcollection senere. 
 const joblist = [
@@ -34,7 +34,8 @@ async function createUsers() {
   await LocationBlog.deleteMany({});
   await Position.deleteMany({});
   return await db.collection('users').insertMany([
-    userlist[0], userlist[1], userlist[2], userlist[3]
+    userlist[0], userlist[1], userlist[2], userlist[3], { firstName: "Kurt", lastName: "Wonnegut", userName: "kw", password: "test", email: "t@b.dk" }
+    ,{ firstName: "Hanne", lastName: "Wonnegut", userName: "hw", password: "test", email: "u@b.dk" }
   ]);//use foreach if more testdata needed
 }
 
@@ -60,33 +61,36 @@ function locationBlogCreator(info, author, longitude, latitude) {
 
 async function createPositionsAndLocBlogs() {
   try {
-  const userPromises=[createUsers()]
-  var users = await Promise.all(userPromises);
-console.log(users[0].insertedIds[0])
+  const userPromises=await createUsers();
+
+  var users =userPromises.insertedIds;
+  console.log('users'+users[0])
+
 // hvis jeg gerne vil have hel useren embedded og ikke kun id må jeg bruge userlist const her  og [userschema] i position.js
 const positionsData = [positionCreator(  55.77073154490739, 12.511239051818848,
-  users[0].insertedIds[0], true), positionCreator(11, 22,  users[0].insertedIds[1], true),
-positionCreator(55.770112949163725,12.513250708580017,
-  users[0].insertedIds[2], true), positionCreator(55.77097596295904,12.512124180793762,
-  users[0].insertedIds[3]), true]
+  users[0], true), positionCreator(55.7616871,12.5206957,  users[1], true),
+positionCreator(55.7701824,12.5097736,
+  users[2], true), positionCreator(55.77097596295904,12.512124180793762,
+    users[3], true), positionCreator(55.,12.4447073,
+      users[4], true)]
 
 poss = await Position.insertMany([
    positionsData[0],
    positionsData[1],
    positionsData[2],
-   positionsData[3]
+   positionsData[3],
+   positionsData[4]
 ]);
-
 
 //blogs are created
  
 
  
     var blogPromises = [
-      locationBlogCreator("Cool Place", users[0].ops[0]._id, 26, 28),
-      locationBlogCreator("Another Cool Place",  users[0].ops[1]._id, 56, 56),
-      locationBlogCreator("Yet Another Cool Place",  users[0].ops[2]._id, 28, 56),
-      locationBlogCreator("The coolest Place",  users[0].ops[3]._id, 34, 56),
+      locationBlogCreator("Cool Place", users[0], 26, 28),
+      locationBlogCreator("Another Cool Place",  users[0], 56, 56),
+      locationBlogCreator("Yet Another Cool Place",  users[0], 28, 56),
+      locationBlogCreator("The coolest Place",  users[0], 34, 56),
     ];
  
   } catch (err) {
@@ -96,5 +100,6 @@ poss = await Position.insertMany([
 
 }
 createPositionsAndLocBlogs();
+
 
 
