@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-const userFacade = require('../facades/userFacade')
-const loginFacade = require('../facades/loginFacade')
-const blogFacade = require('../facades/blogFacade')
-require('mongoose').set('debug', true)
+const userFacade = require('../facades/userFacade');
+const loginFacade = require('../facades/loginFacade');
+const blogFacade = require('../facades/blogFacade');
+require('mongoose').set('debug', true);
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
