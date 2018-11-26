@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-
+var conStr;
 
 const dbURI = require("./settings").DEV_DB_URI;
 
