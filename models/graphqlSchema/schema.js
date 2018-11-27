@@ -1,10 +1,11 @@
-const graphqlTools = require('graphql-tools')
-import { resolvers } from './resolvers';
-import { makeExecutableSchema } from 'graphql-tools';
 
+const resolvers = require('./resolvers').resolvers;
+
+const graphqlTools = require('graphql-tools')
 const typeDefs = `
     type User {
-        id: ID
+      
+        _id: ID
         userName: String!
         firstName: String
         lastName: String
@@ -14,6 +15,9 @@ const typeDefs = `
         created: Date
         lastUpdated: Date
     }
+   
+    scalar Date
+
 
     type JobSchema {
         type: String
@@ -21,37 +25,48 @@ const typeDefs = `
         companyUrl : String
     }
 
+input InpJobSchema {
+        type: String
+        company: String
+        companyUrl : String
+    }
     type Query {
-        getFriend(id: ID): Friend
-        getFriends: (Friends)
+        getUserById(input: IdInput): User
+        getUserByName(input: InpUserName):User
+        getUsers:[User]
     }
 
-    input User {
-        id: ID
+    input UserInput {
         userName: String!
         firstName: String
         lastName: String
         password: String!
         email: String!
-        job: [JobSchema]
-        created: Date
-        lastUpdated: Date
+        job: [InpJobSchema]
+     
     }
-
-    input JobSchema {
-        type: String
-        company: String
-        companyUrl : String
+     
+    input IdInput{
+        _id:String
     }
-
+    input InpUserName{
+        userName:String
+    }
+ 
     type Mutation {
-        createFriend(input: FriendInput): Friend
-        updateFriend(input: FriendInput): Friend
-        deleteFriend(id: ID!): String
+        createUser(input: UserInput):User
+        updateUser(input: UserInput):User
+        deleteUser( _id:ID): String
     }
     
 `;
 
-const schema = makeExecutableSchema({ typeDefs, resolvers});
 
-export { schema };
+
+
+
+ const schema =graphqlTools.makeExecutableSchema({typeDefs, resolvers});
+
+module.exports={
+    schema
+}

@@ -1,43 +1,82 @@
-import mongoose from 'mongoose';
+var mongoose = require('mongoose');
+var users = require('../User.js');
+var User = mongoose.model('User', users.UserSchema);
 const userFacade = require('../../facades/userFacade');
-
+require("../..//dbSetup.js")();
+var db = mongoose.connection;
+const ObjectId = mongoose.Types.ObjectId;
 // resolver map
+// resolver map
+
+const prepare = (o) => {
+    o._id = o._id.toString()
+    return o
+}
 const resolvers = {
     Query: {
-        getFriendById: ({ id }) => {
-            return userFacade.findById(id);
+        getUserById: async (root,{ ID }) => {
+            return await userFacade.findById(ID);
         },
-        getFriendById: ({ username }) => {
-            return userFacade.findByUsername(username)
+        getUserByName:async (root,{ input }) => {
+            console.log('here'+input.userName)
+            return await User.findOne({
+                userName: input.userName
+            });
         },
-        getFriends: async () => {
-            return await userFacade.getFriends();
+        getUsers:async () => {
+            console.log('her we are users')
+            return await User.find({});
         }
     },
     Mutation: {
-        createFriend:(root, {input}) => {
+        createUser: (root, { input }) => {
             const newUser = new newUser({
                 userName: input.userName,
                 firstName: input.firstName,
                 lastName: input.lastName,
                 password: input.password,
                 email: input.email,
-                type: input.type,
-                company: input.company,
-                companyUrl: input.companyUrl
+                job: {
+                    type: input.type,
+                    company: input.company,
+                    companyUrl: input.companyUrl
+                }
             });
 
-            newUser.id = newUser._id; // Tjek om denne linje skal slettes!
-
-            return userFacade.addUser(newUser);
+            // newUser.id = newUser._id; // Tjek om denne linje skal slettes!
+            userFacade.addUser(newUser.firstName, newUser.lastName, newUser.userName, newUser.password, newUser.email, newUser.type, newUser.company, newUser.companyUrl);
+            return { message: "User succesfully added" }
         },
-        updateFriend: (root, { input }) => {
-            return userFacade.updateUser(input); // Tjek om det her virker!
+        updateUser: (root, { input }) => {
+            const newUser = new newUser({
+                userName: input.userName,
+                firstName: input.firstName,
+                lastName: input.lastName,
+                password: input.password,
+                email: input.email,
+                job: {
+                    type: input.type,
+                    company: input.company,
+                    companyUrl: input.companyUrl
+                }
+            });
+            userFacade.updateUser(newUser.firstName, newUser.lastName, newUser.userName, newUser.password, newUser.email, newUser.type, newUser.company, newUser.companyUrl); // Tjek om det her virker!
+            return "User succesfully updated";
         },
-        deleteFriend: (root, { id }) => {
-            return userFacade.deleteUser(id); // Tjek om denne her virker! Evt returner success besked.
-        } 
-     },
-};
+        deleteUser: async (root, { id }) => {
+            console.log(prepare(ObjectId(id)))
 
-module.exports = { resolvers };
+            return new Promise((resolve, reject) => {
+                User.findOneAndDelete({ _id: prepare(ObjectId(id)) }, (err) => {
+                    if (err) reject(err)
+                    else resolve("succesfully deleted user")
+                }
+
+                )
+            })
+        }
+    }
+}
+
+
+module.exports = { resolvers }

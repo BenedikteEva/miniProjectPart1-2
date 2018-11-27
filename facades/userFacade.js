@@ -54,9 +54,9 @@ async function getAllUsers() {
   return await User.find({})
 };
 
-function findByUserName(username) {
+async function findByUserName(username) {
 
-  return User.findOne({
+  return await User.findOne({
     userName: username
   }).exec();
 };
@@ -67,11 +67,10 @@ function findById(id) {
   });
 };
 
-function deleteUser(_id) {
-  User.findByIdAndDelete({_id: _id});
-  //User.findByIdAndDelete(_id);
+function deleteUser(ID) {
 
-  return User.findByIdAndDelete({_id:_id});
+
+  return User.findByIdAndDelete({_id:ID});
 };
 
 // VIRKER IKKE! Update user - Mangler test.
