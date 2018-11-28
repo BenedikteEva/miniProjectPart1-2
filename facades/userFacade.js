@@ -68,8 +68,6 @@ function findById(id) {
 };
 
 function deleteUser(ID) {
-
-
   return User.findByIdAndDelete({_id:ID});
 };
 
@@ -77,7 +75,7 @@ function deleteUser(ID) {
 function updateUser(user) {
   console.log(user._id);
   return User.findByIdAndUpdate( user._id, user, {new: true} ).exec();
-}
+};
 
 module.exports = {
   getAllUsers: getAllUsers,

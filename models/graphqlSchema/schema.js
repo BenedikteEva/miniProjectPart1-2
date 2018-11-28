@@ -1,11 +1,9 @@
-
 const resolvers = require('./resolvers').resolvers;
+const graphqlTools = require('graphql-tools');
 
-const graphqlTools = require('graphql-tools')
 const typeDefs = `
     type User {
-      
-        _id: ID
+        id: ID
         userName: String!
         firstName: String
         lastName: String
@@ -61,12 +59,8 @@ input InpJobSchema {
     
 `;
 
-
-
-
-
- const schema =graphqlTools.makeExecutableSchema({typeDefs, resolvers});
+const schema =graphqlTools.makeExecutableSchema({typeDefs, resolvers});
 
 module.exports={
     schema
-}
+};

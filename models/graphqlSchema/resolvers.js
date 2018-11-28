@@ -8,10 +8,10 @@ const ObjectId = mongoose.Types.ObjectId;
 // resolver map
 // resolver map
 
-const prepare = (o) => {
+/* const prepare = (o) => {
     o._id = o._id.toString()
     return o
-}
+} */
 const resolvers = {
     Query: {
         getUserById: async (root,{ ID }) => {
@@ -23,9 +23,9 @@ const resolvers = {
                 userName: input.userName
             });
         },
-        getUsers:async () => {
+        getUsers: () => {
             console.log('her we are users')
-            return await User.find({});
+            return User.find({});
         }
     },
     Mutation: {

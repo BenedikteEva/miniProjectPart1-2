@@ -19,19 +19,20 @@ var UserSchema = new Schema({
     job : [JobSchema],
     created: {type: Date, default: Date.now},
     lastUpdated : Date
-  })
+  });
   
   UserSchema.pre("save",function(next){
     this.password = this.password; //"hash_me_and_add_some_salt "+
     this.lastUpdated = new Date();
     next();
-  })
+  });
   
   UserSchema.pre("update",function(next){
    this.update({},{$set : {lastUpdated: new Date()}});
    next();
-  })
-  
-  module.exports = mongoose.model("User",UserSchema);
+  });
+
+
+  module.exports = mongoose.model("User", UserSchema);
 
   //https://www.abeautifulsite.net/hashing-passwords-with-nodejs-and-bcrypt for later
