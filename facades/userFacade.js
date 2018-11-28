@@ -50,12 +50,10 @@ function addJobToUser(_id, type, company, companyUrl) {
 
 
 async function getAllUsers() {
-
   return await User.find({})
 };
 
 async function findByUserName(username) {
-
   return await User.findOne({
     userName: username
   }).exec();
