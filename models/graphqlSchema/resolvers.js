@@ -1,43 +1,58 @@
-import mongoose from 'mongoose';
+import { User } from '../User';
 const userFacade = require('../../facades/userFacade');
 
-// resolver map
 const resolvers = {
     Query: {
-        getFriendById: ({ id }) => {
+        getUserById: (root,{ id }) => {
             return userFacade.findById(id);
         },
-        getFriendById: ({ username }) => {
-            return userFacade.findByUsername(username)
+        getUserByName:async (root, { input }) => {
+            return userFacade.findByUsername(input)
         },
-        getFriends: async () => {
-            return await userFacade.getFriends();
+        getUsers: () => {
+            return userFacade.getAllUsers();
         }
     },
     Mutation: {
-        createFriend:(root, {input}) => {
-            const newUser = new newUser({
+        createUser: (root, { input }) => {
+            const newUser = new User({
                 userName: input.userName,
                 firstName: input.firstName,
                 lastName: input.lastName,
                 password: input.password,
                 email: input.email,
-                type: input.type,
-                company: input.company,
-                companyUrl: input.companyUrl
+                job: {
+                    type: input.type,
+                    company: input.company,
+                    companyUrl: input.companyUrl
+                }
             });
 
-            newUser.id = newUser._id; // Tjek om denne linje skal slettes!
-
-            return userFacade.addUser(newUser);
+            userFacade.addUser(newUser.firstName, newUser.lastName, newUser.userName, newUser.password, newUser.email, newUser.type, newUser.company, newUser.companyUrl);
+            return ("User succesfully added");
         },
-        updateFriend: (root, { input }) => {
-            return userFacade.updateUser(input); // Tjek om det her virker!
+        updateUser: (root, { input }) => {
+            const newUser = new User({
+                userName: input.userName,
+                firstName: input.firstName,
+                lastName: input.lastName,
+                password: input.password,
+                email: input.email,
+                job: {
+                    type: input.type,
+                    company: input.company,
+                    companyUrl: input.companyUrl
+                }
+            });
+            userFacade.updateUser(newUser.firstName, newUser.lastName, newUser.userName, newUser.password, newUser.email, newUser.type, newUser.company, newUser.companyUrl); // Tjek om det her virker!
+            return "User succesfully updated";
         },
-        deleteFriend: (root, { id }) => {
-            return userFacade.deleteUser(id); // Tjek om denne her virker! Evt returner success besked.
+        deleteUser: (root, { id }) => {
+            return userFacade.deleteUser(id); 
+            //return("User deleted!");
+            
         } 
-     },
-};
+    }
+}
 
-module.exports = { resolvers };
+module.exports = { resolvers }

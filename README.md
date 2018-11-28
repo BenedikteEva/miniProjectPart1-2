@@ -4,6 +4,10 @@ This is an Express backend with REST API for 4. semester fullstack Javascript co
 
 You can find the frontend for mobile apps here https://github.com/BoMarconiHenriksen/js_native_to_mini_project.  
 
+Link to deployed backend https://miniprojectfsjsbebop.herokuapp.com/  
+
+Link to Expo app (deployed on Epo) https://expo.io/@benedikteeva/FriendFinderBB  
+
 ## How to run the project
 1. Clone the project.
 2. Cd into the folder.
