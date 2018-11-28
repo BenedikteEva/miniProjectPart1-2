@@ -67,8 +67,8 @@ function findById(id) {
   });
 };
 
-function deleteUser(ID) {
-  return User.findByIdAndDelete({_id:ID});
+function deleteUser(id) {
+  return User.findByIdAndDelete({_id:id});
 };
 
 // VIRKER IKKE! Update user - Mangler test.

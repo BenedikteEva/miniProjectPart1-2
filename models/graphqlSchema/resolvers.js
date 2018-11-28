@@ -48,12 +48,22 @@ const resolvers = {
             userFacade.updateUser(newUser.firstName, newUser.lastName, newUser.userName, newUser.password, newUser.email, newUser.type, newUser.company, newUser.companyUrl); // Tjek om det her virker!
             return "User succesfully updated";
         },
-        deleteUser: (root, { id }) => {
-            return userFacade.deleteUser(id); 
-            //return("User deleted!");
+        deleteUser: async (root, { id }) => {
+            console.log(id);
+            // return userFacade.deleteUser(id); 
+            // if(err) console.log(err);
+            // else return("User deleted!");
+
+            // Går uden om facaden.
+            return new Promise((resolve) => {
+                User.remove({ _id: id }, (err) => {
+                    if(err) reject(err)
+                    else resolve("Successfully deleted user.")
+                });
+            });
             
-        } 
+        }, 
     }
-}
+};
 
 module.exports = { resolvers }
