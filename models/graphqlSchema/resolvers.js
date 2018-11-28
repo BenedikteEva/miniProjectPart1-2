@@ -3,16 +3,14 @@ const userFacade = require('../../facades/userFacade');
 
 const resolvers = {
     Query: {
-        getUserById: async (root,{ ID }) => {
-            return await userFacade.findById(ID);
+        getUserById: (root,{ id }) => {
+            return userFacade.findById(id);
         },
-        getUserByName:async (root,{ input }) => {
-            return await User.findOne({
-                userName: input.userName
-            });
+        getUserByName:async (root, { input }) => {
+            return userFacade.findByUsername(input)
         },
         getUsers: () => {
-            return User.find({});
+            return userFacade.getAllUsers();
         }
     },
     Mutation: {
