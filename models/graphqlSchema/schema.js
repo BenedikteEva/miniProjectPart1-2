@@ -45,7 +45,7 @@ input InpJobSchema {
     }
      
     input IdInput{
-        _id:String
+        id:String
     }
     input InpUserName{
         userName:String
@@ -54,7 +54,7 @@ input InpJobSchema {
     type Mutation {
         createUser(input: UserInput):User
         updateUser(input: UserInput):User
-        deleteUser( _id:ID): String
+        deleteUser( id:ID): String
     }
     
 `;
