@@ -6,7 +6,7 @@ const resolvers = {
         getUserById: (root, { id }) => {
             return userFacade.findById(id);
         },
-        getUserByName:async (root, { input }) => {
+        getUserByName: (root, { input }) => {
             return userFacade.findByUsername(input)
         },
         getUsers: () => {

@@ -23,14 +23,14 @@ const typeDefs = `
         companyUrl : String
     }
 
-input InpJobSchema {
+    input InpJobSchema {
         type: String
         company: String
         companyUrl : String
     }
     type Query {
         getUserById(id: ID): User
-        getUserByName(input: InpUserName):User
+        getUserByName(input: String):User
         getUsers:[User]
     }
 
@@ -41,16 +41,8 @@ input InpJobSchema {
         password: String!
         email: String!
         job: [InpJobSchema]
-     
     }
      
-    input IdInput{
-        id:String
-    }
-    input InpUserName{
-        userName:String
-    }
- 
     type Mutation {
         createUser(input: UserInput):User
         updateUser(input: UserInput):User
