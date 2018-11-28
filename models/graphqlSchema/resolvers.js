@@ -3,7 +3,7 @@ const userFacade = require('../../facades/userFacade');
 
 const resolvers = {
     Query: {
-        getUserById: (root,{ id }) => {
+        getUserById: (root, { id }) => {
             return userFacade.findById(id);
         },
         getUserByName:async (root, { input }) => {
@@ -28,8 +28,9 @@ const resolvers = {
                 }
             });
 
-            userFacade.addUser(newUser.firstName, newUser.lastName, newUser.userName, newUser.password, newUser.email, newUser.type, newUser.company, newUser.companyUrl);
-            return ("User succesfully added");
+            // newUser.id = newUser._id;
+
+            return userFacade.addUser(newUser.firstName, newUser.lastName, newUser.userName, newUser.password, newUser.email, newUser.type, newUser.company, newUser.companyUrl);
         },
         updateUser: (root, { input }) => {
             const newUser = new User({
