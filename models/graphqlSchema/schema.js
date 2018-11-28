@@ -29,7 +29,7 @@ input InpJobSchema {
         companyUrl : String
     }
     type Query {
-        getUserById(input: IdInput): User
+        getUserById(id: ID): User
         getUserByName(input: InpUserName):User
         getUsers:[User]
     }
