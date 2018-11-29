@@ -70,9 +70,9 @@ function deleteUser(id) {
 };
 
 // VIRKER IKKE! Update user - Mangler test.
-function updateUser(user) {
-  console.log(user._id);
-  return User.findByIdAndUpdate( user._id, user, {new: true} ).exec();
+function updateUser(id,user) {
+ 
+  return User.findByIdAndUpdate( {_id:id}, {password:user.password},  {new: true} ).exec();
 };
 
 module.exports = {

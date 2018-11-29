@@ -7,7 +7,7 @@ const resolvers = {
             return userFacade.findById(id);
         },
         getUserByName: (root, { input }) => {
-            return userFacade.findByUsername(input)
+            return userFacade.findByUsername(input.userName)
         },
         getUsers: () => {
             return userFacade.getAllUsers();
@@ -33,7 +33,10 @@ const resolvers = {
             return userFacade.addUser(newUser.firstName, newUser.lastName, newUser.userName, newUser.password, newUser.email, newUser.type, newUser.company, newUser.companyUrl);
         },
         updateUser: (root, { input }) => {
-            const newUser = new User({
+            console.log(input.id)
+        
+            return  userFacade.updateUser(input.id,{
+          
                 userName: input.userName,
                 firstName: input.firstName,
                 lastName: input.lastName,
@@ -43,10 +46,8 @@ const resolvers = {
                     type: input.type,
                     company: input.company,
                     companyUrl: input.companyUrl
-                }
-            });
-            userFacade.updateUser(newUser.firstName, newUser.lastName, newUser.userName, newUser.password, newUser.email, newUser.type, newUser.company, newUser.companyUrl); // Tjek om det her virker!
-            return "User succesfully updated";
+                }}); // Tjek om det her virker!
+           // return "User succesfully updated";
         },
         deleteUser: async (root, { id }) => {
             console.log(id);

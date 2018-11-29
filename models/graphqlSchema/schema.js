@@ -30,8 +30,11 @@ const typeDefs = `
     }
     type Query {
         getUserById(id: ID): User
-        getUserByName(input: String):User
+        getUserByName(input: InpUserName):User
         getUsers:[User]
+    }
+    input InpUserName {
+        userName: String
     }
 
     input UserInput {
@@ -42,10 +45,17 @@ const typeDefs = `
         email: String!
         job: [InpJobSchema]
     }
+    input UserInputUpd {
+        id: ID
+     
+        password: String!
+     
+    }
+    
      
     type Mutation {
         createUser(input: UserInput):User
-        updateUser(input: UserInput):User
+        updateUser(input: UserInputUpd):User
         deleteUser( id:ID): String
     }
     
