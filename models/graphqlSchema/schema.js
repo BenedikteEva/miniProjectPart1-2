@@ -13,14 +13,29 @@ const typeDefs = `
         created: Date
         lastUpdated: Date
     }
-   
-    scalar Date
+    type Position {
+        user: [User]
+        created: Date
+        loc: [PointSchema]
+    }
 
+
+    scalar Date
+    type PointSchema {
+        latitude: Float
+        longitude: Float
+        
+    }
 
     type JobSchema {
         type: String
         company: String
         companyUrl : String
+    }
+    type Friend{
+        username:String
+        latitude: Float
+        longitude: Float
     }
 
     input InpJobSchema {
@@ -35,6 +50,14 @@ const typeDefs = `
     }
     input InpUserName {
         userName: String
+    }
+
+    input LoginInput{
+        userName:String!
+        password:String!
+        longitude: Float
+        latitude:Float
+        distance :Int
     }
 
     input UserInput {
@@ -62,12 +85,13 @@ const typeDefs = `
         createUser(input: UserInput):User
         updateUser(input: UserInputUpd):User
         deleteUser( id:ID): String
-    }
+        loginUser(input:LoginInput):[Friend]
     
+    }
 `;
 
-const schema =graphqlTools.makeExecutableSchema({typeDefs, resolvers});
+const schema = graphqlTools.makeExecutableSchema({ typeDefs, resolvers });
 
-module.exports={
+module.exports = {
     schema
 };
