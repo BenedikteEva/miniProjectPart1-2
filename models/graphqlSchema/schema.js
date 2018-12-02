@@ -47,8 +47,13 @@ const typeDefs = `
     }
     input UserInputUpd {
         id: ID
-     
-        password: String!
+        userName: String
+        firstName: String
+        lastName: String
+        password: String
+        email: String
+        job: [InpJobSchema]
+        password: String
      
     }
     

@@ -69,11 +69,17 @@ function deleteUser(id) {
   return User.findByIdAndDelete({_id:id});
 };
 
-// VIRKER IKKE! Update user - Mangler test.
-function updateUser(id,user) {
- 
-  return User.findByIdAndUpdate( {_id:id}, {password:user.password},  {new: true} ).exec();
-};
+
+async function updateUser(id, input) {
+
+  
+
+console.log(input)
+  
+
+  return await User.findByIdAndUpdate( {_id:id}, {input} , {new: true} ).exec();
+}
+
 
 module.exports = {
   getAllUsers: getAllUsers,

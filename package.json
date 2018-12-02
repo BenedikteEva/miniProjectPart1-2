@@ -9,6 +9,9 @@
     "test": "SET DEBUG=part1:* & mocha -w",
     "makedata": "node makesampledata"
   },
+  "engines": {
+    "node": "10.13.0"
+  },
   "dependencies": {
     "async": "^2.6.1",
     "chai-http": "^4.2.0",
