@@ -71,13 +71,9 @@ function deleteUser(id) {
 
 
 async function updateUser(id, input) {
+delete input[id];
 
-  
-
-console.log(input)
-  
-
-  return await User.findByIdAndUpdate( {_id:id}, {input} , {new: true} ).exec();
+  return await User.findByIdAndUpdate( {_id:id}, input , {new: true} ).exec();
 }
 
 

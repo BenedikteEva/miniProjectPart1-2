@@ -1,6 +1,6 @@
 import { User } from '../User';
 const userFacade = require('../../facades/userFacade');
-
+const loginFacade = require('../../facades/loginFacade');
 const resolvers = {
     Query: {
         getUserById: (root, { id }) => {
@@ -34,9 +34,8 @@ const resolvers = {
         },
 
         updateUser: (root, { input }) => {
-            
-            return  userFacade.updateUser(input.id,[input].slice(0,0)); // Tjek om det her virker!
-           // return "User succesfully updated";
+         
+            return  userFacade.updateUser(input.id, input); 
         },
         deleteUser: async (root, { id }) => {
             console.log(id);
