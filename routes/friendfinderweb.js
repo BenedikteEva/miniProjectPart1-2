@@ -3,8 +3,8 @@ var router = express.Router();
 var fetch = require('node-fetch');
 
 
-//const URL = 'http://localhost:3000/api/';
-const URL = 'https://miniprojectfsjsbebop.herokuapp.com/api/'
+const URL = 'http://localhost:3000/api/';
+//const URL = 'https://miniprojectfsjsbebop.herokuapp.com/api/'
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
