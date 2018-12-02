@@ -3,8 +3,8 @@ var router = express.Router();
 var fetch = require('node-fetch');
 
 
-const URL = 'http://localhost:3000/api/';
-//const URL = 'https://miniprojectfsjsbebop.herokuapp.com/api/'
+//const URL = 'http://localhost:3000/api/';
+const URL = 'https://miniprojectfsjsbebop.herokuapp.com/api/'
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -30,7 +30,7 @@ let user= req.body;
   }).catch((err) => {
     console.log('catch' + err)
   })
-console.log(user)
+console.log(registerUser)
   res.render('register', {
     title: 'registreret',
     besked: 'Velkommen! ',
@@ -43,7 +43,7 @@ console.log(user)
 
 
 router.post('/loginweb', async function (req, res, next) {
-  const body=JSON.stringify({'userName': req.body.username, 'password': req.body.password, 'longitude': req.body.Longitude, 'latitude': req.body.Latitude, 'distance': req.body.distance })
+  const body=JSON.stringify({'userName': req.body.username, 'password': req.body.password, 'longitude': req.body.Longitude, 'latitude': req.body.Latitude, 'distance': req.body.distance*1000 })
   let loginUser = await fetch(URL + 'login', {
     headers: {
       'Content-Type': 'application/json'
@@ -57,7 +57,7 @@ router.post('/loginweb', async function (req, res, next) {
     console.log('catch' + err)
   })
 
-console.log(loginUser)
+console.log(loginUser.friends)
 
 if (loginUser.friends.length!==0){
   res.render('loginweb', {
