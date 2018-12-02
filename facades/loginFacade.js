@@ -9,7 +9,7 @@ var posfacade = require('./positionFacade');
 
 
 
-async function login(userName, password, longitude, latitude, distance, push_token) {
+async function login(userName, password, longitude, latitude, distance) {
   let user = await User.findOne({ 'userName': userName });
   if (user === null) {
     return { message: "User does not exist", status: 404 }
@@ -18,7 +18,7 @@ async function login(userName, password, longitude, latitude, distance, push_tok
   if (user.password === password) {
     await posfacade.updatePosition(user._id, longitude, latitude);
 
-    let friends = await friendFinderUtility(longitude, latitude, distance);
+    let friends = await friendFinderUtility(longitude, latitude, distance*1000);
     //methods for making pushnotifications to friends:
     // 
     return {

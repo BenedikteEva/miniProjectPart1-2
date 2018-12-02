@@ -50,13 +50,11 @@ function addJobToUser(_id, type, company, companyUrl) {
 
 
 async function getAllUsers() {
-
   return await User.find({})
 };
 
-function findByUserName(username) {
-
-  return User.findOne({
+async function findByUserName(username) {
+  return await User.findOne({
     userName: username
   }).exec();
 };
@@ -67,18 +65,17 @@ function findById(id) {
   });
 };
 
-function deleteUser(_id) {
-  User.findByIdAndDelete({_id: _id});
-  //User.findByIdAndDelete(_id);
-
-  return User.findByIdAndDelete({_id:_id});
+function deleteUser(id) {
+  return User.findByIdAndDelete({_id:id});
 };
 
-// VIRKER IKKE! Update user - Mangler test.
-function updateUser(user) {
-  console.log(user._id);
-  return User.findByIdAndUpdate( user._id, user, {new: true} ).exec();
+
+async function updateUser(id, input) {
+delete input[id];
+
+  return await User.findByIdAndUpdate( {_id:id}, input , {new: true} ).exec();
 }
+
 
 module.exports = {
   getAllUsers: getAllUsers,

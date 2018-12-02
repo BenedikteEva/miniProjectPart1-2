@@ -1,43 +1,62 @@
-import mongoose from 'mongoose';
+import { User } from '../User';
 const userFacade = require('../../facades/userFacade');
-
-// resolver map
+const loginFacade = require('../../facades/loginFacade');
 const resolvers = {
     Query: {
-        getFriendById: ({ id }) => {
+        getUserById: (root, { id }) => {
             return userFacade.findById(id);
         },
-        getFriendById: ({ username }) => {
-            return userFacade.findByUsername(username)
+        getUserByName: (root, { input }) => {
+            return userFacade.findByUsername(input.userName)
         },
-        getFriends: async () => {
-            return await userFacade.getFriends();
+        getUsers: () => {
+            return userFacade.getAllUsers();
         }
     },
     Mutation: {
-        createFriend:(root, {input}) => {
-            const newUser = new newUser({
+        createUser: (root, { input }) => {
+            const newUser = new User({
                 userName: input.userName,
                 firstName: input.firstName,
                 lastName: input.lastName,
                 password: input.password,
                 email: input.email,
-                type: input.type,
-                company: input.company,
-                companyUrl: input.companyUrl
+                job: {
+                    type: input.type,
+                    company: input.company,
+                    companyUrl: input.companyUrl
+                }
             });
 
-            newUser.id = newUser._id; // Tjek om denne linje skal slettes!
+            // newUser.id = newUser._id;
 
-            return userFacade.addUser(newUser);
+            return userFacade.addUser(newUser.firstName, newUser.lastName, newUser.userName, newUser.password, newUser.email, newUser.type, newUser.company, newUser.companyUrl);
         },
-        updateFriend: (root, { input }) => {
-            return userFacade.updateUser(input); // Tjek om det her virker!
+
+        updateUser: (root, { input }) => {
+            return  userFacade.updateUser(input.id, input); 
         },
-        deleteFriend: (root, { id }) => {
-            return userFacade.deleteUser(id); // Tjek om denne her virker! Evt returner success besked.
-        } 
-     },
+        deleteUser: async (root, { id }) => {
+            console.log(id);
+            // return userFacade.deleteUser(id); 
+            // if(err) console.log(err);
+            // else return("User deleted!");
+
+            // Går uden om facaden.
+            return new Promise((resolve) => {
+                User.remove({ _id: id }, (err) => {
+                    if(err) reject(err)
+                    else resolve("Successfully deleted user.")
+                });
+            });
+            
+        }, 
+        loginUser:async(root, {input})=>{
+          const friends= await loginFacade.login(input.userName, input.password, input.longitude, input.latitude, input.distance*1000);
+     
+            return friends.friends
+        }
+    }
 };
 
-module.exports = { resolvers };
+module.exports = { resolvers }

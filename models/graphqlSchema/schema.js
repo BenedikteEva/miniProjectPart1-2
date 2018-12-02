@@ -1,6 +1,5 @@
-const graphqlTools = require('graphql-tools')
-import { resolvers } from './resolvers';
-import { makeExecutableSchema } from 'graphql-tools';
+const resolvers = require('./resolvers').resolvers;
+const graphqlTools = require('graphql-tools');
 
 const typeDefs = `
     type User {
@@ -14,44 +13,85 @@ const typeDefs = `
         created: Date
         lastUpdated: Date
     }
+    type Position {
+        user: [User]
+        created: Date
+        loc: [PointSchema]
+    }
+
+
+    scalar Date
+    type PointSchema {
+        latitude: Float
+        longitude: Float
+        
+    }
 
     type JobSchema {
         type: String
         company: String
         companyUrl : String
     }
-
-    type Query {
-        getFriend(id: ID): Friend
-        getFriends: (Friends)
+    type Friend{
+        username:String
+        latitude: Float
+        longitude: Float
     }
 
-    input User {
-        id: ID
+    input InpJobSchema {
+        type: String
+        company: String
+        companyUrl : String
+    }
+    type Query {
+        getUserById(id: ID): User
+        getUserByName(input: InpUserName):User
+        getUsers:[User]
+    }
+    input InpUserName {
+        userName: String
+    }
+
+    input LoginInput{
+        userName:String!
+        password:String!
+        longitude: Float
+        latitude:Float
+        distance :Int
+    }
+
+    input UserInput {
         userName: String!
         firstName: String
         lastName: String
         password: String!
         email: String!
-        job: [JobSchema]
-        created: Date
-        lastUpdated: Date
+        job: [InpJobSchema]
     }
-
-    input JobSchema {
-        type: String
-        company: String
-        companyUrl : String
-    }
-
-    type Mutation {
-        createFriend(input: FriendInput): Friend
-        updateFriend(input: FriendInput): Friend
-        deleteFriend(id: ID!): String
+    input UserInputUpd {
+        id: ID
+        userName: String
+        firstName: String
+        lastName: String
+        password: String
+        email: String
+        job: [InpJobSchema]
+        password: String
+     
     }
     
+     
+    type Mutation {
+        createUser(input: UserInput):User
+        updateUser(input: UserInputUpd):User
+        deleteUser( id:ID): String
+        loginUser(input:LoginInput):[Friend]
+    
+    }
 `;
 
-const schema = makeExecutableSchema({ typeDefs, resolvers});
+const schema = graphqlTools.makeExecutableSchema({ typeDefs, resolvers });
 
-export { schema };
+module.exports = {
+    schema
+};
