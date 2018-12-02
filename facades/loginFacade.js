@@ -9,7 +9,7 @@ var posfacade = require('./positionFacade');
 
 
 
-async function login(userName, password, longitude, latitude, distance, push_token) {
+async function login(userName, password, longitude, latitude, distance) {
   let user = await User.findOne({ 'userName': userName });
   if (user === null) {
     return { message: "User does not exist", status: 404 }
