@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www --exec babel-node --presets env,stage-2 -e js",
+    "start": "node ./bin/www",
     "es6": "nodemon ./bin/www --exec babel-node --presets env,stage-2 -e js",
     "withnodemon": "SET DEBUG=part1:* & nodemon ./bin/www",
     "test": "SET DEBUG=part1:* & mocha -w",
