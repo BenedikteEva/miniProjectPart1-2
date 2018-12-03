@@ -1,4 +1,4 @@
-import { User } from '../User';
+const User =require('../User');
 const userFacade = require('../../facades/userFacade');
 const loginFacade = require('../../facades/loginFacade');
 const resolvers = {

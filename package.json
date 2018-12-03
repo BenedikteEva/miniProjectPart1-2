@@ -1,9 +1,9 @@
 {
   "name": "part1",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www --exec babel-node --presets env,stage-2 -e js",
+    "start": "node ./bin/www",
     "es6": "nodemon ./bin/www --exec babel-node --presets env,stage-2 -e js",
     "withnodemon": "SET DEBUG=part1:* & nodemon ./bin/www",
     "test": "SET DEBUG=part1:* & mocha -w",
@@ -13,9 +13,11 @@
     "node": "10.13.0"
   },
   "dependencies": {
+    "apollo-boost": "^0.1.22",
     "async": "^2.6.1",
     "chai-http": "^4.2.0",
     "cookie-parser": "~1.4.3",
+    "cors": "^2.8.5",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "event-stream": "^3.3.4",
@@ -29,6 +31,7 @@
     "mongoose": "^5.3.2",
     "morgan": "~1.9.0",
     "node-fetch": "^2.2.0",
+    "react-apollo": "^2.3.2",
     "request": "^2.88.0",
     "winston": "^3.1.0"
   },
