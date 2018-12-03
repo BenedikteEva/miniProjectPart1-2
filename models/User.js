@@ -34,7 +34,7 @@ var UserSchema = new Schema({
 
 const User = mongoose.model("User", UserSchema);
 
-export { User };
-  // module.exports = mongoose.model("User", UserSchema);
+//export { User };
+module.exports = mongoose.model("User", UserSchema);
 
   //https://www.abeautifulsite.net/hashing-passwords-with-nodejs-and-bcrypt for later
