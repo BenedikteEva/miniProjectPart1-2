@@ -10,7 +10,7 @@
     "makedata": "node makesampledata"
   },
   "engines": {
-    "node": "10.13.0"
+    "node": "10.x"
   },
   "dependencies": {
     "async": "^2.6.1",
