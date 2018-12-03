@@ -52,7 +52,7 @@ const resolvers = {
             
         }, 
         loginUser:async(root, {input})=>{
-          const friends= await loginFacade.login(input.userName, input.password, input.longitude, input.latitude, input.distance*1000);
+          const friends= await loginFacade.login(input.userName, input.password, input.longitude, input.latitude, input.distance);
      
             return friends.friends
         }
