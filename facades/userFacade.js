@@ -66,7 +66,7 @@ function findById(id) {
 };
 
 function deleteUser(id) {
-  return User.findByIdAndDelete({_id:id});
+  return User.findByIdAndRemove({_id:id}).exec();
 };
 
 
