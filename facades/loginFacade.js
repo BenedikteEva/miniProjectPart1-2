@@ -18,7 +18,7 @@ async function login(userName, password, longitude, latitude, distance) {
   if (user.password === password) {
     await posfacade.updatePosition(user._id, longitude, latitude);
 
-    let friends = await friendFinderUtility(longitude, latitude, distance*1000);
+    let friends = await friendFinderUtility(longitude, latitude, distance);
     //methods for making pushnotifications to friends:
     // 
     return {
@@ -49,7 +49,7 @@ async function friendFinderUtility(longitude, latitude, distance) {
         }
       }
     }
-  ).populate('user').exec()
+  ).populate('user').exec();
   // 
   return await position;
 
