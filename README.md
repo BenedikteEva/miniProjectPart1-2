@@ -27,7 +27,7 @@ Link to Expo app (deployed on Epo) https://expo.io/@benedikteeva/FriendFinderBB
 7. Above can be used in Native insted of Heroku.
 
 
-examples:
+## Periode 2 - Learning Goals
 ### 1. testing a REST-API using Node/JavaScript + relevant packages (mocha and chai) 
 Se test mappen. 
 
