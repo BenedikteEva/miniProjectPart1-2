@@ -91,6 +91,7 @@ Muligt at deklarer en variabel efter den er brugt.
 1. Deklarer i toppen.
 2. Brug let og const.
 
+Se hoisting.js  
 ---
 
 #### this in JavaScript and how it differs from what we know from Java/.net.  
@@ -115,6 +116,8 @@ Som udgangspunkt referer this til det globale objekt.
 Se filen this.js for Javascript eksempler.  
 
 For en løsning på udfordringen med this i JavaScript se filen thisApplyCallBind.js
+
+Se this.js  
 
 ---
 
