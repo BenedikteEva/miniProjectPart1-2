@@ -54,6 +54,8 @@ expect() sættes sammen med getters som to.be.equal ect.
 
 Se test mappen i backenden. https://github.com/BenedikteEva/miniProjectPart1-2/tree/master/test  
 
+--- 
+
 ### 2. the Express concept; middleware. 
 Det der sker mellem request og responset.  
 Middleware udføres før route handleren bliver kaldt.  
