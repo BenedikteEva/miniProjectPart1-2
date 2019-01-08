@@ -1,15 +1,58 @@
 # Plain JavaScript + Typescript
 ### Provide a number of examples to demonstrate the benefits of using TypeScript,
+##### Types
+Deklarerer variablens type som String, Number, Boolean, Array ect.  
+
+##### Interface
+Beskriver et objekt, og tjekker at en property har den rigtige type.  
+
+##### Classes
+Es6 feature. Ligner det vi kender fra java.  
+Keywords er obligatoriske i konstruktøren.  
+
+Se typescript-demo  
+
+##### Generics
+I stedet for any typen.  
+
+Se typescript-demo  
+---
 
 ### Explain briefly about promises in ES-6 including, and the problems they solve.
+##### Es6 promise
+Løser problemet med callback hell.
+
+Promises er et objekt, der bliver brugt ved asynkrone operationer.  
+Det er en lovning på, at på et tidspunkt returnes data eller en error.  
+
+Laver en instance ved at kalde new på Promise klassen.  
+
+Promise.all returner et enkelt promise når alt i arrayet er resolved.  
+
+---
 
 ### Explain about JavaScripts async/await, how it relates to promises and reasons to use it compared to the plain promise API. Provide examples to demonstrate:
+Er bygget oven på Promise apiet.  
+Er syntaktisk sukker.  
+Ser bedre og mere clean ud, og er lettere at debugge.  
 
+---
 ### Why this often is the preferred way of handling promises
+Kan bruge try catch.  
 
+---
 ### Error handling with async/await
+Kan bruge try catch.  
 
+Se callbackHell.js  
+
+---
 ### Serial or parallel execution with async/await
+Serial - et fetch ad gangen.  
+
+Parallel - Alle fetch samtidig vha Promise.all().  
+
+Se serialParalelAsync.js  
 
 # Geo-JSON 
 ### Demonstrate both server and client-side, of the geo-related parts of your implementation of the mini project

@@ -280,6 +280,8 @@ Se typescript-demo
 #### Explain about promises in ES-6 including, the problems they solve, a quick explanation of the Promise API and:  
 
 ##### Es6 promise
+Løser problemet med callback hell.
+
 Promises er et objekt, der bliver brugt ved asynkrone operationer.  
 Det er en lovning på, at på et tidspunkt returnes data eller en error.  
 
