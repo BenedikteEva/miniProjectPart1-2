@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var cookieSession = require('cookie-session')
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 //var loggerDoc=require('./logger')
@@ -28,6 +29,12 @@ app.use('/', indexRouter);
 app.use('/api', apiRouter);
 app.use('/friendfinderweb', friendfinderwebRouter);
 app.use('/graphql', graphQlRouter);
+app.use(cookieSession({
+  name: 'session',
+  keys: ['Anna', 'Børge'],
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

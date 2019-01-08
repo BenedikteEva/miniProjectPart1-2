@@ -15,6 +15,8 @@
 
 # Express
 ### Explain briefly how to deploy a Node/Express application including how to solve the following deployment problems:
+Heroku dejligt nemt sammen med github
+Digital Ocean tomcatserver ind og pille ved 
 
 ### Ensure that you Node-process restarts after a (potential) exception that closed the application
 
