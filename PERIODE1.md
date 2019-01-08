@@ -283,12 +283,14 @@ Se typescript-demo
 Promises er et objekt, der bliver brugt ved asynkrone operationer.  
 Det er en lovning på, at på et tidspunkt returnes data eller en error.  
 
----
-
-#### Example(s) that demonstrate how to avoid the callback hell  (“Pyramid of Doom").  
 Laver en instance ved at kalde new på Promise klassen.  
 
 Promise.all returner et enkelt promise når alt i arrayet er resolved.  
+
+---
+
+#### Example(s) that demonstrate how to avoid the callback hell  (“Pyramid of Doom").  
+Når en callback i en funktion kalder en callback, der kalder en callback osv. De er nestet.  
 
 Se callbackHell.js  
 
