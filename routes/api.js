@@ -6,11 +6,30 @@ const blogFacade = require('../facades/blogFacade');
 require('mongoose').set('debug', true);
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
+ router.get('/', function (req, res, next) {
+
   res.render('api', {
-    title: "Mini Project Part 1 full stack js api"
+    title: "Mini Project Part 1 full stack js api",
+
   })
-});
+
+  
+}); 
+
+router.get('/session', function (req, res, next) {
+  // Update views
+  console.log('req'+req.session.views)
+  req.session.views = (req.session.views || 0) + 1
+
+  // Write response
+
+  res.json({
+    status: 'Success session',
+    views: req.session.views
+   
+  });
+  res.end(req.session.views + ' views')
+})
 
 // Get all users.
 router.get('/users', async function (req, res, next) {
@@ -169,14 +188,7 @@ router.post('/login', async function (req, res, next) {
     let loginUser = await loginFacade.login(req.body.userName, req.body.password, req.body.longitude, req.body.latitude, req.body.distance);
     let responseObk = res.json(loginUser)
 
-    // implemented a cookiesession for the exam 
- 
-  req.session.views = (req.session.views || 0) + 1
-
-  // Write response
-  res.end(req.session.views + ' views')
-
-    // If user or password does not exist send a messege to the client.
+     // If user or password does not exist send a messege to the client.
     if (res.status(404)) {
       res.json({
         status:404,
@@ -192,7 +204,6 @@ router.post('/login', async function (req, res, next) {
         title: 'login',
         friends: 'friends:' + responseObk
       });
-      res.end(req.session.views + ' views')
     };
   } catch (err) {
     console.log(err)
@@ -226,7 +237,6 @@ router.get("/blogs", async function (req, res, next) {
     });
   }
 });
-
 
 router.post("/blog", async function (req, res, next) {
   try {
