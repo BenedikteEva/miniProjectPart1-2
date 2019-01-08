@@ -1,18 +1,91 @@
 ## Periode 2 - Learning Goals
+### Why would you consider a Scripting Language as JavaScript as your Backend Platform?
+Samme sprog på front og backend.  
+Speed og performance.  
+Skaler let.  
+
+### Explain Pros & Cons in using Node.js + Express to implement your Backend compared to a strategy using, for example, Java/JAX-RS/Tomcat
+Node simpel build process i forhold til java.  
+Node er hurtigere end java.  
+Node er ikke type stærkt. Det er java.  
+Node ikke god til tunge opgaver(cpu krævende). 
+
+Java har tråde. Tråd dør ved error i Node chrasher appen.
+
+### Node.js uses a Single Threaded Non-blocking strategy to handle asynchronous task. Explain strategies to implement a Node.js based server architecture that still could take advantage of a multi-core Server.
+Det er muligt at skaler Node op til en multi-core server, da der kan køre en instans på hver kerne.  
+Det kan gøres ved hjælp af det modul, der hedder clustering.  
+
+### Explain briefly how to deploy a Node/Express application including how to solve the following deployment problems:
+##### Deployment
+Installer Node på serveren.  
+Installer github, og klon din Node applikation.  
+Gør app.js executable, og start din applikation.  
+
+#### Ensure that you Node-process restarts after a (potential) exception that closed the application
+#### Ensure that you Node-process restarts after a server (Ubuntu) restart
+Installer pm2 - En process manager, der kan administrer Node applikationer, og bruges til at køre programmer i baggrunden som en service.  
+pm2 start app.js  
+pm2 startup systemd - Generer et start up script. Systemd er en linux system manager.  
+
+#### Ensure that you can take advantage of a multi-core system
+Brug cluster modulet.  
+Der findes også cluster-service eller node-pm.  
+I pm2 kan du slå cluster mode til.  
+
+
+#### Ensure that you can run “many” node-applications on a single droplet on the same port (80)
+Brug en load balancer til at fordele trafikken mellem dine instancer f.eks. nginx.  
+Brug in-memory data-store som redis til sessioner.  
+
+#### Explain the difference between “Developer outputs” and application logging. What’s wrong with console.log(..) statements in our backend-code 
+Det er vigtigt at ændre debugging til production mode når man skal deploye, så man ikke kommer til at give en hacker værdifuld viden om systemet.  
+
 ### 1. testing a REST-API using Node/JavaScript + relevant packages (mocha and chai) 
-Se test mappen. 
+##### Mocha
+En describe() blok giver dig mulighed for at gruppere dine test.  
+it() blok sætter testen op med kode.  
+done() er en callback, der kan bruges med it(). Så ved Mocha at det er en asynkron metode at, og den skal vente.  
+God til integrations og unit test.  
+
+##### Chai
+Er et assertion bibliotek til test i node.  
+expect() sættes sammen med getters som to.be.equal ect.  
+
+Se test mappen i backenden. https://github.com/BenedikteEva/miniProjectPart1-2/tree/master/test  
+
+--- 
 
 ### 2. the Express concept; middleware. 
-app.get('/', function (req,res,next)) 
+Det der sker mellem request og responset.  
+Middleware udføres før route handleren bliver kaldt.  
+Modtager request og response objektet.
+Rækkefølgen er vigtig ved middleware.  
 
-Det der sker mellem request og response i en http metode (get,put, post, delete osv.). 
-Kan være mange forskellige funktioner tjek mine api metoder og tilhørende tests. 
+Middleware funktioner kan være logging, authentication ect.  
+
+Kan også bruges i route handleren.  
+
+var app = express()  
+app.use(myMiddleware)  
+
+* * *  
+
+app.get('/', function (req,res,next))  
+
+Det der sker mellem request og responset i en http metode (get,put, post, delete osv.).  
+Kan være mange forskellige funktioner tjek mine api metoder og tilhørende tests.  
+
+##### Se app.js i backenden.
+https://github.com/BenedikteEva/miniProjectPart1-2/blob/master/app.js  
 
 ### 3. Explain, using relevant examples, how to implement sessions, and the legal implications of doing this.
-promise pending har ikke brugt sessions her mn kommer vel med part 2 og 3
+Har ikke brugt sessions her mn kommer vel med part 2 og 3  
 
 ### 4. Explain (conceptually) how you would handle sessions if you run your app in clusters to solve some of problems related to deployment.
-promise pending
+Med in-memory datastore som redis, så man ikke mester sin session, hvis en instance går ned.  
+Da state er lokal for, hver instans er det ikke muligt at dele data mellem instancer.  
+Man kan bruge session affinity(sticky session).  
 
 ### 5. Compare the express strategy toward (server side) templating with the one you used with Java on second semester. 
 kort fortalt ejs==jsp (ikke ===)
@@ -22,14 +95,20 @@ route -view
 jeg har brugt ejs sider. Ejs er en server side rendering template engine
 
 ### 7. Explain, using relevant examples, your strategy for implementing a REST-API with Node/Express and show how you can "test" all the four CRUD operations programmatically using for example the Request package. 
-Pattern: - database på mongodb - 
-facade metoder til at lave crud metoder - httpmetoder på endpoints ('./routes/api) - response ('./views/forskellige endpoints) - mocha test metoder til at teste endpoints (indtil videre har jeg kun 1)
+Database på mongodb
+##### Se api.js i routes
+endpoints ('./routes/api).  
+facade metoder til at lave crud metoder.  
+response ('./views/forskellige endpoints).  
+
+mocha test metoder til at teste endpoints
 
 ### 8. Explain, using relevant examples, about testing JavaScript code, relevant packages (Mocha etc.) and how to test asynchronous code.
-se testmappen for eksempler
+Se test mappen i backenden. https://github.com/BenedikteEva/miniProjectPart1-2/tree/master/test  
 
 ### 9. Explain, using relevant examples, different ways to mock out databases, HTTP-request etc. 
-(testdatabase, nock)
+Testdatabase.  
+Nock.  
 
 ### NoSQL, MongoDB and Mongoose 
 These two topics will be introduced in period-3
@@ -40,7 +119,7 @@ These two topics will be introduced in period-3
 2dsphere bliver brugt i position schemaet under models 
 
 ### 11. Demonstrate, using a REST-API you have designed, how to perform all CRUD operations on a MongoDB 
-se api og api facade
+se api.js i routes og api facade.  
 
 ### 12. Explain the benefits from using Mongoose, and demonstrate, using your own code, an example involving all CRUD operations
 

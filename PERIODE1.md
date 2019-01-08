@@ -1,7 +1,5 @@
 # Learning Goals Periode 1
 
-TODO: SPLIT THE EXAMPLES IN TO SMALL FILES AND UPDATE THE README FILE.  
-
 ### Explain and Reflect:
 #### Explain differences between Java and JavaScript. You should include both topics related to the fact that Java is a compiled language and JavaScript a scripted language, and general differences in language features.
 
@@ -51,8 +49,6 @@ En c++ container, hvor V8 engine er embedded.
 3. callback kø.  
 4. event loop.  
 
-http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D
-
 ---
 
 #### RED: Explain (some) of the purposes with the tools Babel and WebPack, using  examples from the exercises
@@ -67,6 +63,8 @@ http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb2
 5. Minificer.
 6. Build server.
 7. Lazy loading.
+
+Se webpack-demo
 
 ---
 
@@ -95,6 +93,7 @@ Muligt at deklarer en variabel efter den er brugt.
 1. Deklarer i toppen.
 2. Brug let og const.
 
+Se hoisting.js  
 ---
 
 #### this in JavaScript and how it differs from what we know from Java/.net.  
@@ -119,6 +118,8 @@ Som udgangspunkt referer this til det globale objekt.
 Se filen this.js for Javascript eksempler.  
 
 For en løsning på udfordringen med this i JavaScript se filen thisApplyCallBind.js
+
+Se this.js  
 
 ---
 
@@ -169,6 +170,8 @@ Da alle funktioner i javascript er objekter kan funktioner tage andre funktioner
 
 Callbacks kan bruges til at sikre at kode ikke udføres før andet kode er kørt.  
 
+En af måderne til at håndtere asynckronitet.  
+
 Se callback.js  
 
 ---
@@ -189,6 +192,7 @@ Importer et modul.
 . er i samme folder.  
 .. en folder tilbage.
 
+Se Her. https://github.com/BenedikteEva/miniProjectPart1-2/blob/master/routes/api.js  
 ---
 
 #### ES6-7 and TypeScript  
@@ -200,12 +204,12 @@ Kan ikke sættes på det globale scope.
 Se let.js  
 ##### Arrow functions
 Kortere syntaks og implicit return.  
-Arrow funktioner har ikke sin egen this(som almindelige funktioner). Binder derfor ikke this. Så vær opmærksom ved objekter.  
+Arrow funktioner har ikke sin egen this(som almindelige funktioner). Binder derfor ikke this.  
 Kan ikke bruges ved konstruktør.  
 
 Se arrowFunctions.js  
 ##### this
-
+Se arrowFunctions.js
 
 ##### rest parameter
 Du kan tildele resten af variablerne til ...rest. Returners som array.  
@@ -217,7 +221,6 @@ Se rest.js
 
 ##### de-structuring
 Pakke værdierne fra et array eller properties fra et objekt ud og lægge det i variabler.  
-rest parametere kan blive destructured(kun arrays) dvs resten af variablerne bliver lagt i en variabel.  
 
 Se deconstructuring.js
 
@@ -247,16 +250,28 @@ Er stadig prototype baseret, men ligner det vi ser i java. Er syntaktisk sukker.
 ---
 
 #### RED: Provide examples with es6, running in a browser, using Babel and Webpack.  
+Arrow funktion.  
+Import/export.  
+
 Se webpack-demo  
 
 ---
 
 #### Provide an number of examples to demonstrate the benefits of using TypeScript, including, types, interfaces, classes and generics.  
 ##### Types
+Deklarerer variablens type som String, Number, Boolean, Array ect.  
 
 ##### Interface
+Beskriver et objekt, og tjekker at en property har den rigtige type.  
 
 ##### Classes
+Es6 feature. Ligner det vi kender fra java.  
+Keywords er obligatoriske i konstruktøren.  
+
+Se typescript-demo  
+
+##### Generics
+I stedet for any typen.  
 
 Se typescript-demo  
 ---
@@ -268,37 +283,59 @@ Se typescript-demo
 Promises er et objekt, der bliver brugt ved asynkrone operationer.  
 Det er en lovning på, at på et tidspunkt returnes data eller en error.  
 
+Laver en instance ved at kalde new på Promise klassen.  
 
+Promise.all returner et enkelt promise når alt i arrayet er resolved.  
 
 ---
 
 #### Example(s) that demonstrate how to avoid the callback hell  (“Pyramid of Doom").  
+Når en callback i en funktion kalder en callback, der kalder en callback osv. De er nestet.  
+
+Se callbackHell.js  
 
 ---
 
 #### Example(s) that demonstrate how to execute asynchronous (promise-based) code in serial or parallel.  
+Det som bliver fetches passer gennem en chain af .then handlers.  
+
+Se serialParalelPromise.js  
 
 ---
 
 #### Example(s) that demonstrate how to implement our own promise-solutions.  
+Se callbackHell.js  
 
 ---
 
 #### Example(s) that demonstrate error handling with promises.  
+Catch i bunden af .then.  
+
+Se callbackHell.js  
 
 ---
 
 #### Explain about JavaScripts async/await, how it relates to promises and reasons to use it compared to the plain promise API.  
+Er bygget oven på Promise apiet.  
+Er syntaktisk sukker.  
+Ser bedre og mere clean ud, og er lettere at debugge.  
+Kan bruge try catch.  
 
 ---
 
 #### Provide examples to demonstrate 
 #### Why this often is the preferred way of handling promises.  
+Se callbackHell.js  
 
 ---
 
 #### Error handling with async/await.    
-
+Se callbackHell.js  
 ---
 
 #### Serial or parallel execution with async/await.  
+Serial - et fetch ad gangen.  
+
+Parallel - Alle fetch samtidig vha Promise.all().  
+
+Se serialParalelAsync.js  
