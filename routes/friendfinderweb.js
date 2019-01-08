@@ -44,6 +44,13 @@ console.log(registerUser)
 
 router.post('/loginweb', async function (req, res, next) {
   const body=JSON.stringify({'userName': req.body.username, 'password': req.body.password, 'longitude': req.body.Longitude, 'latitude': req.body.Latitude, 'distance': req.body.distance*1000 })
+  // implemented a cookiesession for the exam 
+ 
+  req.session.views = (req.session.views || 0) + 1
+
+  // Write response
+
+ 
   let loginUser = await fetch(URL + 'login', {
     headers: {
       'Content-Type': 'application/json'
@@ -63,13 +70,14 @@ if (loginUser.friends.length!==0){
   res.render('loginweb', {
     title: 'loggedin',
     friends:loginUser.friends
-    })}
+    })
+    res.end(req.session.views + ' views')}
     else{
       res.render('loginweb', {
         title: 'loggedin',
         friends:"you are the only one logged in in this distance"
-    }
-      )}
+    })
+      res.end(req.session.views + ' views')}
 
   })
 
