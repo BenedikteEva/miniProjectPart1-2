@@ -1,0 +1,135 @@
+How To Set Up a Node.js Application for Production on Ubuntu 16.04
+https://docs.google.com/document/d/1wPaS9vSoMQNbSR5KTSro7CXt2yfQzm2s9cPM3ZCvmTg/edit
+https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04
+
+I bin/www under linjen: var port = normalizePort(process.env.PORT || '3000');
+TILFØJES:
+var ip = process.env.IP || "127.0.0.1";
+
+I følgende linje server.listen(port);
+TILFØJES: ,ip
+server.listen(port, ip);
+
+Push din ændring, og husk at node_modules skal være git ignored.
+
+INSTALL NODE.JS PÅ DIN DROPLET - LÆS D.O. GUIDE TO UNDERSTAND COMMANDS!
+FOR THE RIGHT NODE VERSION CHECK THIS LINK!!! https://github.com/nodesource/distributions#deb - setup_10.x skal evt ændres, hvis der er en nyere LTS version.
+
+cd ~
+curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh 
+
+ALTERNATIVT - DE HER 2 LINJER.
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt-get install -y nodejs	
+
+IF YOU WANT TO INSPECT THE SCRIPT
+nano nodesource_setup.sh
+
+KØR SCRIPTET FOR AT INSTALLER NODE.
+sudo bash nodesource_setup.sh
+sudo apt-get install nodejs
+sudo apt-get install build-essential
+nodejs -v
+
+OBS!!! When installing from the NodeSource PPA, the Node.js executable is called nodejs, rather than node.
+OBS!!! Punkt 4 i Lars's guide har jeg sprunget over, og i stedet lavet nginx opsætningen.
+
+DEPLOY YOU EXPRESS APP TO THE SERVER WITH GITHUB.
+cd ~
+mkdir myservers
+cd myservers
+git clone <link to github repository>
+
+CD INTO PROJECT FOLDER.
+sudo npm install
+sudo npm start
+
+KOMANDOEN HER VIRKER KUN I KOMMANDLINE FOR MIG.
+curl http://localhost:3000
+
+INSTALL PM2
+cd ~
+sudo npm install -g pm2
+
+CD INTO THE PROJECT FOLDER
+pm2 start bin/www --name give-it-a-name --watch		# name er mini i vores mini project.
+
+pm2 startup systemd					# Lars's guide siger her: pm2 startup
+
+RUN THE SUDO COMMAND WITH THE ENV FILE THAT WAS GENERATED. EKSEMPLE!!!
+sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u bh --hp /home/bh
+
+DO A SAVE AFTER SYSTEM UPDATE OR PROCESS REMOVED.
+pm2 save
+systemctl status pm2-bh
+
+SETUP NGINX AS A REVERSE PROXY SERVER
+sudo nano /etc/nginx/sites-available/default
+
+WITHIN THE SERVER BLOCK YOU SHOLUD HAVE AN EXISTING LOCATION / BLOCK REPLACE IT WITH THE FOLLOWING CODE:
+OBS!!! http://localhost:8080 NEED TO HAVE THE SAME PORTNUMBER AS YOUR APPLICATION IN WWW.
+location / {
+        proxy_pass http://localhost:8080;		
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+
+YOU CAN HAVE MORE THAN 1 APP RUNNING ON THE SAME SERVER:
+location /app2 {
+        proxy_pass http://localhost:8081;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+EXIT AND SAVE.
+sudo nginx -t
+sudo systemctl restart nginx
+
+OBS!!!
+HVIS DU HAR HAFT INSTALLERET TOMCAT  OG NGINX SÅ SKAL DET UDKOMMENTERES!
+
+
+* * * * * * *
+
+ANDRE PM2 KOMMANDOER.
+https://www.digitalocean.com/community/tutorials/systemd-essentials-working-with-services-units-and-the-journal
+
+STOP AN APPLICATION.
+pm2 stop app_name_or_id
+
+RESTART APPLICATION.
+pm2 restart app_name_or_id
+
+LIST OF APPLICATION CURRENTLY RUNNING.
+pm2 list
+
+MORE INFORMATION ABOUT SPECIFIC APPLICATION. SEPCIFY PM2 APP NAME OR ID.
+pm2 info example
+
+PROCESS MONITOR. DISPLAY STATUS, CPU AND MEMORY USE.
+pm2 monit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

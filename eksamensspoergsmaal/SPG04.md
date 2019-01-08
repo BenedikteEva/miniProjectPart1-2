@@ -61,20 +61,21 @@ Kan bruge try catch.
 
 # Express
 ### Explain briefly how to deploy a Node/Express application including how to solve the following deployment problems:
+
 ##### Deployment
 Installer Node på serveren.  
 Installer github, og klon din Node applikation.  
 Gør app.js executable, og start din applikation.  
 Sørg for at nginx ligger foran.  
 
+Heroku dejligt nemt sammen med github
+Digital Ocean tomcatserver ind og pille ved 
+
+
 ### Ensure that you Node-process restarts after a (potential) exception that closed the application
 Installer pm2 - En process manager, der kan administrer Node applikationer, og bruges til at køre programmer i baggrunden som en service.  
 pm2 start app.js  
 pm2 startup systemd - Generer et start up script. Systemd er en linux system manager.  
-
----
-
-### Ensure that you Node-process restarts after a server (Ubuntu) restart
 
 
 ### Ensure that you can take advantage of a multi-core system
