@@ -6,7 +6,6 @@
 # Geo-JSON 
 er et format designet til at representere geografisk data i programmering. 
 
-
 ### Explain and demonstrate basic Geo-JSON, involving as a minimum, Points and Polygons
 Demonstrate here : http://geojson.io
 Der er forskellige typer i Geojeon ( Point, LineString, Polygon, og alle tre ting med multi foran også )
@@ -30,3 +29,6 @@ Ligeledes bruge google maps rækkefølgen lon lat.
 ### Explain and demonstrate a REST API that implements geo-features, using a relevant geo-library and plain JavaScript
 
 mini project back end with mongod db se login facade linie 38 (friendfinder utility)
+
+
+workspace: miniProjectPart1-2 + callbacks 
