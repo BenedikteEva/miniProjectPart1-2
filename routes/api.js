@@ -169,6 +169,13 @@ router.post('/login', async function (req, res, next) {
     let loginUser = await loginFacade.login(req.body.userName, req.body.password, req.body.longitude, req.body.latitude, req.body.distance);
     let responseObk = res.json(loginUser)
 
+    // implemented a cookiesession for the exam 
+ 
+  req.session.views = (req.session.views || 0) + 1
+
+  // Write response
+  res.end(req.session.views + ' views')
+
     // If user or password does not exist send a messege to the client.
     if (res.status(404)) {
       res.json({
@@ -185,6 +192,7 @@ router.post('/login', async function (req, res, next) {
         title: 'login',
         friends: 'friends:' + responseObk
       });
+      res.end(req.session.views + ' views')
     };
   } catch (err) {
     console.log(err)
