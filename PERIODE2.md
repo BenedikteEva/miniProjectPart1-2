@@ -11,6 +11,12 @@ Kan være mange forskellige funktioner tjek mine api metoder og tilhørende test
 ### 3. Explain, using relevant examples, how to implement sessions, and the legal implications of doing this.
 promise pending har ikke brugt sessions her mn kommer vel med part 2 og 3
 
+Exempel (både på middleware og en session cookie): app.js er der importeret (required) cookiesessions. I linje 21 setter vi sessions til at stole på den første den bedste proxy den møder. 
+Derefter bruger vi den i linje 29 hvor vi blandt andet sætter en key normalt hvis man sætter keys her er der et par stykker her har vi bare nøjes med en string. en set key er allerede signed med keys[0]. Der sættes også en max levetid. 
+
+i vores api route er der så bare som eksamens eksempel lavet en route der hedder session som tæller views og lægger det på routen som json. 
+ npm start og åbn developer tools og tjek cookies under get requests i netværk fane
+
 ### 4. Explain (conceptually) how you would handle sessions if you run your app in clusters to solve some of problems related to deployment.
 promise pending
 
