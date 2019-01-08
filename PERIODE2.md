@@ -26,13 +26,17 @@ Gør app.js executable, og start din applikation.
 #### Ensure that you Node-process restarts after a server (Ubuntu) restart
 Installer pm2 - En process manager, der kan administrer Node applikationer, og bruges til at køre programmer i baggrunden som en service.  
 pm2 start app.js  
-pm2 startup systemd - Generer et start up script.  
+pm2 startup systemd - Generer et start up script. Systemd er en linux system manager.  
 
 #### Ensure that you can take advantage of a multi-core system
 Brug cluster modulet.  
+Der findes også cluster-service eller node-pm.  
+I pm2 kan du slå cluster mode til.  
+
 
 #### Ensure that you can run “many” node-applications on a single droplet on the same port (80)
-Brug nginx.  
+Brug en load balancer til at fordele trafikken mellem dine instancer f.eks. nginx.  
+Brug in-memory data-store som redis til sessioner.  
 
 #### Explain the difference between “Developer outputs” and application logging. What’s wrong with console.log(..) statements in our backend-code 
 Det er vigtigt at ændre debugging til production mode når man skal deploye, så man ikke kommer til at give en hacker værdifuld viden om systemet.  
