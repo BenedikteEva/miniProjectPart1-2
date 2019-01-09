@@ -26,25 +26,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 //app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+app.use('/', indexRouter);
+app.use('/api', apiRouter);
+app.use('/friendfinderweb', friendfinderwebRouter);
+app.use('/graphql', graphQlRouter);
+
 app.use(cookieSession({
   name: 'session',
   keys: ['I_should_never_be_visible_in_code'],
   // Cookie Options
   maxAge: 60*30 * 1000 // 30min
 }))
-app.get('/', function (req, res, next) {
-  // Update views
-  req.session.views = (req.session.views || 0) + 1
-console.log('something')
-  // Write response
-  res.end(req.session.views + ' views')
-})
-app.use('/', indexRouter);
-app.use('/api', apiRouter);
-app.use('/friendfinderweb', friendfinderwebRouter);
-app.use('/graphql', graphQlRouter);
-
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
