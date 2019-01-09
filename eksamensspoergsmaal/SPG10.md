@@ -44,7 +44,7 @@ Kan være mange forskellige funktioner tjek mine api metoder og tilhørende test
 https://github.com/BenedikteEva/miniProjectPart1-2/blob/master/app.js  
 
 ### Explain the benefits of using Mongoose, and demonstrate, using your own code, an example involving all CRUD operations
-3. store fordele ved at bruge mongoose fremfor native mongodb er at mongoose lææger et absatractions lag henover mongoDB der eleminierer behovet for at bruge named collections. isteded for at sige db.collection('user).en eller ander ting kan vi bruger User.find så det kører direkte på skemaet
+Fordele ved at bruge mongoose fremfor native mongodb er at mongoose lææger et absatractions lag henover mongoDB der eleminierer behovet for at bruge named collections. isteded for at sige db.collection('user).en eller ander ting kan vi bruger User.find så det kører direkte på skemaet
 
 Models i mongoose tager slæbet med at etablere default værdier for document properties og at validere data. 
 man kan sætte funktioner på modeller i mongoose hvilket gør det nemmere at indkoporere ny funktionalitet. 
@@ -52,3 +52,6 @@ Queries bruger function chaining istedet for huskesymboler hvilket resulterer i 
 
 
 ### Explain, using relevant examples, about testing JavaScript code, relevant packages (Mocha etc.) and how to test asynchronous code.
+unit testing finde ud en stump kode gør det den skal. INtegrationstest for eksempel virker facademertoder sammen med database, endpoints får man det resultat man gerne vil have ud når man kontakter database gennem endpoint (route) gennem facader og til database. 
+Tests i miniproject. 
+Vi har ikke rigtigt lavet nogle unittests i den forstand men mest testet facademetoder og endpoints men da vi ikke har meget der skal regnes ud. Det eneste vi bruger backenden til er mere eller mindre at lave et restapi der kan gøre database oplysninger tilgængelige for en klient er der ikke det store behov for det. 
