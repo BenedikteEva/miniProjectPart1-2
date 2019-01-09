@@ -38,6 +38,18 @@ Se deconstructuring.js
 ### Explain, generally, what is meant by a NoSQL database.
 
 ### Explain Pros & Cons in using a NoSQL database like MongoDB as your data store, compared to a traditional Relational SQL Database like MySQL.
+pros
+    No Impedance mismatch (relational vs. OO)
+    Schemaless
+    Supports large volumes of data by running on clusters
+    flexibelt 
+    nemt at bruge 
+    hurtigere
+cons 
+    Data er mindre strukteret 
+    en sql database har et strengt sæt regler om normalisering hvilket sikrer databasens integritet. Det har NoSql ikke- 
+    Mangler joins. I en dokument baseret nosql database giver det et problem. (men så kom grapQL)
+
 
 ### Explain reasons to add a layer like Mongoose, on top on of a schema-less database like MongoDB
 

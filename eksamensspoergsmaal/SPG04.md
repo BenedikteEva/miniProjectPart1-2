@@ -20,7 +20,11 @@ Det er en lovning på, at på et tidspunkt returnes data eller en error.
 
 Laver en instance ved at kalde new på Promise klassen.  
 
-Promise.all returner et enkelt promise når alt i arrayet er resolved.  
+Promise.all returner et enkelt promise når alt i et array af promises er resolved.  
+
+Hvis blot et enkelt promise bliver rejected bliver alle rejected. 
+
+Godt eksempel da vi lavede tests af backenden creerede vi et par users i flere af facade testsene og vi kørte det hele på engang. Da det promises er en måde at håndtere asynchronicitet på kørte det altså asynchront og da vi brugte de samme to brugere endte det ofte ud med et ikke resolved promise. 
 ---
 
 ### Example(s) that demonstrate how to avoid the callback hell  (“Pyramid of Doom")

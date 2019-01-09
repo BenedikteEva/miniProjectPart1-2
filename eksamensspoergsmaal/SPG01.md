@@ -87,3 +87,8 @@ Kan være mange forskellige funktioner tjek mine api metoder og tilhørende test
 ---
 
 ### Compare the express strategy toward (server side) templating with the one you used with Java on second semester and demonstrate a simple Server Side Rendering example using a technology of your own choice
+
+ejs (embedded javascript templates) og jsp (java server pages)
+kig i routes and views i miniprojektet
+
+---
