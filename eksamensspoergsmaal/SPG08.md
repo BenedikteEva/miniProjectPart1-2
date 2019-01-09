@@ -73,7 +73,8 @@ MapView har forskellige properties f.eks. region hvor man kan sætte positionen 
 
 
 
-
+(sig eventuelt også noget om geolocation metoder geoNear i mongodb vis i login facade)
+og geoWithin med polygoner hvos vi vil give den et array af punkter der afgrænser polygonet. 
 
 
 

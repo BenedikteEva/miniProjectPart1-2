@@ -38,6 +38,32 @@ Se deconstructuring.js
 ### Explain, generally, what is meant by a NoSQL database.
 
 
+En NoSql database er en database der ikke bruger SQL en keyvalue database (asyncStorage f.eks.), wide column store (?),  en document database (mongodb), graph stores (graphql)
+
+NoSQL database giver en måde at gemme og hente data der ikke er modelleret på samme måde som tabeller og relationer mellem tabeller som i relationelle databaser (SQL/ MySQL).
+
+Motivationen for at finde på noget andet en sql inkluderer:
+simpelt design.
+Horizontal scaling (nemmere at skalere)
+Bedre kontrol over tilgængelighed
+
+##cap-theorem
+The CAP theorem states:
+It's theoretically impossible to have all 3 requirements met, so a combination of 2 must be chosen and this is usually the deciding factor in what technology is used. 
+cap teorien går ud på at det er umuligt både at have consistens (Consistense), tilgængelighed (Availability) og partition tolerance 
+Sql har consistens 
+
+#Consistency
+All the servers in the system will have the same data so anyone using the system will get the same copy regardless of which server answers their request.
+
+#Availability
+The system will always respond to a request (even if it's not the latest data or consistent across the system or just a message saying the system isn't working).
+
+#Partition Tolerance
+The system continues to operate as a whole even if individual servers fail or can't be reached.
+
+
+
 
 ### Explain Pros & Cons in using a NoSQL database like MongoDB as your data store, compared to a traditional Relational SQL Database like MySQL.
 pros
