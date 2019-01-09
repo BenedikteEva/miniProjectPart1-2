@@ -13,7 +13,7 @@ Det er også muligt at importer med forkortelse.
 
 Exporterede moduler er i strict mode.  
 
-Se consolen i webpack-demo.
+Se consolen i webpack-demo.  
 
 ---
 ### Explain, using relevant examples, about testing JavaScript code, relevant packages (Mocha etc.) and how to test asynchronous code (see next question, and if it makes sense, use the same code example for this and the next question)
