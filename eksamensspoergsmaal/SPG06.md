@@ -57,8 +57,10 @@ js_native_to_mini_project for at vise login med MapView.
 
 Demo: https://expo.io/@benedikteeva/FriendFinderBB  
 
-Sekvens: Screens/LoginScreen (via App.js og TabNavigator)- -postfetch til https://miniprojectfsjsbebop.herokuapp.com/api/login -  
-- returnerer jsonobject m venners koordinater og navn igen som befinder sig indenfor valgt distance.  
+Sekvens: Screens/LoginScreen (via App.js og TabNavigator - button). 
+postfetch til https://miniprojectfsjsbebop.herokuapp.com/api/login  
+
+- returnerer jsonobject med venners koordinater og navne, som befinder sig indenfor valgt distance.  
 - efter du har fået data fra fetch call sættes det i state.
 - bruges til at rendere et Mapview med markers ved hjælp af Array.map...
 
