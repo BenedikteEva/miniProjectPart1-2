@@ -22,18 +22,18 @@ Laver en instance ved at kalde new på Promise klassen.
 
 Promise.all returner et enkelt promise når alt i et array af promises er resolved.  
 
-Hvis blot et enkelt promise bliver rejected bliver alle rejected. 
+Hvis blot et enkelt promise bliver rejected bliver alle rejected.  
 
-Godt eksempel da vi lavede tests af backenden creerede vi et par users i flere af facade testsene og vi kørte det hele på engang. Da det promises er en måde at håndtere asynchronicitet på kørte det altså asynchront og da vi brugte de samme to brugere endte det ofte ud med et ikke resolved promise. 
+Eksempel da vi lavede tests af backenden creerede vi et par users i flere af facade testsene og vi kørte det hele på engang. Da det promises er en måde at håndtere asynchronicitet på kørte det altså asynchront og da vi brugte de samme to brugere endte det ofte ud med et ikke resolved promise. 
 ---
 
 ### Example(s) that demonstrate how to avoid the callback hell  (“Pyramid of Doom")
 Når en callback i en funktion kalder en callback, der kalder en callback osv. De er nestet.  
 
-Se callbackHell.js  
-metoder at undgå det:
-se anvendelse af promises, promisechains (.then) samt async await
+metoder at undgå det:  
+se anvendelse af promises, promisechains (.then) samt async await.  
 
+Se callbackHell.js  
 ---
 
 ### Example(s) that demonstrate how to execute asynchronous code in serial or parallel
@@ -42,8 +42,6 @@ Serial - et fetch/ en operation ad gangen.
 Parallel - Alle fetch /operationer samtidig vha Promise.all().  
 
 Se serialParalelAsync.js  
-
-
 
 ---
 
@@ -76,8 +74,8 @@ Installer github, og klon din Node applikation.
 Gør app.js executable, og start din applikation.  
 Sørg for at nginx ligger foran.  
 
-Heroku dejligt nemt sammen med github
-Digital Ocean tomcatserver ind og pille ved alt muligt
+Heroku dejligt nemt sammen med github.  
+Digital Ocean tomcatserver ind og pille ved alt muligt.  
 
 
 ### Ensure that you Node-process restarts after a (potential) exception that closed the application
@@ -89,7 +87,7 @@ pm2 startup systemd - Generer et start up script. Systemd er en linux system man
 ### Ensure that you can take advantage of a multi-core system
 Brug cluster modulet.  
 Der findes også cluster-service eller node-pm.  
-I pm2 kan du slå cluster mode til. 
+I pm2 kan du slå cluster mode til.  
 
 ---
 

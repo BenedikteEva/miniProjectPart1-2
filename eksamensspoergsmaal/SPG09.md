@@ -11,12 +11,13 @@
 2. Transpilere f.eks. Babel.  
 
 ##### Typescript: Superset af js. 
-1. Har de nyeste features fra js med. 
+1. Har de nyeste features fra js med.  
 2. Transpiler, type check og extra features som private, interface, optional variabler.  
 3. Gør js mere objekt orienteret.  
 
 ##### Hvad kræver det for at kunne køre js?
-En c++ container, hvor V8 engine er embedded.
+En javascript engine.  
+En c++ container, hvor V8 engine er embedded.  
 
 ---
 ### Provide examples with es6, running in a browser, using Babel and Webpack
@@ -29,22 +30,23 @@ Se webpack-demo
 # NoSQL, MongoDB and Mongoose
 ### Explain Pros & Cons in using a NoSQL database like MongoDB as your data store, compared to a traditional Relational SQL Database like MySQL.
 
-pros
-    No Impedance mismatch (relational vs. OO)
-    Schemaless
-    Supports large volumes of data by running on clusters
-    flexibelt 
-    nemt at bruge 
-    hurtigere
-cons 
-    Data er mindre strukteret 
-    en sql database har et strengt sæt regler om normalisering hvilket sikrer databasens integritet. Det har NoSql ikke- 
-    Mangler joins. I en dokument baseret nosql database giver det et problem. (men så kom grapQL)
+##### pros  
+- No Impedance mismatch (relational vs. OO).  
+- Schemaless.  
+- Supports large volumes of data by running on clusters.  
+- flexibelt.   
+- nemt at bruge.  
+- hurtigere. 
+
+##### cons 
+- Data er mindre strukteret.  
+- En sql database har et strengt sæt regler om normalisering hvilket sikrer databasens integritet. Det har NoSql ikke.  
+- Mangler joins. I en dokument baseret nosql database giver det et problem. (men så kom grapQL).  
 
 
 ### Explain reasons to add a layer like Mongoose, on top on of a schema-less database like MongoDB
- Data fra den virkelige verden har ofte en struktur og også typer. 
- samme grunde som vi vil bruge orm sammen med en relationel database. 
+Data fra den virkelige verden har ofte en struktur og også typer.  
+Samme grunde som vi vil bruge orm sammen med en relationel database.  
 
 
 ### Explain the “6 Rules of Thumb: Your Guide Through the Rainbow” as to how and when you would use normalization vs. denormalization.
@@ -57,4 +59,4 @@ cons
 
 ### Explain, using a relevant example, a full JavaScript backend including relevant test cases to test the REST-API (not on the production database)
 
-mongodb mongoose schemas facade metoder og herunder queries samt test af facader og testdatabase og dbsetup . 
+Mongodb mongoose schemas facade metoder og herunder queries samt test af facader og testdatabase og dbsetup.  

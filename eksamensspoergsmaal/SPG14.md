@@ -7,8 +7,8 @@
 5. Ikke cpu krævende som chat server, web server, REST server streaming server ect. 
 
 ##### NPM(Node Package Manager)
-1. Et comand line interface til at tilføje packages til din applikation.
-2. Det kan være tools, css libraries eller du kan dele din kode. 
+1. Et comand line interface til at tilføje packages til din applikation.  
+2. Det kan være tools, css libraries eller du kan dele din kode.  
 
 ---
 ### Provide one or more examples demonstrating User defined Callback Functions
@@ -26,7 +26,8 @@ Se callback.js
 # Express, REST and GraphQL
 ### Explain, using relevant examples (mini-project, preferably), your strategy for implementing a REST-API with Node/Express and show how you can "test" all the four CRUD operations programmatically.
 ### SE PÅ SVARET TIL DET HER SPØRGSMÅL!!!
-Database på mongodb
+Database på mongodb  
+
 ##### Se api.js i routes
 endpoints ('./routes/api).  
 facade metoder til at lave crud metoder.  
@@ -40,10 +41,10 @@ Mere fleksibel og effektiv i forhold til rest.
 Kun et endpoint til alle queries(hente data) og mutations(skrive data). Subscription(real time updates).  
 
 ### Use cases: 
-client (iOS or Android app, or Web app) requesting data from a server.
-når al data er i et enkelt produkt snarere end mange forskellige servere og det er vigtigt at det går hurtigt. 
-Specielt på mobilapplicationer. (man skal dog overveje sin cachingstrategi da resultatet man får kan være stort)
-Undgå over eller underfetching 
+client (iOS or Android app, or Web app) requesting data from a server.  
+når al data er i et enkelt produkt snarere end mange forskellige servere og det er vigtigt at det går hurtigt.  
+Specielt på mobilapplicationer. (man skal dog overveje sin cachingstrategi da resultatet man får kan være stort).  
+Undgå over eller underfetching  
 
 ### What is meant by the terms over- and under-fetching in relation to REST
 Over-fetching: Når et endpoint returner mere data end, hvad der er brug for.  
