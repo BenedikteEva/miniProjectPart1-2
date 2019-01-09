@@ -15,7 +15,9 @@ Java har tråde. Tråd dør ved error i Node chrasher appen.
 
 ### Explain the difference between “Developer outputs” and application logging. What’s wrong with console.log(..) statements in our backend-code.
 Det er ustrukturet, og er ikke noget som kan vedligeholdes. Det kan give en ide om, hvordan systemet er bygget op til folk som ikke har brug for den viden.  
+
 Det er noget der tager tid så dårligere performance.  
+
 Det er vigtigt at ændre debugging til production mode når man skal deploye, så man ikke kommer til at give en hacker værdifuld viden om systemet.  
 (eller fjerne console.log() statements)  
 
@@ -23,8 +25,11 @@ Det er vigtigt at ændre debugging til production mode når man skal deploye, s�
 
 ##### Application logging
 Log systemet f.eks. performance, error messages, login forsøg, system filer der ændre sig ect til specifikke filer og sorg for at give admin besked(response) når noget er kritisk.  
+
 Application logging man har f.eks. en logfil på sin server (eller man kan få sendt en mail eller push hvis noget går meget galt)hvor fejlmeddelser med et valgt niveau bliver skrevet til.  
+
 Vi har brugt en logger der hedder morgan men har også forsøgt os med en der hedder winston der skriver til en fil i programmet (indkommenter logger i app.js)  
+
 eksempel app.js i miniprojektet eksempel 2 herokus app. Eksempler på ikke opryddet kode alle vores console.logs rundt omkring.  
 
 ---
@@ -54,27 +59,39 @@ https://github.com/BenedikteEva/miniProjectPart1-2/blob/master/app.js
 
 ---
 ### Explain the benefits of using Mongoose, and demonstrate, using your own code, an example involving all CRUD operations
-Fordele ved at bruge mongoose fremfor native mongodb er at mongoose lægger et absatractions lag henover mongoDB der eleminierer behovet for at bruge named collections. isteded for at sige db.collection('user).en eller ander ting kan vi bruger User.find så det kører direkte på skemaet
+Fordele ved at bruge mongoose fremfor native mongodb er at...    
+Abstraktion så det ser ud til at vi arbejder med objekter i stedet for ren data.  
 
-Models i mongoose tager slæbet med at etablere default værdier for document properties og at validere data. 
-man kan sætte funktioner på modeller i mongoose hvilket gør det nemmere at indkoporere ny funktionalitet. 
-Queries bruger function chaining istedet for huskesymboler hvilket resulterer i i mere flexibel og læsbar kode og dermed også lettere at vedligeholde. 
+Mongoose lægger et absatractions lag henover mongoDB der eleminierer behovet for at bruge named collections.  
+I steded for at sige db.collection('user).en eller ander ting kan vi bruger User.find så det kører direkte på skemaet.  
+
+Models i mongoose tager slæbet med at etablere default værdier for document properties og at validere data.  
+
+Man kan sætte funktioner på modeller i mongoose, hvilket gør det nemmere at indkoporere ny funktionalitet.  
+
+Queries bruger function chaining istedet for huskesymboler hvilket resulterer i mere flexibel og læsbar kode og dermed også lettere at vedligeholde. 
 
 ---
 ### Explain, using relevant examples, about testing JavaScript code, relevant packages (Mocha etc.) and how to test asynchronous code.
 
 unit testing finde ud en stump kode gør det den skal.  
+
 Integrationstest for eksempel virker facademetoder sammen med database, endpoints.  
+
 Får man det resultat man gerne vil have, når man kontakter database gennem endpoint (route) gennem facader og til database.  
 
-Tests i miniproject.  
+##### Tests i miniproject.  
 Vi har ikke rigtigt lavet nogle unittests i den forstand men mest testet facademetoder og endpoints men da vi ikke har meget der skal regnes ud.  
+
 Det eneste vi bruger backenden til er mere eller mindre at lave et restapi der kan gøre database oplysninger tilgængelige for en klient. Derfor er der ikke det store behov for det.  
 
 ##### Mocha
 En describe() blok giver dig mulighed for at gruppere dine test.  
+
 it() blok sætter testen op med kode.  
+
 done() er en callback, der kan bruges med it(). Så ved Mocha at det er en asynkron metode at, og den skal vente.  
+
 God til integrations og unit test.  
 
 ##### Chai
