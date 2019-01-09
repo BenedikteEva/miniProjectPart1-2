@@ -54,4 +54,7 @@ Ligeledes bruge google maps rækkefølgen lon lat.
 ### Explain and demonstrate a REST API that implements geo-features, using a relevant geo-library and plain JavaScript
 Mini project backend with mongodDb se login facade linie 38 (friendfinder utility).  
 
+position er en reference til en user via user id.  
+Det popolate gør er at lave en query på useriderne og skaffe user oplysningerne.  
+
 workspace: miniProjectPart1-2 + callbacks  
