@@ -23,7 +23,7 @@ async function login(userName, password, longitude, latitude, distance) {
     // 
     return {
       friends: friends.map((friend) => {
-        const jsonFriends = { "username": friend.user.userName, "latitude": friend.loc.coordinates[1], "longitude": friend.loc.coordinates[0] }
+        const jsonFriends = { "userName": friend.user.userName, "latitude": friend.loc.coordinates[1], "longitude": friend.loc.coordinates[0] }
         return jsonFriends
       })
     }
