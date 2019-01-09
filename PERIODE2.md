@@ -39,8 +39,15 @@ Brug en load balancer til at fordele trafikken mellem dine instancer f.eks. ngin
 Brug in-memory data-store som redis til sessioner.  
 
 #### Explain the difference between “Developer outputs” and application logging. What’s wrong with console.log(..) statements in our backend-code 
+##### Developer outputs
+Det er ustrukturet, og er ikke noget som kan vedligeholdes. Det kan give en ide om, hvordan systemet er bygget op til folk som ikke har brug for den viden.  
+
 Det er vigtigt at ændre debugging til production mode når man skal deploye, så man ikke kommer til at give en hacker værdifuld viden om systemet.  
 
+##### Application logging
+Log systemet f.eks. performance, error messages, login forsøg, system filer der ændre sig ect til specifikke filer og sorg for at give admin besked(response) når noget er kritisk.  
+
+---
 ### 1. testing a REST-API using Node/JavaScript + relevant packages (mocha and chai) 
 ##### Mocha
 En describe() blok giver dig mulighed for at gruppere dine test.  

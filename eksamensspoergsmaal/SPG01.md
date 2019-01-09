@@ -2,11 +2,11 @@
 ### Variable/function-Hoisting
 Muligt at deklarer en variabel/funktion længere ned i koden.  
 
-1. Deklarering løftes op. Tildeling kommer ikke med.
+1. Deklarering løftes op. Tildeling kommer ikke med.  
 
 ##### Løsning
-1. Deklarer i toppen.
-2. Brug let og const.
+1. Deklarer i toppen.  
+2. Brug let og const.  
 
 Se hoisting.js  
 
@@ -19,7 +19,7 @@ Se hoisting.js
 
 ##### this i Java
 I java referer this altid til objektet.  
-this referer til objektet gennem den metode, der bliver kaldt.
+this referer til objektet gennem den metode, der bliver kaldt.  
 
 ```
 // I en metode, der hedder move indgår følgende kode.  
@@ -33,7 +33,7 @@ bishop2.move(); // this referer til objektet bishop2.
 Som udgangspunkt referer this til det globale objekt.  
 Se filen this.js for Javascript eksempler.  
 
-For en løsning på udfordringen med this i JavaScript se filen thisApplyCallBind.js
+For en løsning på udfordringen med this i JavaScript se filen thisApplyCallBind.js  
 
 Se this.js  
 ---
@@ -58,16 +58,16 @@ Se closureAndModulePattern.js
 Node simpel build process i forhold til java.  
 Node er hurtigere end java.  
 Node er ikke type stærkt. Det er java.  
-Node ikke god til tunge opgaver(cpu krævende). 
+Node ikke god til tunge opgaver(cpu krævende).  
 
-Java har tråde. Tråd dør ved error i Node chrasher appen.
+Java har tråde. Tråd dør ved error i Node chrasher appen.  
 
 ---
 
 ### Explain, using relevant examples, the Express concept; middleware.
 Det der sker mellem request og responset.  
 Middleware udføres før route handleren bliver kaldt.  
-Modtager request og response objektet.
+Modtager request og response objektet.  
 Rækkefølgen er vigtig ved middleware.  
 
 Middleware funktioner kan være logging, authentication ect.  
@@ -87,8 +87,12 @@ Kan være mange forskellige funktioner tjek mine api metoder og tilhørende test
 ---
 
 ### Compare the express strategy toward (server side) templating with the one you used with Java on second semester and demonstrate a simple Server Side Rendering example using a technology of your own choice
+I Express kan du vælge mellem forskellige template engines pug, mustache, dust ect.  
 
-ejs (embedded javascript templates) og jsp (java server pages)
-kig i routes and views i miniprojektet
+ejs (embedded javascript templates) og jsp (java server pages).  
+Minder meget om det samme. Html med embedded javascript.  
+Bag ejs har vi javascript og bag jsp har vi servletter skrevet i Java.  
+
+kig i routes and views i miniprojektet.  
 
 ---
