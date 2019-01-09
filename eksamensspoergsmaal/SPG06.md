@@ -47,7 +47,10 @@ Er et format designet til at representere geografisk data i programmering.
 
 ### Explain and demonstrate a REST API that implements geo-features, using MongoDB's geospatial queries and indexes.
 Demo: https://miniprojectfsjsbebop.herokuapp.com/friendfinderweb  
-Sekvens: views/login- -routes/api.js- -Facades/loginFacade.js- -Models/position.js  
+Sekvens: views/login - friendfinderweb.ejs  
+routes/api.js - Login routes  
+Facades/loginFacade.js  
+Models/position.js   
 
 ### Explain and demonstrate a React Native Client that uses geo-components (Location, MapView, etc.)
 js_native_to_mini_project for at vise login med MapView.  
