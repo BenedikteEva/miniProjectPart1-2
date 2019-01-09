@@ -38,14 +38,15 @@ Ser bedre og mere clean ud, og er lettere at debugge.
 
 ---
 ### Why this often is the preferred way of handling promises
-Kan bruge try catch.  
+Kan bruge try catch. 
+man er fri for lange promisechains. (.then) fordi await håndterer ventetiden for os
+Ser bedre og mere clean ud, og er lettere at debugge.  
 
 ---
 ### Error handling with async/await
 Kan bruge try catch.  
-
 Se callbackHell.js  
-
+se friendfinder web list of all blogs get metode
 ---
 ### Serial or parallel execution with async/await
 Serial - et fetch ad gangen.  

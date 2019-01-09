@@ -31,15 +31,19 @@ Godt eksempel da vi lavede tests af backenden creerede vi et par users i flere a
 Når en callback i en funktion kalder en callback, der kalder en callback osv. De er nestet.  
 
 Se callbackHell.js  
+metoder at undgå det:
+se anvendelse af promises, promisechains (.then) samt async await
 
 ---
 
 ### Example(s) that demonstrate how to execute asynchronous code in serial or parallel
-Serial - et fetch ad gangen.  
+Serial - et fetch/ en operation ad gangen.  
 
-Parallel - Alle fetch samtidig vha Promise.all().  
+Parallel - Alle fetch /operationer samtidig vha Promise.all().  
 
 Se serialParalelAsync.js  
+
+eller makesample data
 
 ---
 
@@ -56,7 +60,7 @@ Se callbackHell.js
 ---
 
 ### Explain about JavaScripts async/await, how it relates to promises and reasons to use it compared to the plain promise API.
-Er bygget oven på Promise apiet.  
+Er bygget oven på Promise api'et.  
 Er syntaktisk sukker.  
 Ser bedre og mere clean ud, og er lettere at debugge.  
 Kan bruge try catch.  
@@ -73,7 +77,7 @@ Gør app.js executable, og start din applikation.
 Sørg for at nginx ligger foran.  
 
 Heroku dejligt nemt sammen med github
-Digital Ocean tomcatserver ind og pille ved 
+Digital Ocean tomcatserver ind og pille ved alt muligt
 
 
 ### Ensure that you Node-process restarts after a (potential) exception that closed the application
