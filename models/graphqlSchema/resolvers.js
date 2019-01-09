@@ -43,7 +43,7 @@ const resolvers = {
             // else return("User deleted!");
 
             // Går uden om facaden.
-            return new Promise((resolve) => {
+            return await new Promise((resolve) => {
                 User.remove({ _id: id }, (err) => {
                     if(err) reject(err)
                     else resolve("Successfully deleted user.")

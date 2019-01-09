@@ -1,6 +1,6 @@
 # Plain JavaScript
 ### Explain about promises in ES-6 including, the problems they solve, and a quick explanation of the Promise API 
-Løser problemet med callback hell.
+Løser problemet med callback hell.  
 
 Promises er et objekt, der bliver brugt ved asynkrone operationer.  
 Det er en lovning på, at på et tidspunkt returnes data eller en error.  

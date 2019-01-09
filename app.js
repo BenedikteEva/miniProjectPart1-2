@@ -24,7 +24,7 @@ app.use(logger('dev'));
 //app.use(loggerDoc);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-//app.use(cookieParser());
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -33,12 +33,12 @@ app.use('/api', apiRouter);
 app.use('/friendfinderweb', friendfinderwebRouter);
 app.use('/graphql', graphQlRouter);
 
-app.use(cookieSession({
+/* app.use(cookieSession({
   name: 'session',
   keys: ['I_should_never_be_visible_in_code'],
   // Cookie Options
   maxAge: 60*30 * 1000 // 30min
-}))
+})) */
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

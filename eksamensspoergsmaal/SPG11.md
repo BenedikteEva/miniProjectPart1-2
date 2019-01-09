@@ -29,12 +29,13 @@ Se closureAndModulePattern.js
 ---
 ### Explain the javascript methods map, filter and explain and demonstrate the reduce method
 
-Map - Tilføjer noget til hvert element i et array.  (man kan kære en funktion eller flere på hvert element)
+Map - Tilføjer noget til hvert element i et array.  (man kan køre en funktion eller flere på hvert element)
 
 Filter - Returner et nyt array med de elementer, der er true.
 
 Reduce - Kører en reduce funktion(som du selv skriver) mod hvert element af et array og returner et enkelt tal. 
-***
+
+```
 f.eks. 
 let arr= [4,6,9,10];
 function getSum(total, num) {
@@ -42,7 +43,8 @@ function getSum(total, num) {
 }
 let reduceToSum= arr.reduce(getSum);
 console.log(reduceToSum);
-***
+```
+
 Se mapFilterReduce.js  
 
 ---
@@ -51,13 +53,13 @@ Se mapFilterReduce.js
 Alternativ til rest lavet af Facebook og vedligeholdes af et større community.  
 Mere fleksibel og effektiv i forhold til rest.  
 Kun et endpoint til alle queries(hente data) og mutations(skrive data). Subscription(real time updates).  
-Ikke så mange hente bringe ture til databasen da det hele kan hentes af en query
+Ikke så mange queries til databasen, da det hele kan hentes af en query.
 
-Use cases: 
-client (iOS or Android app, or Web app) requesting data from a server.
-når al data er i et enkelt produkt snarere end mange forskellige servere og det er vigtigt at det går hurtigt. 
-Specielt på mobilapplicationer. (man skal dog overveje sin cachingstrategi da resultatet man får kan være stort)
-Undgå over eller underfetching 
+### Use cases: 
+client (iOS or Android app, or Web app) requesting data from a server.  
+når al data er i et enkelt produkt snarere end mange forskellige servere og det er vigtigt at det går hurtigt.  
+Specielt på mobilapplicationer. (man skal dog overveje sin cachingstrategi da resultatet man får kan være stort).  
+Undgå over eller underfetching.  
 
 ---
 ### Explain some of the Server Architectures that can be implemented with a GraphQL backend
@@ -77,7 +79,7 @@ Typerne skrives i et schema, der tjener som en kontrakt mellem server og klient 
 
 
 ##### Fordele 
-Når skemaet er defineret kan frontend og backend kan udviklerne(front og backend) arbejde videre uden den store kommunikation, da alle nu kender strukturen på den data, der sendes. 
+Når skemaet er defineret kan frontend og backend kan udviklerne(front og backend) arbejde videre uden den store kommunikation, da alle nu kender strukturen på den data, der sendes.  
 For frontend udviklerne er det let at lave mockup data, og det er let at skifte til det rigtige backend når man når dertil.  
 
 ---

@@ -15,7 +15,7 @@ require('mongoose').set('debug', true);
 
   
 }); 
-
+/* 
 router.get('/session', function (req, res, next) {
   // Update views
   console.log('req'+req.session.views)
@@ -29,7 +29,7 @@ router.get('/session', function (req, res, next) {
    
   });
  
-})
+}) */
 
 // Get all users.
 router.get('/users', async function (req, res, next) {
@@ -146,7 +146,7 @@ router.delete('/user/:_id', async function (req, res, next) {
       status: 'Error',
       data: err
     });
-  };
+  }});
 
 //    const id = req.params._id;
  // await userFacade.deleteUser(id);
@@ -162,7 +162,7 @@ router.delete('/user/:_id', async function (req, res, next) {
     //next(err);
   //}
   
-});
+
 
 // Skal refaktores.
 router.put('/user/:id', async function (req, res, next) {
@@ -187,8 +187,9 @@ router.post('/login', async function (req, res, next) {
   try {
     let loginUser = await loginFacade.login(req.body.userName, req.body.password, req.body.longitude, req.body.latitude, req.body.distance);
     let responseObk = res.json(loginUser)
-
-     // If user or password does not exist send a messege to the client.
+console.log(responseObk)
+    // If user or password does not exist send a messege to the client.
+  
     if (res.status(404)) {
       res.json({
         status:404,
