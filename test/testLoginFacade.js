@@ -83,10 +83,10 @@ describe("Testing the login Facade", function () {
     });
     it("should check good login ", async function (done) {
         await loginFacade.login("kw", "hash_me_and_add_some_salt test", 55.770112949163725, 12.513250708580017, 500).then(function (res) {
-            console.log('res------------------------------------------------' + res)
-            expect(res.length).to.be.equal(2)
+           expect(res).to.not.be.undefined&&
+            expect(res.length).to.be.equal(2);
         }).then(
-
+          
             done())
     });
 });
