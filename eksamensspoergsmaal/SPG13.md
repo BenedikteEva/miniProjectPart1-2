@@ -32,3 +32,18 @@ Se test mappen i backenden. https://github.com/BenedikteEva/miniProjectPart1-2/t
 ---
 # GraphQL, Period-4
 ### Demonstrate and highlight important parts of a “complete” GraphQL-app using Express and MongoDB on the server side, and Apollo-Client on the client.
+#### GraphQL i backenden
+##### /routes/graph.js
+GraphQl's endpoint.  
+
+##### /models/graphqlSchema
+resolvers.js (mutation og queries).  
+schema.js (vores schemas).  
+
+#### Apollo i native
+##### App.js
+Instans af ApolloClient.  
+ApolloProvider komponent (root, for at gøre ApolloClient tilgænglig for all komponenter).  
+
+##### Apollo folderen
+Her ligger mutation og query komponenter.  
