@@ -1,18 +1,69 @@
 # Plain JavaScript + Node.js
 
 ### Explain the differences between Java and JavaScript. You should include both topics related to the fact that Java is a compiled language and JavaScript a scripted language, and general differences in language features.
+| Java | JavaScript |
+| :-------------: |:-------------:|
+| Højt abstraktionsnivea - kompileres. | Engine(v8) - udfører koden med det samme. |
+Typer.  | Js deklares typer ikke.
+JVM(Java Virtual Machine).  | Browseren eller i applikationer.
+Objekter er klasse baseret.  | Objekter prototype baseret. 
+.java - oversættes til bytes og udføres af JVM.  | .js - Kompiles ikke - interpretter.
+Trådbaseret.  |  Js er event baseret. 
+Objekter som parameter.  | Funktioner som parameter. 
+Returner objekter fra metoder.  | Returner funktioner fra metoder.
+
+---
 
 ### Explain the topic Function Closures 
+Closure er en funktion, der er inden i en anden funktion.  
+Den indre funktion kan referer til variabler fra den ydre funktion og globale variabler.  
+Normalt når en funktion bliver kaldt, og variablen er out of scope så slettes den. Beholder referance til variablen. 
 
 ### Explain the javascript methods map, filter and explain and demonstrate the reduce method
+Map - Tilføjer noget til hvert element i et array.  (man kan kære en funktion eller flere på hvert element)
+
+Filter - Returner et nyt array med de elementer, der er true.
+
+Reduce - Kører en reduce funktion(som du selv skriver) mod hvert element af et array og returner et enkelt tal. 
+***
+f.eks. 
+let arr= [4,6,9,10];
+function getSum(total, num) {
+  return total + num;
+}
+let reduceToSum= arr.reduce(getSum);
+console.log(reduceToSum);
+***
+Se mapFilterReduce.js  
+
+---
 
 # GraphQL 
 ### Explain shortly about GraphQL, it purpose and some of its use cases
+Alternativ til rest lavet af Facebook og vedligeholdes af et størere community.  
+Mere fleksibel og effektiv i forhold til rest.  
+Kun et endpoint til alle queries(hente data) og mutations(skrive data). Subscription(real time updates).  
+Ikke så mange hente bringe ture til databasen da det hele akn hentes af en query
+Use cases: 
+client (iOS or Android app, or Web app) requesting data from a server.
+når al data er i et enkelt produkt snarere end mange forskellige servere og det er vigtigt at det går hurtigt. 
+Specielt på mobilapplicationer. (man skal dog overveje sin cachingstrategi da resultatet man får kan være stort)
+Undgå over eller underfetching 
 
 ### Explain some of the Server Architectures that can be implemented with a GraphQL backend
+GraphQl server med forbindelse til en server.  
+GraphQl server med forbindelse til flere eksisterende systemer forbundet med et endpoint.  
+Hybrid - Blanding af de 2 ovenstående. En forbindelse til en database og forbindet til eksisterende systemer.  
 
 ### What is meant by the terms over- and under-fetching in relation to REST
+Over-fetching: Når et endpoint returner mere data end, hvad der er brug for.  
+Under-fetching: Endpointet returner ikke nok data, og der skal laves flere requests.  
 
 ### Explain shortly about GraphQL’s type system and some of the benefits we get from this
+Bruger et stærk type system til at definere apiets muligheder.   
+Typerne skrives i et schema, der tjener som en kontrakt mellem server og klient i forhold til at definer, hvordan en klient kan tilgå dataene.  
+Fordele: Når skemaet er defineret kan frontend og backend udviklere arbejde videre uden den store kommunikation, da alle nu kender strukturen på den data, der sendes. For frontend udviklerne er det let at lave mockup data, og det er let at skifte til det rigtige backend når man når dertil.  
 
 ### Provide a number of examples demonstrating data fetching with GraphQL. You should provide examples both running in a Sandbox/playground and examples executed in an Apollo Client
+
+se apollo mappen i clienten. + models/graphqlScema i backenden 
