@@ -46,3 +46,18 @@ Over-fetching: Når et endpoint returner mere data end, hvad der er brug for.
 Under-fetching: Endpointet returner ikke nok data, og der skal laves flere requests.  
 
 ### Demonstrate and highlight important parts of a “complete” GraphQL-app using Express and MongoDB on the server side, and Apollo-Client on the client.
+#### GraphQL i backenden
+##### /routes/graph.js
+GraphQl's endpoint.  
+
+##### /models/graphqlSchema
+resolvers.js (mutation og queries).  
+schema.js (vores schemas).  
+
+#### Apollo i native
+##### App.js
+Instans af ApolloClient.  
+ApolloProvider komponent (root, for at gøre ApolloClient tilgænglig for all komponenter).  
+
+##### Apollo folderen
+Her ligger mutation og query komponenter.  
