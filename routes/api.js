@@ -28,7 +28,7 @@ router.get('/session', function (req, res, next) {
     views: req.session.views
    
   });
-  res.end(req.session.views + ' views')
+ 
 })
 
 // Get all users.
