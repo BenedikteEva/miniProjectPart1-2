@@ -60,15 +60,19 @@ Se serialParalelAsync.js
 ### Demonstrate both server and client-side, of the geo-related parts of your implementation of the mini project
 Serverside:  
 Demo: https://miniprojectfsjsbebop.herokuapp.com/friendfinderweb backend  
-Sekvens: views/login- -routes/api.js- -Facades/loginFacade.js- -Models/position.js  
+Sekvens: views/login - friendfinderweb.ejs  
+routes/api.js - Login routes  
+Facades/loginFacade.js  
+Models/position.js  
 
 clientside  
 Demo: https://expo.io/@benedikteeva/FriendFinderBB  
 
-Sekvens: Screens/LoginScreen (via App.js og TabNavigator)- -postfetch til  https://miniprojectfsjsbebop.herokuapp.com/api/login -  
-- returnerer jsonobject m venners koordinater og navn igen som befinder sig indenfor valgt distance.
-- efter du har fået data fra fetch call sættes det i state.
-- bruges til at rendere et Mapview med markers ved hjælp af Array.map...
+Sekvens: Screens/LoginScreen (via App.js og TabNavigator - button). postfetch til    https://miniprojectfsjsbebop.herokuapp.com/api/login 
+
+- returnerer jsonobject med venners koordinater og navn igen som befinder sig indenfor valgt distance.  
+- efter du har fået data fra fetch call sættes det i state.  
+- bruges til at rendere et Mapview med markers ved hjælp af Array.map...  
 
 MapView har forskellige properties f.eks. region hvor man kan sætte positionen og koordinatdelta*  samt også nogle componenter/ metoder såsom Markers hvor man kan vise en position eventuelt med en title property, et billede eller en farve.  
 
