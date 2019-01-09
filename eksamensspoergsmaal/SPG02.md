@@ -111,4 +111,5 @@ Se test mappen i backenden. https://github.com/BenedikteEva/miniProjectPart1-2/t
 ### Explain, using relevant examples, your strategy for implementing a REST-API with Node/Express and show how you can "test" all the four CRUD operations programmatically 
 
 
+mongo db -facades - Routes 
 Se test mappen i backenden. https://github.com/BenedikteEva/miniProjectPart1-2/tree/master/test  

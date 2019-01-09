@@ -79,3 +79,10 @@ Se test mappen i backenden. https://github.com/BenedikteEva/miniProjectPart1-2/t
 ---
 
 ### Explain, using relevant examples, how to implement sessions and the legal implications of doing this.
+Exempel (både på middleware og en session cookie): app.js er der importeret (required) cookiesessions. I linje 21 setter vi sessions til at stole på den første den bedste proxy den møder. 
+Derefter bruger vi den i linje 29 hvor vi blandt andet sætter en key normalt hvis man sætter keys her er der et par stykker her har vi bare nøjes med en string. en set key er allerede signed med keys[0]. Der sættes også en max levetid. 
+
+i vores api route er der så bare som eksamens eksempel lavet en route der hedder session som tæller views og lægger det på routen som json. 
+ npm start og åbn developer tools og tjek cookies under get requests i netværk fane
+
+ Man kunne med fordel have brugt sessions til login ala vi gjorde på 2. semester i Fog i java men da vi ikke har et sikkert login i vores database er det lidt underordnet. 
