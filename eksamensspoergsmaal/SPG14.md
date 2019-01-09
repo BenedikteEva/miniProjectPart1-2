@@ -25,7 +25,6 @@ Se callback.js
 ---
 # Express, REST and GraphQL
 ### Explain, using relevant examples (mini-project, preferably), your strategy for implementing a REST-API with Node/Express and show how you can "test" all the four CRUD operations programmatically.
-### SE PÅ SVARET TIL DET HER SPØRGSMÅL!!!
 Database på mongodb  
 
 ##### Se api.js i routes
@@ -33,7 +32,20 @@ endpoints ('./routes/api).
 facade metoder til at lave crud metoder.  
 response ('./views/forskellige endpoints).  
 
-mocha test metoder til at teste endpoints
+Mocha test metoder til at teste endpoints.  
+
+##### Mocha
+En describe() blok giver dig mulighed for at gruppere dine test.  
+
+it() blok sætter testen op med kode.  
+
+done() er en callback, der kan bruges med it(). Så ved Mocha at det er en asynkron metode at, og den skal vente.  
+
+God til integrations og unit test.  
+
+##### Chai
+Er et assertion bibliotek til test i node.  
+expect() sættes sammen med getters som to.be.equal ect.  
 
 ### Explain shortly about GraphQL, its purpose and some of its use cases
 Alternativ til rest lavet af Facebook og vedligeholdes af et størere community.  
