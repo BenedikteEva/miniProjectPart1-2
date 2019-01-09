@@ -90,3 +90,5 @@ Kan være mange forskellige funktioner tjek mine api metoder og tilhørende test
 
 ejs (embedded javascript templates) og jsp (java server pages)
 kig i routes and views i miniprojektet
+
+---
