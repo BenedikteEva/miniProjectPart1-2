@@ -187,13 +187,9 @@ router.post('/login', async function (req, res, next) {
   try {
     let loginUser = await loginFacade.login(req.body.userName, req.body.password, req.body.longitude, req.body.latitude, req.body.distance);
     let responseObk = res.json(loginUser)
-console.log(responseObk.statusCode)
+console.log(responseObk)
     // If user or password does not exist send a messege to the client.
-    if (res.status(200)) {
-      res.render('login', {
-        title: 'login',
-        friends: 'friends:' + responseObk
-      });}
+  
     if (res.status(404)) {
       res.json({
         status:404,
