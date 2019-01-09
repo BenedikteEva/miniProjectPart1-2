@@ -41,7 +41,7 @@ describe("Testing endpoints.", function () {
     await dbTestSetup(require("../settings").TEST_DB_URI);
 
     server = http.createServer(app);
-    server.listen(TEST_PORT, function () {});
+    server.listen(TEST_PORT, function () { });
   });
 
   after(function () {
@@ -190,28 +190,55 @@ describe("Testing endpoints.", function () {
         let user = await userFacade.findByUsername('kw');
         id = user._id
         console.log('ID!!!!!' + id);
-  
+
         chai.request(server)
           .get('/api/user_id/' + id)
           .end((err, res) => {
-  
+
             should.not.exist(err);
             res.should.have.status(200)
             res.type.should.equal('application/json');
             expect(res.body.status).to.be.equal('Success');
             //console.log(res.body.data.firstName);
             // Returns an object.
-            expect(res.body.data.firstName).to.equal("Kur"); // Bliver ikke valideret
+            expect(res.body.data.firstName).to.equal("Kurt"); // Bliver ikke valideret
             console.log(res.body.data.firstName);
             res.body.data.should.include.keys(
               "created", "_id", "firstName", "lastName", "userName", "password", "email", "job"
             );
-            done();
+          
           });
       } catch (err) {
         done(err);
       };
     });
   });
+  // Test add new user.
+  describe.only("POST: /api/login", () => {
 
-});
+    it("should let a user login.",async (done) => {
+      try {
+      chai.request(server)
+        .post('/api/login/')
+        .send({
+
+          username: 'kw',
+          password: 'test',
+          Longitude: 12.219044,
+          Latitude: 55.5363838,
+          distance: 50
+        })
+        .end((err, res) => {
+
+          
+    
+          res.should.have.status(200)
+
+      
+
+        });
+    }   catch (err) {
+      done(err);
+    };  done();
+   }) });
+})
