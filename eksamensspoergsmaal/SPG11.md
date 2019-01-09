@@ -13,6 +13,7 @@ Returner objekter fra metoder.  | Returner funktioner fra metoder.
 
 ---
 ### Explain the topic Function Closures 
+
 ##### Function Closure
 Closure er en funktion, der er inden i en anden funktion.  
 Den indre funktion kan referer til variabler fra den ydre funktion og globale variabler.  
@@ -24,24 +25,40 @@ Den anonyme funktion virker som en wrapper omkring de 3 indre funktioner, og der
 
 Se closureAndModulePattern.js  
 
+
 ---
 ### Explain the javascript methods map, filter and explain and demonstrate the reduce method
-Map - Tilføjer noget til hvert element i et array.  
+
+Map - Tilføjer noget til hvert element i et array.  (man kan kære en funktion eller flere på hvert element)
 
 Filter - Returner et nyt array med de elementer, der er true.
 
-Reduce - Kører en reduce funktion(som du selv skriver) mod hvert element af et array og returner et enkelt tal.  
-
+Reduce - Kører en reduce funktion(som du selv skriver) mod hvert element af et array og returner et enkelt tal. 
+***
+f.eks. 
+let arr= [4,6,9,10];
+function getSum(total, num) {
+  return total + num;
+}
+let reduceToSum= arr.reduce(getSum);
+console.log(reduceToSum);
+***
 Se mapFilterReduce.js  
 
 ---
 # GraphQL 
 ### Explain shortly about GraphQL, it purpose and some of its use cases
-Alternativ til rest lavet af Facebook og vedligeholdes af et størere community.  
+Alternativ til rest lavet af Facebook og vedligeholdes af et større community.  
 Mere fleksibel og effektiv i forhold til rest.  
 Kun et endpoint til alle queries(hente data) og mutations(skrive data). Subscription(real time updates).  
+Ikke så mange hente bringe ture til databasen da det hele kan hentes af en query
 
-##### Use cases: MANGLER!!!!!!
+Use cases: 
+client (iOS or Android app, or Web app) requesting data from a server.
+når al data er i et enkelt produkt snarere end mange forskellige servere og det er vigtigt at det går hurtigt. 
+Specielt på mobilapplicationer. (man skal dog overveje sin cachingstrategi da resultatet man får kan være stort)
+Undgå over eller underfetching 
+
 ---
 ### Explain some of the Server Architectures that can be implemented with a GraphQL backend
 GraphQl server med forbindelse til en server.  
@@ -58,13 +75,14 @@ Under-fetching: Endpointet returner ikke nok data, og der skal laves flere reque
 Bruger et stærk type system til at definere apiets muligheder.   
 Typerne skrives i et schema, der tjener som en kontrakt mellem server og klient i forhold til at definer, hvordan en klient kan tilgå dataene.  
 
+
 ##### Fordele 
 Når skemaet er defineret kan frontend og backend kan udviklerne(front og backend) arbejde videre uden den store kommunikation, da alle nu kender strukturen på den data, der sendes. 
-
 For frontend udviklerne er det let at lave mockup data, og det er let at skifte til det rigtige backend når man når dertil.  
 
 ---
 ### Provide a number of examples demonstrating data fetching with GraphQL. You should provide examples both running in a Sandbox/playground and examples executed in an Apollo Client
+
 ##### Sandbox/playground
 https://miniprojectfsjsbebop.herokuapp.com/graphql  
 
@@ -79,3 +97,4 @@ Query komponenten opdateres når dataene lægges i cachen pga den subscriber på
 https://github.com/BoMarconiHenriksen/js_native_to_mini_project/tree/master/mini_project/apollo  
 
 Læs mere https://www.apollographql.com/docs/react/essentials/queries.html  
+

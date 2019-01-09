@@ -87,6 +87,19 @@ router.get('/listofallblogs', async function (req, res, next) {
     console.log('catch' + err)
   })
 
+  //alternativt med async await uden dot then man få da godt nok nogle vaner som programmør
+/* let url='https://miniprojectfsjsbebop.herokuapp.com/api/blogs';
+  async function loadJson(url) { // (1)
+    let response = await fetch(url); // (2)
+    if (response.status == 200) {
+      let json = await response.json(); // (3)
+      return json;
+    }
+    throw new Error(response.status);
+  }
+  loadJson(url)
+    .catch(alert); // Error: 404 (4) */
+
 
   res.render('listofallblogs', {
     title: 'blogs',
