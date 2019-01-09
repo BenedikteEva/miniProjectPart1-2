@@ -39,7 +39,11 @@ Alternativ til rest lavet af Facebook og vedligeholdes af et størere community.
 Mere fleksibel og effektiv i forhold til rest.  
 Kun et endpoint til alle queries(hente data) og mutations(skrive data). Subscription(real time updates).  
 
-##### Use cases MANGLER!!!!
+### Use cases: 
+client (iOS or Android app, or Web app) requesting data from a server.
+når al data er i et enkelt produkt snarere end mange forskellige servere og det er vigtigt at det går hurtigt. 
+Specielt på mobilapplicationer. (man skal dog overveje sin cachingstrategi da resultatet man får kan være stort)
+Undgå over eller underfetching 
 
 ### What is meant by the terms over- and under-fetching in relation to REST
 Over-fetching: Når et endpoint returner mere data end, hvad der er brug for.  

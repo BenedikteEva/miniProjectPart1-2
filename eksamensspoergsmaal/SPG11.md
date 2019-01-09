@@ -53,7 +53,7 @@ Mere fleksibel og effektiv i forhold til rest.
 Kun et endpoint til alle queries(hente data) og mutations(skrive data). Subscription(real time updates).  
 Ikke så mange hente bringe ture til databasen da det hele kan hentes af en query
 
-Use cases: 
+###Use cases: 
 client (iOS or Android app, or Web app) requesting data from a server.
 når al data er i et enkelt produkt snarere end mange forskellige servere og det er vigtigt at det går hurtigt. 
 Specielt på mobilapplicationer. (man skal dog overveje sin cachingstrategi da resultatet man får kan være stort)

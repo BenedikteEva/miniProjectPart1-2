@@ -43,7 +43,7 @@ Parallel - Alle fetch /operationer samtidig vha Promise.all().
 
 Se serialParalelAsync.js  
 
-eller makesample data
+
 
 ---
 
