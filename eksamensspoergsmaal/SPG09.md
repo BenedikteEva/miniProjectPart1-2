@@ -29,7 +29,6 @@ Se webpack-demo
 # NoSQL, MongoDB and Mongoose
 ### Explain Pros & Cons in using a NoSQL database like MongoDB as your data store, compared to a traditional Relational SQL Database like MySQL.
 
-    
 pros
     No Impedance mismatch (relational vs. OO)
     Schemaless
