@@ -4,11 +4,11 @@
 2. Skaler.  
 3. Hurtig backend.  
 4. Tråde.  
-5. Ikke cpu krævende som chat server, web server, REST server streaming server ect. 
+5. Ikke cpu krævende som chat server, web server, REST server streaming server ect.  
 
 ##### NPM(Node Package Manager)
-1. Et comand line interface til at tilføje packages til din applikation.
-2. Det kan være tools, css libraries eller du kan dele din kode. 
+1. Et comand line interface til at tilføje packages til din applikation.  
+2. Det kan være tools, css libraries eller du kan dele din kode.  
 
 ---
 
@@ -25,7 +25,7 @@ Kan ikke bruges ved konstruktør.
 
 Se arrowFunctions.js  
 ##### this
-Se arrowFunctions.js
+Se arrowFunctions.js  
 
 ##### rest parameter
 Du kan tildele resten af variablerne til ...rest. Returners som array.  
@@ -38,29 +38,33 @@ Se rest.js
 ##### de-structuring
 Pakke værdierne fra et array eller properties fra et objekt ud og lægge det i variabler.  
 
-Se deconstructuring.js
+Se deconstructuring.js  
 
 ---
 
 # Geo-handling on the server and on the Client (period-3)
-er et format designet til at representere geografisk data i programmering. 
+Er et format designet til at representere geografisk data i programmering.  
 
 ### Explain and demonstrate a REST API that implements geo-features, using MongoDB's geospatial queries and indexes.
-
-Demo: https://miniprojectfsjsbebop.herokuapp.com/friendfinderweb
-Sekvens: views/login- -routes/api.js- -Facades/loginFacade.js- -Models/position.js
+Demo: https://miniprojectfsjsbebop.herokuapp.com/friendfinderweb  
+Sekvens: views/login - friendfinderweb.ejs  
+routes/api.js - Login routes  
+Facades/loginFacade.js  
+Models/position.js   
 
 ### Explain and demonstrate a React Native Client that uses geo-components (Location, MapView, etc.)
-js_native_to_mini_project for at vise login med MapView
+js_native_to_mini_project for at vise login med MapView.  
 
-Demo: https://expo.io/@benedikteeva/FriendFinderBB
+Demo: https://expo.io/@benedikteeva/FriendFinderBB  
 
-Sekvens: Screens/LoginScreen (via App.js og TabNavigator)- -postfetch til https://miniprojectfsjsbebop.herokuapp.com/api/login - 
--returnerer jsonobject m venners koordinater og navn igen som befinder sig indenfor valgt distance - 
-- efter du har fået data fra fetch call sættes det i state-
--bruges til at rendere et Mapview med markers ved hjælp af Array.map...
+Sekvens: Screens/LoginScreen (via App.js og TabNavigator - button). 
+postfetch til https://miniprojectfsjsbebop.herokuapp.com/api/login  
 
-MapView har forskellige properties f.eks. region hvor man kan sætte positionen og koordinatdelta*  samt også nogle componenter/ metoder såsom Markers hvor man kan vise en position eventuelt med en title property, et billede eller en farve. 
+- returnerer jsonobject med venners koordinater og navne, som befinder sig indenfor valgt distance.  
+- efter du har fået data fra fetch call sættes det i state.
+- bruges til at rendere et Mapview med markers ved hjælp af Array.map...
+
+MapView har forskellige properties f.eks. region, hvor man kan sætte positionen og koordinatdelta*  samt også nogle componenter/ metoder såsom Markers hvor man kan vise en position eventuelt med en title property, et billede eller en farve.  
 
 
 

@@ -41,6 +41,7 @@ Se this.js
 ### Function Closures and the JavaScript Module Pattern
 ##### Function Closure
 Closure er en funktion, der er inden i en anden funktion.  
+
 Den indre funktion kan referer til variabler fra den ydre funktion og globale variabler.  
 Normalt når en funktion bliver kaldt, og variablen er out of scope så slettes den. Beholder referance til variablen.  
 
