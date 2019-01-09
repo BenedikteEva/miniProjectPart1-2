@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const expect = require("chai").expect;
-const dbTestSetup = require("..//dbTestSetup");
+const dbTestSetup = require("../dbTestSetup");
 
 //https://github.com/Automattic/mongoose/issues/1251
 mongoose.models = {};

@@ -23,8 +23,21 @@ Returner objekter fra metoder.  | Returner funktioner fra metoder.
 3. Gør js mere objekt orienteret.  
 
 ##### Hvad kræver det for at kunne køre js?
-En c++ container, hvor V8 engine er embedded.
 
+en javascript engine
+En c++ container, hvor V8 engine er embedded. (node)
+IEn browser har en indlejret enegine som noglegange bliver referet til som  JavaScript virtual machine 
+
+der er forskellige kodenavne alt efter browser teknologi. V8 i Chrome og opera - SpiderMonkey i FireFox
+
+Different engines have different “codenames”. For example:
+
+    V8 – in Chrome and Opera.
+    SpiderMonkey – in Firefox.
+    “ChakraCore” for Microsoft Edge, “Nitro” and “SquirrelFish” for Safari, etc.
+  Engines parser scriptet herefter compileres det til maskinsprog og så kører maskinkoden hurtigt. 
+
+The engine applies optimizations at each step of the process. It even watches the compiled script as it runs, analyzes the data that flows through it, and applies optimizations to the machine code based on that knowledge. When it’s done, scripts run quite fast.
 ---
 
 ### Explain (some) of the purposes with the tools Babel and WebPack, using  examples from the exercises
@@ -98,4 +111,5 @@ Se test mappen i backenden. https://github.com/BenedikteEva/miniProjectPart1-2/t
 ### Explain, using relevant examples, your strategy for implementing a REST-API with Node/Express and show how you can "test" all the four CRUD operations programmatically 
 
 
+mongo db -facades - Routes 
 Se test mappen i backenden. https://github.com/BenedikteEva/miniProjectPart1-2/tree/master/test  

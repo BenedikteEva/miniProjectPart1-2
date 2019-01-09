@@ -53,6 +53,7 @@ Se closureAndModulePattern.js
 ---
 
 # Express
+
 ### Explain Pros & Cons in using Node.js + Express to implement your Backend compared to a strategy using, for example, Java/JAX-RS/Tomcat
 Node simpel build process i forhold til java.  
 Node er hurtigere end java.  
@@ -86,3 +87,8 @@ Kan være mange forskellige funktioner tjek mine api metoder og tilhørende test
 ---
 
 ### Compare the express strategy toward (server side) templating with the one you used with Java on second semester and demonstrate a simple Server Side Rendering example using a technology of your own choice
+
+ejs (embedded javascript templates) og jsp (java server pages)
+kig i routes and views i miniprojektet
+
+---
