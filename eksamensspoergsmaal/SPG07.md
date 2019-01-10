@@ -56,9 +56,13 @@ It's theoretically impossible to have all 3 requirements met, so a combination o
 cap teorien går ud på at det er umuligt både at have consistens (Consistense), tilgængelighed (Availability) og partition tolerance 
 
 #### Consistency
+Alle server har samme data.  
+
 All the servers in the system will have the same data so anyone using the system will get the same copy regardless of which server answers their request.
 
 ### Availability
+Altid svare på en request.  
+
 The system will always respond to a request (even if it's not the latest data or consistent across the system or just a message saying the system isn't working).
 
 ### Partition Tolerance  
