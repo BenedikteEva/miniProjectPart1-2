@@ -48,14 +48,30 @@ Se webpack-demo
 Data fra den virkelige verden har ofte en struktur og også typer.  
 Samme grunde som vi vil bruge orm sammen med en relationel database.  
 
+Abstraktion så det ser ud til at vi arbejder med objekter i stedet for ren data.
+Klassisk "schema".
+Stærke type.
+Validering når du skriver til databasen.
+instanser har Build-in metoder / lave sine egne.
+Query hjælpere som findOne().byName('Fido')
 
 ### Explain the “6 Rules of Thumb: Your Guide Through the Rainbow” as to how and when you would use normalization vs. denormalization.
-1. Indlejr data i et skema medmindre der er en god grund til ikke at gøre det. (denormaliszation) (jobscema)
-2. en god grund til ikke at indlejre er hvis noget skal kunne findes frem udenom der hvor det er indlejret. (f,eks, users i posistionscema)
-3. en anden er hvis der er rigtig meget data (50000 likes på en location blog med user ids)
-4. Lad være med at være bange for at lave joins i din applikation
-5. overvej hvor ofte et felt bliver skrevet til og læst i forhold til denormalisering. Hvis et felt mest bliver læst og sjældent skal opdateres er det meget fint at denormalisere men hvis der er mange instancer af et felt og der skal opdateres ofte er det bøvlet og tager lang tid at finde og opdatere alle instancer. 
-6. Hvordan du strukture data kommer an på din applications behov. Det kommer helt an på hvor dan applikation laver forespørgelser og updateringer. 
+1. Indlejr data i et skema medmindre der er en god grund til ikke at gøre det. (denormaliszation) (jobscema)  
+
+2. en god grund til ikke at indlejre er hvis noget skal kunne findes frem udenom der hvor det er indlejret. (f.eks. et objekt Users i posistionscema).  
+
+3. En anden er hvis der er rigtig meget data (array med 50000 likes på en location blog med user ids).  
+
+4. Lad være med at være bange for at lave joins i din applikation (Hurtigere med 2 fetch).  
+
+5. Overvej hvor ofte et felt bliver skrevet til og læst i forhold til denormalisering. 
+Hvis et felt mest bliver læst og sjældent skal opdateres er det fint at denormalisere, men  
+hvis der er mange instancer af et felt og der skal opdateres ofte er der ikke noget sparet ved demormalisering (lang tid at finde og opdatere alle instancer).   
+
+6. Hvordan du strukture data kommer an på din applications behov.  
+Det kommer helt an på hvordan applikation laver forespørgelser og updateringer.  
+
+---
 
 ### Explain, using a relevant example, a full JavaScript backend including relevant test cases to test the REST-API (not on the production database)
 
