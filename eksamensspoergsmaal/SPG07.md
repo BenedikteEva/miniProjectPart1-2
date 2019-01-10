@@ -36,7 +36,7 @@ Se deconstructuring.js
 
 # NoSQL, MongoDB and mongoose
 ### Explain, generally, what is meant by a NoSQL database.
-
+##### Bo se alternativ forklaring
 En NoSql database er en database der ikke bruger SQL en keyvalue database (asyncStorage f.eks.), wide column store (?),  en document database (mongodb), graph stores (graphql).  
 
 NoSQL database giver en måde at gemme og hente data der ikke er modelleret på samme måde som tabeller og relationer mellem tabeller som i relationelle databaser (SQL/ MySQL).  
@@ -61,26 +61,43 @@ All the servers in the system will have the same data so anyone using the system
 ### Availability
 The system will always respond to a request (even if it's not the latest data or consistent across the system or just a message saying the system isn't working).
 
-### Partition Tolerance
-The system continues to operate as a whole even if individual servers fail or can't be reached.
+### Partition Tolerance  
+The system continues to operate as a whole even if individual servers fail or can't be reached.  
 
+---
+### Alternativ forklaring - Explain, generally, what is meant by a NoSQL database.
+Bruger ikke sql.  
+Har ikke samme opbygning som relationelle databaser med tabeller.  
+Samme data kan ligge mange steder eks. userName.  
+Er et dokument uden et fast schema(simpelt design).  
+Bruger ikke joins.  
+Nemmere at skalere og bedre tilgængelighed.  
+Er god til big data.  
+
+---
 ### Explain Pros & Cons in using a NoSQL database like MongoDB as your data store, compared to a traditional Relational SQL Database like MySQL.
-pros  
-    No Impedance mismatch (relational vs. OO)  
-    Schemaless - Mere fleksibelt. Dog når du laver querry du går ud fra implicit schema.  
-    Supports large volumes of data by running on clusters  
-    flexibelt   
-    nemt at bruge  
-    hurtigere  
-cons  
-    Data er mindre strukteret  
-    en sql database har et strengt sæt regler om normalisering hvilket sikrer databasens integritet. Det har NoSql ikke.   
-    Mangler joins. I en dokument baseret nosql database giver det et problem. (men så kom grapQL)  
+##### pros  
+- Schemaless.  
+- Supports large volumes of data by running on clusters.  
+- flexibelt.   
+- Nemt at bruge. Kun en query til at hente den data du skal bruge.    
+- Hurtigere, da der ikke er joins.  
+- No Impedance mismatch (relational vs. OO).  
 
+##### cons 
+- Data er mindre strukteret.  
+- En sql database har et strengt sæt regler om normalisering, hvilket sikrer databasens integritet. Det har NoSql ikke. (Banktransaktioner).  
 
 ### Explain reasons to add a layer like Mongoose, on top on of a schema-less database like MongoDB
 Data fra den virkelige verden har ofte en struktur og også typer.  
- samme grunde som vi vil bruge orm sammen med en relationel database.  
+Samme grunde som vi vil bruge orm sammen med en relationel database.  
+
+Abstraktion så det ser ud til at vi arbejder med objekter i stedet for ren data.  
+Klassisk "schema".  
+Stærke type.  
+Validering når du skriver til databasen.  
+instanser har Build-in metoder / lave sine egne.  
+Query hjælpere som findOne().byName('Fido')  
 
 
 ### Explain the benefits of using Mongoose, and demonstrate, using your own code, an example involving all CRUD operations
@@ -89,6 +106,17 @@ mongoose lægger et absatractions lag henover mongoDB der eleminierer behovet fo
 
 Models i mongoose tager slæbet med at etablere default værdier for document properties og at validere data. 
 man kan sætte funktioner på modeller i mongoose hvilket gør det nemmere at indkoporere ny funktionalitet. 
-Queries bruger function chaining istedet for huskesymboler hvilket resulterer i i mere flexibel og læsbar kode og dermed også lettere at vedligeholde.
+Queries bruger function chaining istedet for huskesymboler hvilket resulterer i i mere flexibel og læsbar kode og dermed også lettere at vedligeholde.  
 
 se facader
+
+### Alternativ forklaring Explain the benefits of using Mongoose, and demonstrate, using your own code, an example involving all CRUD operations
+### Mongoose fordele
+Abstraktion så det ser ud til at vi arbejder med objekter i stedet for ren data.  
+Klassisk "schema".  
+Stærke type.  
+Validering når du skriver til databasen.  
+instanser har Build-in metoder / lave sine egne.  
+Query hjælpere som findOne().byName('Fido')  
+
+Se models og facader.  
