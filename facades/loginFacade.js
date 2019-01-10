@@ -49,7 +49,7 @@ async function friendFinderUtility(longitude, latitude, distance) {
         }
       }
     }
-  ).populate('user').exec()
+  ).populate('user').exec() // referance(link) til et user via userId.
   // 
   return await position;
 
