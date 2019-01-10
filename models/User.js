@@ -8,7 +8,9 @@ var JobSchema = new Schema({
     company: String,
     companyUrl : String
   });
-  
+
+// Kompileret version af et schema.
+// Instancer af modellen repræsenterer dokumenter.
 var UserSchema = new Schema({
     userName: {type: String, unique: true, required: true},
     firstName : String,
