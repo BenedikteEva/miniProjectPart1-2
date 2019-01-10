@@ -39,6 +39,7 @@ mocha test metoder til at teste endpoints
 Alternativ til rest lavet af Facebook og vedligeholdes af et størere community.  
 Mere fleksibel og effektiv i forhold til rest.  
 Kun et endpoint til alle queries(hente data) og mutations(skrive data). Subscription(real time updates).  
+Query language for APIs, der giver mulighed for at få den specifikke data du ønsker.  Ingen over- og under fetch.  
 
 ### Use cases: 
 client (iOS or Android app, or Web app) requesting data from a server.  
