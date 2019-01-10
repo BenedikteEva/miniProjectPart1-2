@@ -75,6 +75,8 @@ Abstraktion så det ser ud til at vi arbejder med objekter i stedet for ren data
 Klassisk "schema".  
 Stærke type.  
 Validering når du skriver til databasen.  
+instanser har Build-in metoder / lave sine egne.  
+Query hjælpere som findOne().byName('Fido')  
 
 ---
 ### Explain, using relevant examples, about testing JavaScript code, relevant packages (Mocha etc.) and how to test asynchronous code.
