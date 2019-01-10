@@ -31,19 +31,18 @@ Se webpack-demo
 ### Explain Pros & Cons in using a NoSQL database like MongoDB as your data store, compared to a traditional Relational SQL Database like MySQL.
 
 ##### pros  
-- No Impedance mismatch (relational vs. OO).  
 - Schemaless.  
 - Supports large volumes of data by running on clusters.  
 - flexibelt.   
-- nemt at bruge.  
-- hurtigere. 
+- Nemt at bruge. Kun en query til at hente den data du skal bruge.    
+- Hurtigere, da der ikke er joins.  
+- No Impedance mismatch (relational vs. OO).  
 
 ##### cons 
 - Data er mindre strukteret.  
-- En sql database har et strengt sæt regler om normalisering hvilket sikrer databasens integritet. Det har NoSql ikke.  
-- Mangler joins. I en dokument baseret nosql database giver det et problem. (men så kom grapQL).  
-
-
+- En sql database har et strengt sæt regler om normalisering, hvilket sikrer databasens integritet. Det har NoSql ikke. (Banktransaktioner).  
+ 
+ ---
 ### Explain reasons to add a layer like Mongoose, on top on of a schema-less database like MongoDB
 Data fra den virkelige verden har ofte en struktur og også typer.  
 Samme grunde som vi vil bruge orm sammen med en relationel database.  
