@@ -47,12 +47,12 @@ Se webpack-demo
 Data fra den virkelige verden har ofte en struktur og også typer.  
 Samme grunde som vi vil bruge orm sammen med en relationel database.  
 
-Abstraktion så det ser ud til at vi arbejder med objekter i stedet for ren data.
-Klassisk "schema".
-Stærke type.
-Validering når du skriver til databasen.
-instanser har Build-in metoder / lave sine egne.
-Query hjælpere som findOne().byName('Fido')
+Abstraktion så det ser ud til at vi arbejder med objekter i stedet for ren data.  
+Klassisk "schema".  
+Stærke type.  
+Validering når du skriver til databasen.  
+instanser har Build-in metoder / lave sine egne.  
+Query hjælpere som findOne().byName('Fido')  
 
 ### Explain the “6 Rules of Thumb: Your Guide Through the Rainbow” as to how and when you would use normalization vs. denormalization.
 1. Indlejr data i et skema medmindre der er en god grund til ikke at gøre det. (denormaliszation) (jobscema)  
