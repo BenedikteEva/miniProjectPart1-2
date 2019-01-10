@@ -70,7 +70,7 @@ Man kan sætte funktioner på modeller i mongoose, hvilket gør det nemmere at i
 Queries bruger function chaining istedet for huskesymboler hvilket resulterer i mere flexibel og læsbar kode og dermed også lettere at vedligeholde. 
 
 --- 
-# Mongoose fordele
+### Mongoose fordele
 Abstraktion så det ser ud til at vi arbejder med objekter i stedet for ren data.  
 Klassisk "schema".  
 Stærke type.  
