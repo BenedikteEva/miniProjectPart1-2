@@ -26,6 +26,8 @@ Se callbackHell.js
 Alternativ til rest lavet af Facebook og vedligeholdes af et størere community.  
 Mere fleksibel og effektiv i forhold til rest.  
 Kun et endpoint til alle queries(hente data) og mutations(skrive data). Subscription(real time updates).  
+Specielt på mobilapplicationer. (man skal dog overveje sin cachingstrategi da resultatet man får kan være stort).  
+Undgå over eller underfetching.   
 
 ---
 ### Explain shortly about GraphQL Schema Definition Language, and provide a number of examples of schemas you have defined.
