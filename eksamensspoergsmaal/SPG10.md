@@ -60,8 +60,6 @@ https://github.com/BenedikteEva/miniProjectPart1-2/blob/master/app.js
 ---
 ### Explain the benefits of using Mongoose, and demonstrate, using your own code, an example involving all CRUD operations
 Fordele ved at bruge mongoose fremfor native mongodb er at...    
-Abstraktion så det ser ud til at vi arbejder med objekter i stedet for ren data.  
-
 Mongoose lægger et absatractions lag henover mongoDB der eleminierer behovet for at bruge named collections.  
 I steded for at sige db.collection('user).en eller ander ting kan vi bruger User.find så det kører direkte på skemaet.  
 
@@ -70,6 +68,13 @@ Models i mongoose tager slæbet med at etablere default værdier for document pr
 Man kan sætte funktioner på modeller i mongoose, hvilket gør det nemmere at indkoporere ny funktionalitet.  
 
 Queries bruger function chaining istedet for huskesymboler hvilket resulterer i mere flexibel og læsbar kode og dermed også lettere at vedligeholde. 
+
+--- 
+# Mongoose fordele
+Abstraktion så det ser ud til at vi arbejder med objekter i stedet for ren data.  
+Klassisk "schema".  
+Stærke type.  
+Validering når du skriver til databasen.  
 
 ---
 ### Explain, using relevant examples, about testing JavaScript code, relevant packages (Mocha etc.) and how to test asynchronous code.
