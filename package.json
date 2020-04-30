@@ -7,7 +7,9 @@
     "es6": "nodemon ./bin/www --exec babel-node --presets env,stage-2 -e js",
     "withnodemon": "SET DEBUG=part1:* & nodemon ./bin/www",
     "test": "SET DEBUG=part1:* & mocha -w",
-    "makedata": "node makesampledata"
+    "makedata": "node makesampledata",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "engines": {
     "node": "10.13.0"
@@ -34,7 +36,8 @@
     "node-fetch": "^2.2.0",
     "react-apollo": "^2.3.2",
     "request": "^2.88.0",
-    "winston": "^3.1.0"
+    "winston": "^3.1.0",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -42,5 +45,6 @@
     "babel-preset-stage-2": "^6.24.1",
     "chai": "^4.2.0",
     "nodemon": "1.18.4"
-  }
+  },
+  "snyk": true
 }
