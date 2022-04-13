@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "apollo-boost": "^0.1.22",
-    "async": "^2.6.1",
+    "async": "^3.2.2",
     "chai-http": "^4.2.0",
     "cookie-parser": "~1.4.3",
     "cookie-session": "^2.0.0-beta.3",
