@@ -32,7 +32,7 @@
     "mongoose": "^5.3.2",
     "morgan": "~1.9.0",
     "node-fetch": "^2.2.0",
-    "react-apollo": "^2.3.2",
+    "react-apollo": "^2.5.0",
     "request": "^2.88.0",
     "winston": "^3.1.0"
   },
